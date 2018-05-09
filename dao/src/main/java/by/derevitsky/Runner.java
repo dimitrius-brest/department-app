@@ -17,6 +17,10 @@ public class Runner {
         // Получает dataSource из контекста Spring
         ApplicationContext context = new ClassPathXmlApplicationContext("springcontext.xml");
         DriverManagerDataSource dataSource = (DriverManagerDataSource) context.getBean("dataSource");
+        // Получаем из контекста departmentDAO
+        DepartmentDAO departmentDAO = (DepartmentDAO) context.getBean("departmentDAO");
+
+        departmentDAO.testMethod("тадам....");
 
         try {
             // Создаём соединение
@@ -34,5 +38,6 @@ public class Runner {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
     }
 }

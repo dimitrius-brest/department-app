@@ -3,6 +3,10 @@ package by.derevitsky;
 import java.util.List;
 
 public interface DepartmentDAO {
+
+    // test method
+    void testMethod(String testString);
+
     // CRUD operations
 
     // Insert

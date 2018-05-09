@@ -17,4 +17,7 @@
         <property name="username" value="sa"/>
         <property name="password" value=""/>
     </bean>
+
+    <bean id="departmentDAO" class="by.derevitsky.DepartmentDAOImplH2">
+    </bean>
 </beans>
