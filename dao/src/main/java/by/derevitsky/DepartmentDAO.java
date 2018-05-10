@@ -1,5 +1,6 @@
 package by.derevitsky;
 
+import javax.sql.DataSource;
 import java.util.List;
 
 public interface DepartmentDAO {
@@ -7,8 +8,10 @@ public interface DepartmentDAO {
     // test method
     void testMethod(String testString);
 
-    // CRUD operations
+    // Set DataSource
+    void setDataSource(DataSource dataSource);
 
+    // ==== CRUD operations ====
     // Insert
     void insertDepartment(Department department);
     // Read
