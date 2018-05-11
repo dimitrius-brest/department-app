@@ -5,7 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import javax.sql.DataSource;
 import java.util.List;
 
-public class DepartmentDAOImplH2 implements DepartmentDAO {
+public class EmployeeDAOImplH2 implements EmployeeDAO {
     private DataSource dataSource;
     private JdbcTemplate jdbcTemplate;
 
@@ -16,26 +16,29 @@ public class DepartmentDAOImplH2 implements DepartmentDAO {
     }
 
     @Override
-    public List<Department> getAll() {
-        String sql = "select * from departments";
-        List<Department> departments = jdbcTemplate.query(sql, new DepartmentRowMapper());
-        return departments;
+    public List<Employee> getAll() {
+        String sql = "select * from employees";
+        List<Employee> employees = jdbcTemplate.query(sql, new EmployeeRowMapper());
+        return employees;
     }
 
     @Override
-    public Department getById(int id) {
+    public Employee getById(int id) {
         return null;
     }
 
     @Override
-    public void insert(Department department) {
+    public void insert(Employee employee) {
+
     }
 
     @Override
-    public void update(Department department) {
+    public void update(Employee employee) {
+
     }
 
     @Override
-    public void delete(Department department) {
+    public void delete(Employee employee) {
+
     }
 }
