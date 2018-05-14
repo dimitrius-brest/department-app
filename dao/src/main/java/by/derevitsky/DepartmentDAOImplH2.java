@@ -24,18 +24,27 @@ public class DepartmentDAOImplH2 implements DepartmentDAO {
 
     @Override
     public Department getById(int id) {
-        return null;
+        String sql = "select * from departments where id=?";
+        Department department = (Department) jdbcTemplate.queryForObject(sql, new Object[]{id}, new DepartmentRowMapper());
+        return department;
     }
 
     @Override
-    public void insert(Department department) {
+    public void insert(String name) {
+        String sql = "insert into departments (name) values (?)";
+        jdbcTemplate.update(sql, name);
     }
 
     @Override
-    public void update(Department department) {
+    public void update(int id, String name) {
+        String sql = "update departments set name=? where id=?";
+        jdbcTemplate.update(sql, name, id);
     }
 
     @Override
-    public void delete(Department department) {
+    public void delete(int id) {
+        String sql = "delete from departments where id=?";
+        jdbcTemplate.update(sql, id);
+        System.out.println("Deleted record with id = " + id);
     }
 }

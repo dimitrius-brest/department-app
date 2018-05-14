@@ -14,13 +14,11 @@ public interface DepartmentDAO {
     List<Department> getAll();
     // Read
     Department getById(int id);
-
     // Insert
-    void insert(Department department);
+    void insert(String name);
     // Update
-    void update(Department department);
+    void update(int id, String name);
     // Delete
-    void delete(Department department);
-
+    void delete(int id);
 
 }

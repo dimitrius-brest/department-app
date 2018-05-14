@@ -24,7 +24,9 @@ public class EmployeeDAOImplH2 implements EmployeeDAO {
 
     @Override
     public Employee getById(int id) {
-        return null;
+        String sql = "select * from employees where id=?";
+        Employee employee = (Employee) jdbcTemplate.queryForObject(sql, new Object[]{id}, new EmployeeRowMapper());
+        return employee;
     }
 
     @Override
@@ -33,12 +35,14 @@ public class EmployeeDAOImplH2 implements EmployeeDAO {
     }
 
     @Override
-    public void update(Employee employee) {
+    public void update(int id) {
 
     }
 
     @Override
-    public void delete(Employee employee) {
-
+    public void delete(int id) {
+        String sql = "delete from employees where id=?";
+        jdbcTemplate.update(sql, id);
+        System.out.println("Deleted record with id = " + id);
     }
 }

@@ -18,8 +18,8 @@ public interface EmployeeDAO {
     // Insert
     void insert(Employee employee);
     // Update
-    void update(Employee employee);
+    void update(int id);
     // Delete
-    void delete(Employee employee);
+    void delete(int id);
 
 }
