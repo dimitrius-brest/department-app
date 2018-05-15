@@ -4,12 +4,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
 public class Runner {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, ParseException {
 
         // Контекст Spring
         ApplicationContext context = new ClassPathXmlApplicationContext("springcontext.xml");
@@ -81,10 +82,13 @@ public class Runner {
                 employee.getBirth_date() + " " + employee.getSalary());
         System.out.println();
 
-        // Проверяем метод insert  (employees)  ---- разобраться с Date
-   /*     System.out.println("Вставляем ещё одного Employee");
+        // Проверяем метод insert  (employees) 
+        System.out.println("Вставляем ещё одного Employee");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = formatter.parse("2000-01-01");
         employeeDAO.insert(1, "Vladimir", "Vladimirovich", "Putin",
-                new Date("2000-01-01"), 500); */
+                date, 500);
+        System.out.println();
 
         // Проверяем метод delete  ----- работает, всё ОК
    /*      employeeDAO.delete(test_id);
