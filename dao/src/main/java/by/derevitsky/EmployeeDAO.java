@@ -1,6 +1,7 @@
 package by.derevitsky;
 
 import javax.sql.DataSource;
+import java.util.Date;
 import java.util.List;
 
 public interface EmployeeDAO {
@@ -16,9 +17,13 @@ public interface EmployeeDAO {
     Employee getById(int id);
 
     // Insert
-    void insert(Employee employee);
+    void insert(int id_department,
+                String first_name, String middle_name, String last_name,
+                Date birth_date, int salary);
     // Update
-    void update(int id);
+    void update(int id, int id_department,
+                String first_name, String middle_name, String last_name,
+                Date birth_date, int salary);
     // Delete
     void delete(int id);
 
