@@ -4,6 +4,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class Runner {
@@ -15,7 +17,7 @@ public class Runner {
         DepartmentDAO departmentDAO = (DepartmentDAO) context.getBean("departmentDAO");
 
 
-        // Проверяем метод getAll
+        // Проверяем метод getAll  (departments)
         System.out.println("Таблица DEPARTMENTS:");
         List<Department> departments = departmentDAO.getAll();
         for (Department department : departments) {
@@ -23,7 +25,7 @@ public class Runner {
         }
         System.out.println();
 
-        // Проверяем метод getById
+        // Проверяем метод getById  (departments)
         int test_id = 2;
         System.out.println("Извлекаем Department с id=" + test_id);
         Department department2 = departmentDAO.getById(test_id);
@@ -34,12 +36,12 @@ public class Runner {
         System.out.println("Удалили....");
  */
 
-        // Проверяем метод insert
+        // Проверяем метод insert  (departments)
         departmentDAO.insert("Workers");
         System.out.println("Inserting new item...");
         System.out.println();
 
-        // Проверяем метод update
+        // Проверяем метод update  (departments)
         test_id = 5;
         departmentDAO.update(test_id, "Cool Workers");
         System.out.println("Updated item with id = " + test_id);
@@ -58,7 +60,7 @@ public class Runner {
         // Получаем из контекста employeeDAO
         EmployeeDAO employeeDAO = (EmployeeDAO) context.getBean("employeeDAO");
 
-        // Проверяем метод getAll
+        // Проверяем метод getAll  (employees)
         System.out.println("Таблица EMPLOYEES:");
         List<Employee> employees = employeeDAO.getAll();
         for (Employee employee : employees) {
@@ -69,7 +71,7 @@ public class Runner {
         }
         System.out.println();
 
-        // Проверяем метод getById
+        // Проверяем метод getById  (employees)
         test_id = 4;
         System.out.println("Извлекаем Employee с id=" + test_id);
         Employee employee = employeeDAO.getById(test_id);
@@ -79,9 +81,17 @@ public class Runner {
                 employee.getBirth_date() + " " + employee.getSalary());
         System.out.println();
 
+        // Проверяем метод insert  (employees)  ---- разобраться с Date
+   /*     System.out.println("Вставляем ещё одного Employee");
+        employeeDAO.insert(1, "Vladimir", "Vladimirovich", "Putin",
+                new Date("2000-01-01"), 500); */
+
         // Проверяем метод delete  ----- работает, всё ОК
-  /*      employeeDAO.delete(test_id);
+   /*      employeeDAO.delete(test_id);
         System.out.println("Удалили....");
+   */
+
+        // снова выводим список  (employees)
         employees = employeeDAO.getAll();
         for (Employee employee2 : employees) {
             System.out.println(
@@ -90,6 +100,6 @@ public class Runner {
                             employee2.getBirth_date() + " " + employee2.getSalary());
         }
         System.out.println();
-            */
+
     }
 }
