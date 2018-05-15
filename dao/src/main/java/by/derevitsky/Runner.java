@@ -82,7 +82,7 @@ public class Runner {
                 employee.getBirth_date() + " " + employee.getSalary());
         System.out.println();
 
-        // Проверяем метод insert  (employees) 
+        // Проверяем метод insert  (employees)
         System.out.println("Вставляем ещё одного Employee");
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date date = formatter.parse("2000-01-01");
