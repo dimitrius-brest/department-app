@@ -4,12 +4,16 @@ import javax.sql.DataSource;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * This interface describes CRUD methods for "Employee"
+ * @author Dmitry Derevitsky
+ */
 public interface EmployeeDAO {
 
     // Set DataSource
     void setDataSource(DataSource dataSource);
 
-    // CRUD operations
+    // ==== CRUD operations ====
 
     // Get All
     List<Employee> getAll();

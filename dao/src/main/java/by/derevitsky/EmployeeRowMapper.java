@@ -5,6 +5,14 @@ import org.springframework.jdbc.core.RowMapper;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Auxiliary class for usage in the EmployeeDAOImplH2 class methods
+ * and other implementations of EmployeeDAO interface
+ * @author Dmitry Derevitsky
+ * @see EmployeeDAOImplH2#getAll()
+ * @see EmployeeDAOImplH2#getById(int)
+ * @see EmployeeDAO
+ */
 public class EmployeeRowMapper implements RowMapper  {
 
     @Override

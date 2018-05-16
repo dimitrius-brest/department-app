@@ -3,9 +3,13 @@ package by.derevitsky;
 import javax.sql.DataSource;
 import java.util.List;
 
+/**
+ * This interface describes CRUD methods for "Department"
+ * @author Dmitry Derevitsky
+ */
 public interface DepartmentDAO {
 
-    // Set DataSource
+    // Sets DataSource
     void setDataSource(DataSource dataSource);
 
     // ==== CRUD operations ====

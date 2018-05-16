@@ -2,13 +2,17 @@ package by.derevitsky;
 
 import java.util.Date;
 
+/**
+ * Model of "Employee" entity
+ * @author Dmitry Derevitsky
+ */
 public class Employee {
     private int id;
     private int id_department;
     private String first_name;
     private String middle_name;
     private String last_name;
-    private Date birth_date; /* Формат даты - уточнить*/
+    private Date birth_date;
     private int salary;
 
     public int getId() { return id; }

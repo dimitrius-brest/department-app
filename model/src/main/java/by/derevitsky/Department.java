@@ -1,9 +1,12 @@
 package by.derevitsky;
 
+/**
+ * Model of "Department" entity
+ * @author Dmitry Derevitsky
+ */
 public class Department {
     private int id;
     private String name;
-
 
     public int getId() { return id; }
 
