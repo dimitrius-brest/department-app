@@ -43,7 +43,7 @@ public class Runner {
         System.out.println();
 
         // Проверяем метод update  (departments)
-        test_id = 5;
+        test_id = 2;
         departmentDAO.update(test_id, "Cool Workers");
         System.out.println("Updated item with id = " + test_id);
         System.out.println();
@@ -85,15 +85,23 @@ public class Runner {
         // Проверяем метод insert  (employees)
         System.out.println("Вставляем ещё одного Employee");
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = formatter.parse("2000-01-01");
         employeeDAO.insert(1, "Vladimir", "Vladimirovich", "Putin",
-                date, 500);
+                formatter.parse("2000-01-01"), 500);
+        System.out.println();
+
+        test_id = 5;
+        // Проверяем метод update   (employee)
+        System.out.println("Обновляем employee с id = " + test_id);
+        employeeDAO.update(test_id, 1,
+                "Dmitry", "Anatolyevich", "Medvedev",
+                formatter.parse("2008-08-08"), 150);
         System.out.println();
 
         // Проверяем метод delete  ----- работает, всё ОК
-   /*      employeeDAO.delete(test_id);
-        System.out.println("Удалили....");
-   */
+     /*   employeeDAO.delete(test_id);
+        System.out.println("Удалили.... id=" + test_id);
+        System.out.println();
+     */
 
         // снова выводим список  (employees)
         employees = employeeDAO.getAll();
