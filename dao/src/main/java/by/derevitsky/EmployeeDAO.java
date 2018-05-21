@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This interface describes CRUD methods for "Employee"
+ * This interface describes CRUD methods for {@link Employee}
  * @author Dmitry Derevitsky
  */
 public interface EmployeeDAO {

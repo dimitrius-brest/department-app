@@ -4,7 +4,7 @@ import javax.sql.DataSource;
 import java.util.List;
 
 /**
- * This interface describes CRUD methods for "Department"
+ * This interface describes CRUD methods for {@link Department}
  * @author Dmitry Derevitsky
  */
 public interface DepartmentDAO {
