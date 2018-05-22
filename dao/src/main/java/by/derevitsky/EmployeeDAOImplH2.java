@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class implements EmployeeDAO interface for H2 database using Spring JDBC.
+ * This class implements {@link EmployeeDAO} interface for H2 database using Spring JDBC.
  * It contains a method to connect to database
  * and CRUD methods for its "Employees" table
  * @author Dmitry Derevitsky

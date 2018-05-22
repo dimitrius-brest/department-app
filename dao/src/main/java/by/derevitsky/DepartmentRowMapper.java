@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Auxiliary class for usage in the DepartmentDAOImplH2 class methods
+ * Auxiliary class for usage in the {@link DepartmentDAOImplH2} class methods
  * and other implementations of DepartmentDAO interface
  * @author Dmitry Derevitsky
  * @see DepartmentDAOImplH2#getAll()

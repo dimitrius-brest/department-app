@@ -6,7 +6,7 @@ import javax.sql.DataSource;
 import java.util.List;
 
 /**
- * This class implements DepartmentDAO interface for H2 database using Spring JDBC.
+ * This class implements {@link DepartmentDAO} interface for H2 database using Spring JDBC.
  * It contains a method to connect to database
  * and CRUD methods for its "Departments" table
  * @author Dmitry Derevitsky

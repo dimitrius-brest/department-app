@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Auxiliary class for usage in the EmployeeDAOImplH2 class methods
+ * Auxiliary class for usage in the {@link EmployeeDAOImplH2} class methods
  * and other implementations of EmployeeDAO interface
  * @author Dmitry Derevitsky
  * @see EmployeeDAOImplH2#getAll()
