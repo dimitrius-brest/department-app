@@ -1,22 +1,30 @@
 package by.derevitsky;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DepartmentService {
 
+    private DepartmentDAO dao;
+
     public Department getById(Integer id) {
-        return null;
+        return dao.getById(id);
     }
 
     public void save(Department department) {
+        if (dao.getById(department.getId()) == null) {
+            dao.insert(department.getName());
+        } else {
+            dao.update(department.getId(), department.getName());
+        }
     }
 
     public void delete(Integer id) {
+        if (dao.getById(id) != null) {
+            dao.delete(id);
+        }
     }
 
     public List<Department> getAll() {
-        List<Department> departments = new ArrayList<Department>();
-        return departments;
+        return dao.getAll();
     }
 }
