@@ -1,10 +1,15 @@
 package by.derevitsky;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import java.util.List;
 
 public class DepartmentService {
 
-    private DepartmentDAO dao;
+    ApplicationContext context = new ClassPathXmlApplicationContext("dao_context.xml");
+    DepartmentDAO dao = (DepartmentDAO) context.getBean("departmentDAO");
+    //private DepartmentDAO dao;
 
     public Department getById(Integer id) {
         return dao.getById(id);

@@ -12,7 +12,7 @@ public class Runner {
     public static void main(String[] args) throws SQLException, ParseException {
 
         // Контекст Spring
-        ApplicationContext context = new ClassPathXmlApplicationContext("springcontext.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("dao_context.xml");
         // Получаем из контекста departmentDAO
         DepartmentDAO departmentDAO = (DepartmentDAO) context.getBean("departmentDAO");
 

@@ -11,7 +11,7 @@ public class DepartmentCrudTest {
     @Test
     public void testGetAll() throws Exception {
         // Контекст Spring
-        ApplicationContext context = new ClassPathXmlApplicationContext("springcontext.xml");
+        ApplicationContext context = new ClassPathXmlApplicationContext("dao_context.xml");
         // Получаем из контекста departmentDAO
         DepartmentDAO departmentDAO = (DepartmentDAO) context.getBean("departmentDAO");
 
