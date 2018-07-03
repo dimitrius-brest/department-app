@@ -51,7 +51,7 @@ public class DepartmentRestController {
         return new ResponseEntity<Department>(department, headers, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "{id", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Department> deleteDepartment(@PathVariable("id") Integer id) {
         Department department = this.departmentService.getById(id);
         if (department == null) {
