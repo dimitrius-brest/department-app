@@ -1,0 +1,25 @@
+<!DOCTYPE web-app PUBLIC '-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN'
+        'http://java.sun.com/dtd/web-app_2_3.dtd'>
+
+<web-app>
+    <servlet>
+        <servlet-name>DepartmentRestServlet</servlet-name>
+        <servlet-class>by.derevitsky.DepartmentRestController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DepartmentRestServlet</servlet-name>
+        <url-pattern>/department/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EmployeeRestServlet</servlet-name>
+        <servlet-class>by.derevitsky.EmployeeRestController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>EmployeeRestServlet</servlet-name>
+        <url-pattern>/employee/*</url-pattern>
+    </servlet-mapping>
+
+</web-app>
