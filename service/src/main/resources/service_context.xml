@@ -9,4 +9,7 @@
     <bean id="departmentService" class="by.derevitsky.DepartmentService">
     </bean>
 
+    <bean id="employeeService" class="by.derevitsky.EmployeeService">
+    </bean>
+
 </beans>

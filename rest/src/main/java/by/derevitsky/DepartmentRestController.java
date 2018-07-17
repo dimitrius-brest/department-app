@@ -1,6 +1,8 @@
 package by.derevitsky;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,8 +16,10 @@ import java.util.List;
 @RequestMapping("/api/departments/")
 public class DepartmentRestController {
 
-    @Autowired
-    private DepartmentService departmentService;
+    //@Autowired
+    //private DepartmentService departmentService;
+    ApplicationContext context = new ClassPathXmlApplicationContext("service_context.xml");
+    DepartmentService departmentService = (DepartmentService) context.getBean("departmentService");
 
     @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Department> getDepartment(@PathVariable("id") Integer id){
