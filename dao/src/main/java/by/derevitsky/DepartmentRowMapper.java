@@ -1,6 +1,7 @@
 package by.derevitsky;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.lang.Nullable;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ import java.sql.SQLException;
  * @see DepartmentDAO
  */
 public class DepartmentRowMapper implements RowMapper {
+    @Nullable
     @Override
     public Object mapRow(ResultSet resultSet, int i) throws SQLException {
         Department department = new Department();

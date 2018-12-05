@@ -1,6 +1,7 @@
 package by.derevitsky;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.lang.Nullable;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,16 +15,16 @@ import java.sql.SQLException;
  * @see EmployeeDAO
  */
 public class EmployeeRowMapper implements RowMapper  {
-
+    @Nullable
     @Override
     public Object mapRow(ResultSet resultSet, int i) throws SQLException {
         Employee employee = new Employee();
         employee.setId(resultSet.getInt("id"));
-        employee.setId_department(resultSet.getInt("id_department"));
-        employee.setFirst_name(resultSet.getString("first_name"));
-        employee.setMiddle_name(resultSet.getString("middle_name"));
-        employee.setLast_name(resultSet.getString("last_name"));
-        employee.setBirth_date(resultSet.getDate("birth_date"));
+        employee.setIdDepartment((resultSet.getInt("id_department")));
+        employee.setFirstName(resultSet.getString("first_name"));
+        employee.setMiddleName(resultSet.getString("middle_name"));
+        employee.setLastName(resultSet.getString("last_name"));
+        employee.setBirthDate(resultSet.getDate("birth_date").toLocalDate());
         employee.setSalary(resultSet.getInt("salary"));
         return employee;
     }

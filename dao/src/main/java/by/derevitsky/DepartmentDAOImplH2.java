@@ -1,6 +1,8 @@
 package by.derevitsky;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -12,20 +14,37 @@ import java.util.List;
  * @author Dmitry Derevitsky
  * @see DepartmentDAO
  */
+@Repository("h2DepDAO")
 public class DepartmentDAOImplH2 implements DepartmentDAO {
-    private DataSource dataSource;
+
+//    private DataSource dataSource;
+
+    //@Autowired
     private JdbcTemplate jdbcTemplate;
 
-    /**
+    /*
      * Gets a bean of dataSource from Spring context
      * and creates jdbcTemplate with this dataSourse
      * @param dataSource
      */
-    @Override
+    /*@Override
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
+        this.jdbcTemplate = new JdbcTemplate(dataSource);*/
+
+        // --- Populating in-memory database
+/*        String create_table =
+          "create table departments (id INT(10) auto_increment, name VARCHAR(100) not null, PRIMARY KEY (id))";
+        String populate_table_1 =
+          "insert into departments (name) values ('Super Department')";
+        String populate_table_2 =
+                "insert into departments (name) values ('Usual Department')";
+
+        this.jdbcTemplate.execute(create_table);
+        this.jdbcTemplate.execute(populate_table_1);
+        this.jdbcTemplate.execute(populate_table_2);*/
+
+    /*}*/
 
     /**
      * Gets a list of all "Department" rows from database.
@@ -56,23 +75,22 @@ public class DepartmentDAOImplH2 implements DepartmentDAO {
 
     /**
      * Inserts a row of "Department" into database
-     * @param name the name of the Department
+     * @param department the Department to be added
      */
     @Override
-    public void insert(String name) {
+    public void insert(Department department) {
         String sql = "insert into departments (name) values (?)";
-        jdbcTemplate.update(sql, name);
+        jdbcTemplate.update(sql, department.getName());
     }
 
     /**
      * Updates a row of "Department" by its "id"
-     * @param id the id of the Department to be updated
-     * @param name new name of the Department
+     * @param department the Department to be updated
      */
     @Override
-    public void update(int id, String name) {
+    public void update(Department department) {
         String sql = "update departments set name=? where id=?";
-        jdbcTemplate.update(sql, name, id);
+        jdbcTemplate.update(sql, department.getName(), department.getId());
     }
 
     /**

@@ -1,6 +1,6 @@
 package by.derevitsky;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 /**
  * Model of "Employee" entity
@@ -8,36 +8,51 @@ import java.util.Date;
  */
 public class Employee {
     private int id;
-    private int id_department;
-    private String first_name;
-    private String middle_name;
-    private String last_name;
-    private Date birth_date;
+    private int idDepartment;
+    private String firstName;
+    private String middleName;
+    private String lastName;
+    private LocalDate birthDate;
     private int salary;
+
+    public Employee() {
+    }
+
+    public Employee(int id, int idDepartment,
+                    String firstName, String middleName, String lastName,
+                    LocalDate birthDate, int salary) {
+        this.id = id;
+        this.idDepartment = idDepartment;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.salary = salary;
+    }
 
     public int getId() { return id; }
 
     public void setId(int id) { this.id = id; }
 
-    public int getId_department() { return id_department; }
+    public int getIdDepartment() { return idDepartment; }
 
-    public void setId_department(int id_department) { this.id_department = id_department; }
+    public void setIdDepartment(int idDepartment) { this.idDepartment = idDepartment; }
 
-    public String getFirst_name() { return first_name; }
+    public String getFirstName() { return firstName; }
 
-    public void setFirst_name(String first_name) { this.first_name = first_name; }
+    public void setFirstName(String firstName) { this.firstName = firstName; }
 
-    public String getMiddle_name() { return middle_name; }
+    public String getMiddleName() { return middleName; }
 
-    public void setMiddle_name(String middle_name) { this.middle_name = middle_name; }
+    public void setMiddleName(String middleName) { this.middleName = middleName; }
 
-    public String getLast_name() { return last_name; }
+    public String getLastName() { return lastName; }
 
-    public void setLast_name(String last_name) { this.last_name = last_name; }
+    public void setLastName(String lastName) { this.lastName = lastName; }
 
-    public Date getBirth_date() { return birth_date; }
+    public LocalDate getBirthDate() { return birthDate; }
 
-    public void setBirth_date(Date birth_date) { this.birth_date = birth_date; }
+    public void setBirthDate(LocalDate birthDate) { this.birthDate = birthDate; }
 
     public int getSalary() { return salary; }
 

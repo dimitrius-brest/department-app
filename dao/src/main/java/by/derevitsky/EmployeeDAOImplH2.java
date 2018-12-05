@@ -1,5 +1,6 @@
 package by.derevitsky;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
@@ -14,19 +15,20 @@ import java.util.List;
  * @see EmployeeDAO
  */
 public class EmployeeDAOImplH2 implements EmployeeDAO {
-    private DataSource dataSource;
+    //private DataSource dataSource;
+    //@Autowired
     private JdbcTemplate jdbcTemplate;
 
-    /**
+    /*
      * Gets a bean of dataSource from Spring context
      * and creates jdbcTemplate with this dataSourse
      * @param dataSource
      */
-    @Override
+    /*@Override
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
         this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }
+    }*/
 
     /**
      * Gets a list of all "Employee" rows from database.
@@ -57,43 +59,33 @@ public class EmployeeDAOImplH2 implements EmployeeDAO {
 
     /**
      * Inserts a row of "Employee" into database
-     * @param id_department the id of the Department
-     * @param first_name first name of the Employee
-     * @param middle_name middle name of the Employee
-     * @param last_name last name of the Employee
-     * @param birth_date date of birth of the Employee
-     * @param salary salary of the Employee
+     * @param employee the Employee to be inserted
      */
     @Override
-    public void insert(int id_department,
-                       String first_name, String middle_name, String last_name,
-                       Date birth_date, int salary) {
+    public void insert(Employee employee) {
         String sql = "insert into employees " +
                 "(id_department, first_name, middle_name, last_name, birth_date, salary) " +
                 "values (?,?,?,?,?,?)";
         jdbcTemplate.update(sql,
-                id_department, first_name, middle_name, last_name, birth_date, salary);
+                employee.getIdDepartment(),
+                employee.getFirstName(), employee.getMiddleName(), employee.getLastName(),
+                employee.getBirthDate(), employee.getSalary());
+
     }
 
     /**
      * Updates a row of "Employee" by its "id"
-     * @param id the id of the Employee to be updated
-     * @param id_department new id of the Department
-     * @param first_name new first name of the Employee
-     * @param middle_name new middle name of the Employee
-     * @param last_name new last name of the Employee
-     * @param birth_date new date of birth of the Employee
-     * @param salary new salary of the Employee
+     * @param employee the Employee to be updated
      */
     @Override
-    public void update(int id, int id_department,
-                       String first_name, String middle_name, String last_name,
-                       Date birth_date, int salary) {
+    public void update(Employee employee) {
         String sql = "update employees set " +
                 "id_department=?, first_name=?, middle_name=?, last_name=?, birth_date=?, salary=? " +
                 "where id=?";
         jdbcTemplate.update(sql,
-                id_department, first_name, middle_name, last_name, birth_date, salary, id);
+                employee.getIdDepartment(),
+                employee.getFirstName(), employee.getMiddleName(), employee.getLastName(),
+                employee.getBirthDate(), employee.getSalary(), employee.getId());
     }
 
     /**

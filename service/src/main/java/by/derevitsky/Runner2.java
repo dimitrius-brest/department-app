@@ -20,7 +20,7 @@ public class Runner2 {
 
         // Проверяем метод getById
         System.out.println("\nПроверяем метод getById слоя сервисов");
-        Department department = service.getById(3);
+        Department department = service.getById(2);
         System.out.println("id: " + department.getId() + ", name: " + department.getName());
 
     }

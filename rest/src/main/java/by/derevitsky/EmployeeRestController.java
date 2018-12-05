@@ -18,8 +18,6 @@ public class EmployeeRestController {
 
     //@Autowired
     //private EmployeeService employeeService;
-    //ApplicationContext context = new ClassPathXmlApplicationContext("service_context.xml");
-    //DepartmentService departmentService = (DepartmentService) context.getBean("departmentService");
     ApplicationContext context = new ClassPathXmlApplicationContext("service_context.xml");
     EmployeeService employeeService = (EmployeeService) context.getBean("employeeService");
 
@@ -57,7 +55,7 @@ public class EmployeeRestController {
         return new ResponseEntity<Employee>(employee, headers, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "{id", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<Employee> deleteEmployee(@PathVariable("id") Integer id) {
         Employee employee = this.employeeService.getById(id);
         if (employee == null) {

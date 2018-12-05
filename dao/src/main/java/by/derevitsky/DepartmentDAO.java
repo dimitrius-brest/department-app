@@ -1,6 +1,5 @@
 package by.derevitsky;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 /**
@@ -10,7 +9,7 @@ import java.util.List;
 public interface DepartmentDAO {
 
     // Sets DataSource
-    void setDataSource(DataSource dataSource);
+    //void setDataSource(DataSource dataSource);
 
     // ==== CRUD operations ====
 
@@ -19,9 +18,9 @@ public interface DepartmentDAO {
     // Read
     Department getById(int id);
     // Insert
-    void insert(String name);
+    void insert(Department department);
     // Update
-    void update(int id, String name);
+    void update(Department department);
     // Delete
     void delete(int id);
 

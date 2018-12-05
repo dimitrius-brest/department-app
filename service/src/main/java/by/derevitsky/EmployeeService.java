@@ -1,7 +1,10 @@
 package by.derevitsky;
 
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
+@Service
 public class EmployeeService {
 
     private EmployeeDAO dao;
@@ -12,20 +15,9 @@ public class EmployeeService {
 
     public void save(Employee employee) {
         if (dao.getById(employee.getId()) == null) {
-            dao.insert(employee.getId_department(),
-                       employee.getFirst_name(),
-                       employee.getMiddle_name(),
-                       employee.getLast_name(),
-                       employee.getBirth_date(),
-                       employee.getSalary());
+            dao.insert(employee);
         } else {
-            dao.update(employee.getId(),
-                    employee.getId_department(),
-                    employee.getFirst_name(),
-                    employee.getMiddle_name(),
-                    employee.getLast_name(),
-                    employee.getBirth_date(),
-                    employee.getSalary());
+            dao.update(employee);
         }
     }
 
