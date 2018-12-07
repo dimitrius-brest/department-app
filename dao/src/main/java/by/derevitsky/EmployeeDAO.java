@@ -8,11 +8,7 @@ import java.util.List;
  */
 public interface EmployeeDAO {
 
-    // Set DataSource
-    //void setDataSource(DataSource dataSource);
-
     // ==== CRUD operations ====
-
     // Get All
     List<Employee> getAll();
     // Read

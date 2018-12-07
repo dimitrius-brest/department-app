@@ -17,34 +17,8 @@ import java.util.List;
 @Repository("h2DepDAO")
 public class DepartmentDAOImplH2 implements DepartmentDAO {
 
-//    private DataSource dataSource;
-
-    //@Autowired
+    @Autowired
     private JdbcTemplate jdbcTemplate;
-
-    /*
-     * Gets a bean of dataSource from Spring context
-     * and creates jdbcTemplate with this dataSourse
-     * @param dataSource
-     */
-    /*@Override
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-        this.jdbcTemplate = new JdbcTemplate(dataSource);*/
-
-        // --- Populating in-memory database
-/*        String create_table =
-          "create table departments (id INT(10) auto_increment, name VARCHAR(100) not null, PRIMARY KEY (id))";
-        String populate_table_1 =
-          "insert into departments (name) values ('Super Department')";
-        String populate_table_2 =
-                "insert into departments (name) values ('Usual Department')";
-
-        this.jdbcTemplate.execute(create_table);
-        this.jdbcTemplate.execute(populate_table_1);
-        this.jdbcTemplate.execute(populate_table_2);*/
-
-    /*}*/
 
     /**
      * Gets a list of all "Department" rows from database.

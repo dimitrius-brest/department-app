@@ -2,6 +2,7 @@ package by.derevitsky;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
 import java.util.Date;
@@ -14,21 +15,11 @@ import java.util.List;
  * @author Dmitry Derevitsky
  * @see EmployeeDAO
  */
+@Repository("h2EmpDAO")
 public class EmployeeDAOImplH2 implements EmployeeDAO {
-    //private DataSource dataSource;
-    //@Autowired
-    private JdbcTemplate jdbcTemplate;
 
-    /*
-     * Gets a bean of dataSource from Spring context
-     * and creates jdbcTemplate with this dataSourse
-     * @param dataSource
-     */
-    /*@Override
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-        this.jdbcTemplate = new JdbcTemplate(dataSource);
-    }*/
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
 
     /**
      * Gets a list of all "Employee" rows from database.
