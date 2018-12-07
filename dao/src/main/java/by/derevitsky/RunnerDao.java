@@ -26,7 +26,7 @@ public class RunnerDao {
 
     private void start(){
         int id = 2;
-        System.out.println("Привет! \nВыберем подразделение с id = " + id);
+        System.out.println("Привет!!!\nВыберем подразделение с id = " + id);
         Department department = departmentDAO.getById(id);
         System.out.println(department.getId() + " : " + department.getName());
 
