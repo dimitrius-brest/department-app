@@ -43,7 +43,7 @@ public class RunnerDao {
                 + employee.getBirthDate() + " " + employee.getSalary()
         );
 
-        System.out.println("\nВыберем всех работников:");
+        System.out.println("\nВыберем всех работников :");
         List<Employee> employees = employeeDAO.getAll();
         for (Employee emp : employees){
             System.out.println(emp.getId() + " : " + emp.getFirstName() + " "
