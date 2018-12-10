@@ -1,5 +1,7 @@
 package by.derevitsky;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Service;
@@ -9,29 +11,29 @@ import java.util.List;
 @Service
 public class DepartmentService {
 
-    ApplicationContext context = new ClassPathXmlApplicationContext("dao_context.xml");
-    DepartmentDAO dao = (DepartmentDAO) context.getBean("departmentDAO");
-    //private DepartmentDAO dao;
+    @Autowired
+    @Qualifier("h2DepDAO")
+    private DepartmentDAO departmentDAO;
+
+    public List<Department> getAll() {
+        return departmentDAO.getAll();
+    }
 
     public Department getById(Integer id) {
-        return dao.getById(id);
+        return departmentDAO.getById(id);
     }
 
     public void save(Department department) {
-        if (dao.getById(department.getId()) == null) {
-            dao.insert(department);
+        if (departmentDAO.getById(department.getId()) == null) {
+            departmentDAO.insert(department);
         } else {
-            dao.update(department);
+            departmentDAO.update(department);
         }
     }
 
     public void delete(Integer id) {
-        if (dao.getById(id) != null) {
-            dao.delete(id);
+        if (departmentDAO.getById(id) != null) {
+            departmentDAO.delete(id);
         }
-    }
-
-    public List<Department> getAll() {
-        return dao.getAll();
     }
 }

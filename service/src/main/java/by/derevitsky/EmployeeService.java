@@ -1,5 +1,7 @@
 package by.derevitsky;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -7,27 +9,29 @@ import java.util.List;
 @Service
 public class EmployeeService {
 
-    private EmployeeDAO dao;
+    @Autowired
+    @Qualifier("h2EmpDAO")
+    private EmployeeDAO employeeDAO;
+
+    public List<Employee> getAll() {
+        return employeeDAO.getAll();
+    }
 
     public Employee getById(Integer id) {
-        return dao.getById(id);
+        return employeeDAO.getById(id);
     }
 
     public void save(Employee employee) {
-        if (dao.getById(employee.getId()) == null) {
-            dao.insert(employee);
+        if (employeeDAO.getById(employee.getId()) == null) {
+            employeeDAO.insert(employee);
         } else {
-            dao.update(employee);
+            employeeDAO.update(employee);
         }
     }
 
     public void delete(Integer id) {
-        if (dao.getById(id) != null) {
-            dao.delete(id);
+        if (employeeDAO.getById(id) != null) {
+            employeeDAO.delete(id);
         }
-    }
-
-    public List<Employee> getAll() {
-        return dao.getAll();
     }
 }
