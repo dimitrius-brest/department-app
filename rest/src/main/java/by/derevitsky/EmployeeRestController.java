@@ -13,15 +13,13 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/employees/")
+@RequestMapping("employees")
 public class EmployeeRestController {
 
-    //@Autowired
-    //private EmployeeService employeeService;
-    ApplicationContext context = new ClassPathXmlApplicationContext("service_context.xml");
-    EmployeeService employeeService = (EmployeeService) context.getBean("employeeService");
+    @Autowired
+    private EmployeeService employeeService;
 
-    @RequestMapping(value = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<Employee> getEmployee(@PathVariable("id") Integer id){
         if(id == null) {
             return new ResponseEntity<Employee>(HttpStatus.BAD_REQUEST);
@@ -35,7 +33,16 @@ public class EmployeeRestController {
         return new ResponseEntity<Employee>(employee, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/all", produces = "application/json")
+    public ResponseEntity<List<Employee>> getAllEmployees() {
+        List<Employee> employees = this.employeeService.getAll();
+        if (employees.isEmpty()) {
+            return new ResponseEntity<List<Employee>>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<List<Employee>>(employees, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "/add", produces = "application/json")
     public ResponseEntity<Employee> saveEmployee(@RequestBody /*@Valid*/ Employee employee) {
         HttpHeaders headers = new HttpHeaders();
         if (employee == null) {
@@ -45,7 +52,7 @@ public class EmployeeRestController {
         return new ResponseEntity<Employee>(employee, headers, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PutMapping(value = "/update", produces = "application/json")
     public ResponseEntity<Employee> updateEmployee(@RequestBody /*@Valid*/ Employee employee, UriComponentsBuilder builder) {
         HttpHeaders headers = new HttpHeaders();
         if (employee == null) {
@@ -55,7 +62,7 @@ public class EmployeeRestController {
         return new ResponseEntity<Employee>(employee, headers, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "{id}", method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @DeleteMapping(value = "{id}", produces = "application/json")
     public ResponseEntity<Employee> deleteEmployee(@PathVariable("id") Integer id) {
         Employee employee = this.employeeService.getById(id);
         if (employee == null) {
@@ -63,14 +70,5 @@ public class EmployeeRestController {
         }
         this.employeeService.delete(id);
         return new ResponseEntity<Employee>(HttpStatus.NO_CONTENT);
-    }
-
-    @RequestMapping(value = "", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<List<Employee>> getAllEmployees() {
-        List<Employee> employees = this.employeeService.getAll();
-        if (employees.isEmpty()) {
-            return new ResponseEntity<List<Employee>>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<List<Employee>>(employees, HttpStatus.OK);
     }
 }
