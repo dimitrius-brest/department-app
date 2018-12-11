@@ -11,5 +11,19 @@
 
     <artifactId>web-app</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>by.derevitsky</groupId>
+            <artifactId>model</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>5.0.9.RELEASE</version>
+        </dependency>
+    </dependencies>
 
 </project>

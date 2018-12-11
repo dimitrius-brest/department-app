@@ -61,4 +61,11 @@ public class Employee {
 
     public void setSalary(int salary) { this.salary = salary; }
 
+    @Override
+    public String toString(){
+        return "id=" + this.id + " dep=" + this.idDepartment
+                + ";   FIO: " + this.firstName + " " + this.middleName + " " + this.lastName
+                + ";   birth date: " + this.birthDate + "; salary: " + this.salary;
+    }
+
 }
