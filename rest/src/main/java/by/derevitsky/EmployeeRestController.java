@@ -43,12 +43,12 @@ public class EmployeeRestController {
     }
 
     @PostMapping(value = "/add", produces = "application/json")
-    public ResponseEntity<Employee> saveEmployee(@RequestBody /*@Valid*/ Employee employee) {
+    public ResponseEntity<Employee> addEmployee(@RequestBody /*@Valid*/ Employee employee) {
         HttpHeaders headers = new HttpHeaders();
         if (employee == null) {
             return new ResponseEntity<Employee>(HttpStatus.BAD_REQUEST);
         }
-        this.employeeService.save(employee);
+        this.employeeService.insert(employee);
         return new ResponseEntity<Employee>(employee, headers, HttpStatus.CREATED);
     }
 
@@ -58,7 +58,7 @@ public class EmployeeRestController {
         if (employee == null) {
             return new ResponseEntity<Employee>(HttpStatus.BAD_REQUEST);
         }
-        this.employeeService.save(employee);
+        this.employeeService.update(employee);
         return new ResponseEntity<Employee>(employee, headers, HttpStatus.OK);
     }
 

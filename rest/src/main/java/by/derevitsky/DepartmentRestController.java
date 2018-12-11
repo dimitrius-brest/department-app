@@ -39,7 +39,7 @@ public class DepartmentRestController {
         if (department == null) {
             return new ResponseEntity<Department>(HttpStatus.BAD_REQUEST);
         }
-        this.departmentService.save(department);
+        this.departmentService.insert(department);
         return new ResponseEntity<Department>(department, headers, HttpStatus.CREATED);
     }
 
@@ -49,7 +49,7 @@ public class DepartmentRestController {
         if (department == null) {
             return new ResponseEntity<Department>(HttpStatus.BAD_REQUEST);
         }
-        this.departmentService.save(department);
+        this.departmentService.update(department);
         return new ResponseEntity<Department>(department, headers, HttpStatus.OK);
     }
 

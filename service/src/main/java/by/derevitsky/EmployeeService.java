@@ -21,13 +21,9 @@ public class EmployeeService {
         return employeeDAO.getById(id);
     }
 
-    public void save(Employee employee) {
-        if (employeeDAO.getById(employee.getId()) == null) {
-            employeeDAO.insert(employee);
-        } else {
-            employeeDAO.update(employee);
-        }
-    }
+    public void insert(Employee employee) {employeeDAO.insert(employee);}
+
+    public void update(Employee employee) {employeeDAO.update(employee);}
 
     public void delete(Integer id) {
         if (employeeDAO.getById(id) != null) {
