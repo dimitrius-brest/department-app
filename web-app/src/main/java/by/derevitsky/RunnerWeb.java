@@ -14,6 +14,6 @@ public class RunnerWeb {
 
         url ="http://localhost:8080/rest-1.0-SNAPSHOT/departments/2";
         Department department = restTemplate.getForObject(url, Department.class);
-        System.out.println(department.toString());
+        System.out.println("\n" + department.toString());
     }
 }
