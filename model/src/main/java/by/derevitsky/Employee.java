@@ -1,5 +1,7 @@
 package by.derevitsky;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.LocalDate;
 
 /**
@@ -12,6 +14,7 @@ public class Employee {
     private String firstName;
     private String middleName;
     private String lastName;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
     private int salary;
 
