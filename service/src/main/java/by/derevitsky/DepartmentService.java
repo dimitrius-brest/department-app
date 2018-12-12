@@ -21,13 +21,6 @@ public class DepartmentService {
         return departmentDAO.getById(id);
     }
 
-    /*public void save(Department department) {
-        if (departmentDAO.getById(department.getId()) == null) {
-            departmentDAO.insert(department);
-        } else {
-            departmentDAO.update(department);
-        }
-    }*/
     public void insert(Department department) { departmentDAO.insert(department);}
 
     public void update(Department department) { departmentDAO.update(department);}
