@@ -21,7 +21,7 @@ public class DepartmentsWebController {
     @GetMapping("/all")
     public ModelAndView showDepartments(){
         ModelAndView model = new ModelAndView("departments");
-        model.addObject("departments");
+        model.addObject("departments", departments);
         return model;
     }
 }

@@ -12,8 +12,8 @@
     </tr>
     <c:forEach var="department" items="${departments}">
         <tr>
-            <td>${department.get(0)}</td>
-            <td>${department.get(1)}</td>
+            <td>${department.id}</td>
+            <td>${department.name}</td>
         </tr>
     </c:forEach>
 </table>
