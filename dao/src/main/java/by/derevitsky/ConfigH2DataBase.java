@@ -9,8 +9,16 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import javax.sql.DataSource;
 
+/**
+ * Spring configuration file
+ * @author Dmitry Derevitsky
+ */
 @Configuration
 public class ConfigH2DataBase {
+    /**
+     * Sets DataSource of H2 in-memory database
+     * @return new in-memory database instance, populated with test data from *.sql files
+     */
     @Bean
     public DataSource setDataSourceH2inMemory(){
         return new EmbeddedDatabaseBuilder()
@@ -20,7 +28,10 @@ public class ConfigH2DataBase {
                 .addScript("populate_schema.sql")
                 .build();
     }
-
+    /**
+     * Creates JdbcTemplate bean.
+     * @return new JdbcTemplate instance
+     */
     @Bean
     @Qualifier("inMemoryH2DataSource")
     public JdbcTemplate jdbcTemplateH2inMemory(){

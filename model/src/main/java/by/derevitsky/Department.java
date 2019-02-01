@@ -26,7 +26,7 @@ public class Department {
 
     @Override
     public String toString(){
-        return "id=" + this.id + "  name: " + name;
+        return "id=" + this.id + "  name: " + this.name;
     }
 
 }
