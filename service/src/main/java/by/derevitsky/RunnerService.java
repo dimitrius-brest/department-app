@@ -39,9 +39,18 @@ public class RunnerService {
         System.out.println("\nВыведем всех работников:");
         List<Employee> employees = employeeService.getAll();
         for (Employee employee : employees) {
-            System.out.println(employee.getId() + " " + employee.getFirstName() + " " +
+            /*System.out.println(employee.getId() + " " + employee.getFirstName() + " " +
                         employee.getMiddleName() + " " + employee.getLastName() + " " +
-                        employee.getBirthDate() + " " + employee.getSalary());
+                        employee.getBirthDate() + " " + employee.getSalary());*/
+            System.out.println(employee);
+        }
+
+        Integer departmentID = 2;
+        employees.clear();
+        System.out.println("\nСлой Service. Выведем всех работников с departmentID = " + departmentID);
+        employees = employeeService.getByDepartmentId(departmentID);
+        for (Employee employee : employees) {
+            System.out.println(employee);
         }
 
     }

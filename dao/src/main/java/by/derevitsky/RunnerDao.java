@@ -26,6 +26,7 @@ public class RunnerDao {
 
     private void start(){
         int id = 2;
+
         System.out.println("Привет!!!\nВыберем подразделение с id = " + id);
         Department department = departmentDAO.getById(id);
         System.out.println(department.getId() + " : " + department.getName());
@@ -46,10 +47,19 @@ public class RunnerDao {
         System.out.println("\nВыберем всех работников:");
         List<Employee> employees = employeeDAO.getAll();
         for (Employee emp : employees){
-            System.out.println(emp.getId() + " : " + emp.getFirstName() + " "
+            /*System.out.println(emp.getId() + " : " + emp.getFirstName() + " "
                     + emp.getMiddleName() + " " + emp.getLastName() + " "
                     + emp.getBirthDate() + " " + emp.getSalary()
-            );
+            );*/
+            System.out.println(emp);
+        }
+
+        int dept = 3;
+        employees.clear();
+        System.out.println("\nВыберем всех работников с dep = " + dept);
+        employees = employeeDAO.getByDepartmentId(dept);
+        for (Employee emp : employees) {
+            System.out.println(emp);
         }
     }
 }

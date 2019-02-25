@@ -53,11 +53,10 @@ public class EmployeeDAOImplH2 implements EmployeeDAO {
      * @param departmentId the id of Department
      * @return the list of Employees of the Department
      */
-    //TODO Check this method
     @Override
     public List<Employee> getByDepartmentId(int departmentId) {
         String sql = "select * from employees where id_department=?";
-        List<Employee> employees = jdbcTemplate.query(sql, new EmployeeRowMapper());
+        List<Employee> employees = jdbcTemplate.query(sql, new Object[]{departmentId}, new EmployeeRowMapper());
         return employees;
     }
 

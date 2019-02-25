@@ -42,6 +42,15 @@ public class EmployeeRestController {
         return new ResponseEntity<List<Employee>>(employees, HttpStatus.OK);
     }
 
+    @GetMapping(value = "/dep/{dep_id}", produces = "application/json")
+    public ResponseEntity<List<Employee>> getEmployeesByDepartmentId(@PathVariable("dep_id") Integer depId) {
+        List<Employee> employees = this.employeeService.getByDepartmentId(depId);
+        if (employees.isEmpty()) {
+            return new ResponseEntity<List<Employee>>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<List<Employee>>(employees, HttpStatus.OK);
+    }
+
     @PostMapping(value = "/add", produces = "application/json")
     public ResponseEntity<Employee> addEmployee(@RequestBody /*@Valid*/ Employee employee) {
         HttpHeaders headers = new HttpHeaders();

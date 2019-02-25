@@ -21,6 +21,10 @@ public class EmployeeService {
         return employeeDAO.getById(id);
     }
 
+    public List<Employee> getByDepartmentId(Integer departmentId) {
+        return employeeDAO.getByDepartmentId(departmentId);
+    }
+
     public void insert(Employee employee) {employeeDAO.insert(employee);}
 
     public void update(Employee employee) {employeeDAO.update(employee);}
