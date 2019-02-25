@@ -13,6 +13,8 @@ public interface EmployeeDAO {
     List<Employee> getAll();
     // Read
     Employee getById(int id);
+    // Get by Department id
+    List<Employee> getByDepartmentId(int departmentId);
     // Insert
     void insert(Employee employee);
     // Update

@@ -49,6 +49,19 @@ public class EmployeeDAOImplH2 implements EmployeeDAO {
     }
 
     /**
+     * Gets a list of "Employees" from the certain "Department" by departmentId
+     * @param departmentId the id of Department
+     * @return the list of Employees of the Department
+     */
+    //TODO Check this method
+    @Override
+    public List<Employee> getByDepartmentId(int departmentId) {
+        String sql = "select * from employees where id_department=?";
+        List<Employee> employees = jdbcTemplate.query(sql, new EmployeeRowMapper());
+        return employees;
+    }
+
+    /**
      * Inserts a row of "Employee" into database
      * @param employee the Employee to be inserted
      */
