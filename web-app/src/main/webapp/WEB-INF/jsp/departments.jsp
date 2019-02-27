@@ -8,7 +8,8 @@
 <h2>Departments:</h2>
 <table border="1">
     <tr>
-        <td>id</td><td>name</td>
+        <td>id</td>
+        <td>name</td>
     </tr>
     <c:forEach var="department" items="${departments}">
         <tr>
