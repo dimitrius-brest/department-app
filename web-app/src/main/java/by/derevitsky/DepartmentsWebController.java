@@ -15,39 +15,54 @@ import java.util.List;
 @RequestMapping("/departments")
 public class DepartmentsWebController {
 
+    /**
+     * Gets Departments from REST API,
+     * adds "average salary" and "has employees" flag to every Department in list.
+     * @return the list of Departments + average salary + has employees flag
+     */
     private List<DepartmentForView> getDepartments(){
+        List<DepartmentForView> departmentsForView = new ArrayList<DepartmentForView>();
+
+        // Getting array of Departments form REST API
         RestTemplate restTemplate = new RestTemplate();
         String url ="http://localhost:8080/department-rest/departments/all";
         ResponseEntity<Department[]> responseEntity = restTemplate.getForEntity(url, Department[].class);
         Department[] departments = responseEntity.getBody();
 
-        //TODO доделать
-        //DepartmentForView[] departmentsForView = new DepartmentForView[departments.length];
-        List<DepartmentForView> departmentsForView = new ArrayList<DepartmentForView>();
+        // Counting average salary for each Department in array
+        boolean hasEmployees;
+        int averageSalary;
         for(Department dep : departments) {
-            departmentsForView.add(new DepartmentForView(dep, 555, true));
+            String url2 = "http://localhost:8080/department-rest/employees/dep/" + dep.getId();
+            // Trying to get the list of Employees in the Department
+            try {
+                ResponseEntity<Employee[]> responseEntity2 = restTemplate.getForEntity(url2, Employee[].class);
+                Employee[] employees = responseEntity2.getBody();
+                hasEmployees = true;
+                int sum = 0;
+                // Counting average salary of Employees in the Department
+                for (int i = 0; i < employees.length; i++) {
+                    sum += employees[i].getSalary();
+                }
+                averageSalary = sum / employees.length;
+            } catch (Exception e) {
+                hasEmployees = false;
+                averageSalary = 0;
+            }
+            departmentsForView.add(new DepartmentForView(dep, averageSalary, hasEmployees));
         }
         return departmentsForView;
     }
 
-    private List<Department> departmentsStub = Arrays.asList(
-            new Department(1, "Pharaon Administration"),
-            new Department(2, "Zhrets Temple"),
-            new Department(3, "Irrigation Department")
-    );
-
+    /**
+     * Show the list of Departments with average salaries
+     * @return ModelAndView, showing all Departments
+     */
     @GetMapping("/all")
     public ModelAndView showDepartments(){
-//        RestTemplate restTemplate = new RestTemplate();
-//        String url ="http://localhost:8080/department-rest/departments/all";
-//        ResponseEntity<Department[]> responseEntity = restTemplate.getForEntity(url, Department[].class);
-//        Department[] departments = responseEntity.getBody();
-
         List<DepartmentForView> departments = this.getDepartments();
 
         ModelAndView model = new ModelAndView("departments");
-        //TODO доделать
-        //model.addObject("departments", departments);
         model.addObject("departments", departments);
         return model;
     }
