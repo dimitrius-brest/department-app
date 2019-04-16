@@ -89,6 +89,7 @@ public class DepartmentsWebController {
      */
     // See:  https://www.baeldung.com/spring-mvc-form-tutorial
     //       https://www.mkyong.com/spring-mvc/spring-mvc-form-handling-example/
+    //       http://streletzcoder.ru/rabota-s-formami-v-spring-mvc/
     @PostMapping("/add")
     public String addDepartment(@ModelAttribute("department")Department department,
                                       BindingResult result, ModelMap model){
