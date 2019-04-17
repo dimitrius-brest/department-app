@@ -53,4 +53,14 @@ public class DepartmentsWebService {
         }
         return departmentsForView;
     }
+
+    /**
+     * Deletes the Department with "id"
+     * @param id
+     */
+    public void deleteDepartment(Integer id){
+        RestTemplate restTemplate = new RestTemplate();
+        String url = applicationURL+"/departments/" + id;
+        restTemplate.delete(url);
+    }
 }
