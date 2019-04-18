@@ -1,5 +1,8 @@
 package by.derevitsky;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -16,7 +19,7 @@ public class DepartmentsWebService {
     private String applicationURL = "http://localhost:8080/department-rest";
 
     /**
-     * Gets Departments from REST API,
+     * Get Departments from REST API,
      * adds "average salary" and "has employees" flag to every Department in list.
      * @return the list of Departments + average salary + has employees flag
      */
@@ -54,8 +57,25 @@ public class DepartmentsWebService {
         return departmentsForView;
     }
 
+
     /**
-     * Deletes the Department with "id"
+     * Add the Department via REST API
+     * @param department
+     */
+    public void addDepartment(Department department){
+        RestTemplate restTemplate = new RestTemplate();
+        String url = applicationURL+"/departments/add";
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        String requestJson = "{\"id\":"+ department.getId() +",\"name\":\""+ department.getName() +"\"}";
+
+        HttpEntity<String> entity = new HttpEntity<String>(requestJson, headers);
+        String answer = restTemplate.postForObject(url, entity, String.class);
+    }
+
+
+    /**
+     * Delete the Department with "id" via REST API
      * @param id
      */
     public void deleteDepartment(Integer id){

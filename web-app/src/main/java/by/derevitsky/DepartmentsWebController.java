@@ -57,7 +57,18 @@ public class DepartmentsWebController {
             return "error";
         }
         //model.addAttribute(department.getName());
+        webService.addDepartment(department);
+        return "redirect:/departments/all";
+    }
 
+    /**
+     * Adds test Department
+     * @return
+     */
+    @PostMapping("/add1")
+    public String addDepartment() {
+        Department department = new Department(1, "Qwerty Uiop");
+        webService.addDepartment(department);
         return "departments";
     }
 
