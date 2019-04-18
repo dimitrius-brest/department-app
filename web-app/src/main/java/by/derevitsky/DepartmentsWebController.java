@@ -32,6 +32,11 @@ public class DepartmentsWebController {
     }
 
 
+    /**
+     * Form to add a Department
+     * @param model
+     * @return
+     */
     @GetMapping("/add")
     public String showAddDepartmentForm(Model model) {
         Department department = new Department();
@@ -39,9 +44,9 @@ public class DepartmentsWebController {
         return "add_department";
     }
 
+
     /**
-     * Handling the form that adds a new Department
-     *
+     * Handling the form that adds a new Department     *
      * @param department
      * @param result
      * @param model
@@ -61,16 +66,6 @@ public class DepartmentsWebController {
         return "redirect:/departments/all";
     }
 
-    /**
-     * Adds test Department
-     * @return
-     */
-    @PostMapping("/add1")
-    public String addDepartment() {
-        Department department = new Department(1, "Qwerty Uiop");
-        webService.addDepartment(department);
-        return "departments";
-    }
 
     /**
      * Delete the Department with "id"
