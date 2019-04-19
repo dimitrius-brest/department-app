@@ -58,6 +58,19 @@ public class DepartmentsWebService {
         return departmentsForView;
     }
 
+    /**
+     * Get the Department with "id" via REST API
+     * @param id
+     * @return
+     */
+    public Department getDepartmentById(Integer id){
+        RestTemplate restTemplate = new RestTemplate();
+        String url = applicationURL+"/departments/" + id;
+        ResponseEntity<Department> responseEntity = restTemplate.getForEntity(url, Department.class);
+        Department department = responseEntity.getBody();
+        // Department department = new Department(333, "Test Department");
+        return department;
+    }
 
     /**
      * Add the Department via REST API
@@ -72,6 +85,13 @@ public class DepartmentsWebService {
 
         HttpEntity<String> entity = new HttpEntity<String>(requestJson, headers);
         String answer = restTemplate.postForObject(url, entity, String.class);
+    }
+
+    /**
+     * Update the Department with "id" via REST API
+     * @param id
+     */
+    public void updateDepartment(Integer id){
     }
 
 

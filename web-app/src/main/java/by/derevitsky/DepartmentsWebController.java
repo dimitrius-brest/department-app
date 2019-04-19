@@ -33,8 +33,7 @@ public class DepartmentsWebController {
      */
     @GetMapping("/all")
     public ModelAndView showDepartments() {
-        List<DepartmentForView> departments = webService.getDepartments(); //this.getDepartments();
-
+        List<DepartmentForView> departments = webService.getDepartments();
         ModelAndView model = new ModelAndView("departments");
         model.addObject("departments", departments);
         return model;
@@ -52,7 +51,6 @@ public class DepartmentsWebController {
         model.addAttribute("department", department);
         return "add_department";
     }
-
 
     /**
      * Handling the form that adds a new Department     *
@@ -75,6 +73,29 @@ public class DepartmentsWebController {
         return "redirect:/departments/all";
     }
 
+    /**
+     * Form to update a Department with "id"
+     * @param model
+     * @param id
+     * @return
+     */
+    @GetMapping("/update/{id}")
+    public String showUpdateDepartmentForm(Model model, @PathVariable("id") Integer id){
+        Department department = webService.getDepartmentById(id);
+        model.addAttribute("department", department);
+        return "update_department";
+    }
+
+    /**
+     * Update the Department with "id"
+     * @param id
+     * @return
+     */
+    @PostMapping("/update/{id}")
+    public String updateDepartment(@PathVariable("id") Integer id){
+        webService.updateDepartment(id);
+        return "redirect:/departments/all";
+    }
 
     /**
      * Delete the Department with "id"
