@@ -18,6 +18,15 @@ public class DepartmentsWebController {
     private DepartmentsWebService webService;
 
     /**
+     * Redirection from root directory to "/departments/all"
+     * @return
+     */
+    @GetMapping("/")
+    public String redirectToShowDepartments() {
+        return "redirect:/departments/all";
+    }
+
+    /**
      * Show the list of Departments with average salaries
      *
      * @return ModelAndView, showing all Departments
@@ -71,9 +80,10 @@ public class DepartmentsWebController {
      * Delete the Department with "id"
      * @param id
      */
-    @DeleteMapping("{id}")
-    public void deleteDepartment(@PathVariable("id") Integer id){
+    @PostMapping("/delete/{id}")
+    public String deleteDepartment(@PathVariable("id") Integer id){
         webService.deleteDepartment(id);
+        return "redirect:/departments/all";
     }
 
 }
