@@ -35,6 +35,7 @@ public class DepartmentsWebService {
         // Counting average salary for each Department in array
         boolean hasEmployees;
         int averageSalary;
+
         for(Department dep : departments) {
             String url2 = applicationURL+"/employees/dep/" + dep.getId();
             // Trying to get the list of Employees in the Department

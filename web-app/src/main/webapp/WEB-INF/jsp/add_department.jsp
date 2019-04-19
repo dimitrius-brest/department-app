@@ -18,6 +18,6 @@
         </tr>
     </table>
 </form:form>
-
+<a href="all">Cancel</a>
 </body>
 </html>

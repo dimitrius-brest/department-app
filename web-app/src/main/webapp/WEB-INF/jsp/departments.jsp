@@ -12,6 +12,8 @@
         <td>name</td>
         <td>Average Salary</td>
         <td>has employees</td>
+        <td>Edit</td>
+        <td>Delete</td>
     </tr>
     <c:forEach var="department" items="${departments}">
         <tr>
@@ -19,8 +21,17 @@
             <td>${department.name}</td>
             <td>${department.averageSalary}</td>
             <td>${department.hasEmployees}</td>
+            <td>Edit</td>
+            <td>
+                <c:choose>
+                    <c:when test="${department.hasEmployees}">Can't Delete</c:when>
+                    <c:otherwise>Delete</c:otherwise>
+                </c:choose>
+            </td>
         </tr>
     </c:forEach>
 </table>
+<br>
+<a href="add">Add new Department</a>
 </body>
 </html>
