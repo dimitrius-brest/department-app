@@ -87,13 +87,13 @@ public class DepartmentsWebController {
     }
 
     /**
-     * Update the Department with "id"
-     * @param id
+     * Update the Department
+     * @param department
      * @return
      */
-    @PostMapping("/update/{id}")
-    public String updateDepartment(@PathVariable("id") Integer id){
-        webService.updateDepartment(id);
+    @PostMapping("/update")
+    public String updateDepartment(@ModelAttribute("department") Department department){
+        webService.updateDepartment(department);
         return "redirect:/departments/all";
     }
 

@@ -88,10 +88,11 @@ public class DepartmentsWebService {
     }
 
     /**
-     * Update the Department with "id" via REST API
-     * @param id
+     * Update the Department via REST API
+     * @param department
      */
-    public void updateDepartment(Integer id){
+    public void updateDepartment(Department department){
+        ;
     }
 
 
