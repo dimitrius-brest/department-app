@@ -79,12 +79,12 @@ public class DepartmentsWebService {
     public void addDepartment(Department department){
         RestTemplate restTemplate = new RestTemplate();
         String url = applicationURL+"/departments/add";
-        HttpHeaders headers = new HttpHeaders();
+        /*HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         String requestJson = "{\"id\":"+ department.getId() +",\"name\":\""+ department.getName() +"\"}";
-
         HttpEntity<String> entity = new HttpEntity<String>(requestJson, headers);
-        String answer = restTemplate.postForObject(url, entity, String.class);
+        String answer = restTemplate.postForObject(url, entity, String.class);*/
+        restTemplate.postForObject(url, department, Department.class);
     }
 
     /**
@@ -92,7 +92,9 @@ public class DepartmentsWebService {
      * @param department
      */
     public void updateDepartment(Department department){
-        ;
+        RestTemplate restTemplate = new RestTemplate();
+        String url = applicationURL+"/departments/update";
+        restTemplate.put(url, department);
     }
 
 
