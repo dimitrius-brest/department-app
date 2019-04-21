@@ -3,6 +3,12 @@
 <html>
 <head>
     <title>Update the Department</title>
+    <style>
+        .colortext {
+            background-color: #eeeeee;
+            color : #888888;
+        }
+    </style>
 </head>
 <body>
 <h2>Update the Department:</h2>
@@ -10,7 +16,7 @@
     <table>
         <tr>
             <td><form:label path="id">ID</form:label></td>
-            <td><form:input path="id" readonly="true"></form:input></td>
+            <td><form:input path="id" readonly="true" cssClass="colortext"></form:input></td>
         </tr>
         <tr>
             <td><form:label path="name">Name</form:label></td>

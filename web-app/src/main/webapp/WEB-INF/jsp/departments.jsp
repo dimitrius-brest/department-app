@@ -23,7 +23,11 @@
             <td>${department.name}</td>
             <td>${department.averageSalary}</td>
             <td>${department.hasEmployees}</td>
-            <td>Edit</td>
+            <td>
+                <form:form method="get" action="/departments/update/${department.id}">
+                    <input type="submit" value="Edit">
+                </form:form>
+            </td>
             <td align="center">
                 <c:choose>
                     <c:when test="${department.hasEmployees}">Not Empty</c:when>
