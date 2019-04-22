@@ -1,5 +1,8 @@
-package by.derevitsky;
+package by.derevitsky.web.controller;
 
+import by.derevitsky.Department;
+import by.derevitsky.web.model.DepartmentForView;
+import by.derevitsky.web.service.DepartmentsWebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,7 +52,7 @@ public class DepartmentsWebController {
     public String showAddDepartmentForm(Model model) {
         Department department = new Department();
         model.addAttribute("department", department);
-        return "add_department";
+        return "department_add";
     }
 
     /**
@@ -83,7 +86,7 @@ public class DepartmentsWebController {
     public String showUpdateDepartmentForm(Model model, @PathVariable("id") Integer id){
         Department department = webService.getDepartmentById(id);
         model.addAttribute("department", department);
-        return "update_department";
+        return "department_update";
     }
 
     /**

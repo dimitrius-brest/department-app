@@ -1,8 +1,13 @@
-package by.derevitsky;
+package by.derevitsky.web.controller;
 
+import by.derevitsky.Employee;
+import by.derevitsky.web.service.EmployeesWebService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
@@ -13,6 +18,13 @@ import java.util.ArrayList;
 @RequestMapping("/employees")
 public class EmployeesWebController {
 
+    @Autowired
+    private EmployeesWebService webService;
+
+    /**
+     * Show the whole list of Employees
+     * @return
+     */
     @GetMapping("/all")
     public ModelAndView showEmployees(){
         RestTemplate restTemplate = new RestTemplate();
@@ -23,5 +35,17 @@ public class EmployeesWebController {
         ModelAndView model = new ModelAndView("employees");
         model.addObject("employees", employees);
         return model;
+    }
+
+    /**
+     * Show the list of Employees of certain Department by "Department ID"
+     * @param model
+     * @param id
+     * @return View "employees.jsp"
+     */
+    @GetMapping("/{id}")
+    public String showEmployeesByDepartmentId(ModelMap model, @PathVariable("id") Integer id){
+        webService.getEmployeesByDepartmentId(id);
+        return "employees";
     }
 }
