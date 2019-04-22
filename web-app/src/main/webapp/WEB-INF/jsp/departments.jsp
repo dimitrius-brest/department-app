@@ -20,7 +20,7 @@
     <c:forEach var="department" items="${departments}">
         <tr>
             <td>${department.id}</td>
-            <td>${department.name}</td>
+            <td><a href="/employees/${department.id}">${department.name}</a></td>
             <td>${department.averageSalary}</td>
             <td>${department.hasEmployees}</td>
             <td>

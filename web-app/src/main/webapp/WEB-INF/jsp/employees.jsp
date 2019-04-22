@@ -8,13 +8,13 @@
 <h2>Employees:</h2>
 <table border="1">
     <tr>
-        <td>id</td>
-        <td>idDepartment</td>
-        <td>firstName</td>
-        <td>middleName</td>
-        <td>lastName</td>
-        <td>birthDate</td>
-        <td>salary</td>
+        <td>ID</td>
+        <td>Department ID</td>
+        <td>First Name</td>
+        <td>Middle Name</td>
+        <td>Last Name</td>
+        <td>Birth Date</td>
+        <td>Salary</td>
     </tr>
     <c:forEach var="employee" items="${employees}">
         <tr>
@@ -28,6 +28,7 @@
         </tr>
     </c:forEach>
 </table>
-
+<br>
+<a href="/departments/all">Back to Departments list</a>
 </body>
 </html>
