@@ -51,4 +51,24 @@ public class EmployeesWebController {
         model.addAttribute("employees", employees);
         return "employees";
     }
+
+    /**
+     * Form to add an Employee
+     * @param model
+     * @return
+     */
+    @GetMapping("/add")
+    public String showAddEmployeeForm(Model model){
+        Employee employee = new Employee();
+        model.addAttribute("employee", employee);
+        return "employee_add";
+    }
+
+    @GetMapping("/update/{id}")
+    public String showUpdateEmployeeForm(Model model, @PathVariable("id") Integer id){
+        //Employee employee = webService.getEmployeeById(id);
+        Employee employee = new Employee();
+        model.addAttribute("employee", employee);
+        return "employee_update";
+    }
 }

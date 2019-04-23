@@ -42,6 +42,6 @@
     </c:forEach>
 </table>
 <br>
-<a href="add">Add new Department</a>
+<a href="/departments/add">Add new Department</a>
 </body>
 </html>

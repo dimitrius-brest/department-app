@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Employees</title>
@@ -15,6 +16,8 @@
         <td>Last Name</td>
         <td>Birth Date</td>
         <td>Salary</td>
+        <td>Edit</td>
+        <td>Delete</td>
     </tr>
     <c:forEach var="employee" items="${employees}">
         <tr>
@@ -25,9 +28,20 @@
             <td>${employee.lastName}</td>
             <td>${employee.birthDate}</td>
             <td>${employee.salary}</td>
+            <td>
+                <form:form method="get" action="/employees/update/${employee.id}">
+                    <input type="submit" value="Edit">
+                </form:form>
+            </td>
+            <td>
+                Delete
+            </td>
         </tr>
     </c:forEach>
 </table>
+<br>
+<a href="/employees/add">Add new Employee</a>
+<br>
 <br>
 <a href="/departments/all">Back to Departments list</a>
 </body>
