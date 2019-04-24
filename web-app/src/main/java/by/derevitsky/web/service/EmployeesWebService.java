@@ -19,6 +19,22 @@ public class EmployeesWebService {
     private String applicationURL = "http://localhost:8080/department-rest";
 
     /**
+     * Get all Employees via REST API
+     * @return
+     */
+    public List<Employee> getAllEmployees(){
+        RestTemplate restTemplate = new RestTemplate();
+        String url = applicationURL + "/employees/all";
+        try {                                   // If the list of Employees is not empty
+            ResponseEntity<Employee[]> responseEntity = restTemplate.getForEntity(url, Employee[].class);
+            Employee[] employees = responseEntity.getBody();
+            return Arrays.asList(employees);
+        } catch (Exception e){                  // If the list of Employees is empty
+            return new ArrayList<Employee>();
+        }
+    }
+
+    /**
      * Get Employees from certain Department by "Department ID" via REST API
      * @param depId
      * @return the list of Employees of the Department
@@ -26,12 +42,22 @@ public class EmployeesWebService {
     public List<Employee> getEmployeesByDepartmentId(Integer depId){
         RestTemplate restTemplate = new RestTemplate();
         String url = applicationURL + "/employees/dep/" + depId;
-        try {
+        try {                                   // If list of Employees is not empty
             ResponseEntity<Employee[]> responseEntity = restTemplate.getForEntity(url, Employee[].class);
             Employee[] employees = responseEntity.getBody();
             return Arrays.asList(employees);
-        } catch (Exception e) {
+        } catch (Exception e) {                 // If list of Employees is empty
             return new ArrayList<Employee>();
         }
+    }
+
+    /**
+     * Delete the Employee with "id" via REST API
+     * @param id
+     */
+    public void deleteEmployee(Integer id){
+        RestTemplate restTemplate = new RestTemplate();
+        String url = applicationURL + "/employees/" + id;
+        restTemplate.delete(url);
     }
 }

@@ -29,31 +29,37 @@ public class DepartmentsWebService {
         // Getting array of Departments form REST API
         RestTemplate restTemplate = new RestTemplate();
         String url = applicationURL+"/departments/all";
-        ResponseEntity<Department[]> responseEntity = restTemplate.getForEntity(url, Department[].class);
-        Department[] departments = responseEntity.getBody();
 
-        // Counting average salary for each Department in array
-        boolean hasEmployees;
-        int averageSalary;
+        try {                       // If the list of Departments is not empty
+            ResponseEntity<Department[]> responseEntity = restTemplate.getForEntity(url, Department[].class);
+            Department[] departments = responseEntity.getBody();
 
-        for(Department dep : departments) {
-            String url2 = applicationURL+"/employees/dep/" + dep.getId();
-            // Trying to get the list of Employees in the Department
-            try {
-                ResponseEntity<Employee[]> responseEntity2 = restTemplate.getForEntity(url2, Employee[].class);
-                Employee[] employees = responseEntity2.getBody();
-                hasEmployees = true;
-                int sum = 0;
-                // Counting average salary of Employees in the Department
-                for (int i = 0; i < employees.length; i++) {
-                    sum += employees[i].getSalary();
+            // Counting average salary for each Department in array
+            boolean hasEmployees;
+            int averageSalary;
+
+            for(Department dep : departments) {
+                String url2 = applicationURL+"/employees/dep/" + dep.getId();
+                // Trying to get the list of Employees in the Department
+                try {
+                    ResponseEntity<Employee[]> responseEntity2 = restTemplate.getForEntity(url2, Employee[].class);
+                    Employee[] employees = responseEntity2.getBody();
+                    hasEmployees = true;
+                    int sum = 0;
+                    // Counting average salary of Employees in the Department
+                    for (int i = 0; i < employees.length; i++) {
+                        sum += employees[i].getSalary();
+                    }
+                    averageSalary = sum / employees.length;
+                } catch (Exception e) {
+                    hasEmployees = false;
+                    averageSalary = 0;
                 }
-                averageSalary = sum / employees.length;
-            } catch (Exception e) {
-                hasEmployees = false;
-                averageSalary = 0;
+                departmentsForView.add(new DepartmentForView(dep, averageSalary, hasEmployees));
             }
-            departmentsForView.add(new DepartmentForView(dep, averageSalary, hasEmployees));
+
+        } catch (Exception e) {                 // If the list of Departments is empty
+            // departments = null;
         }
         return departmentsForView;
     }

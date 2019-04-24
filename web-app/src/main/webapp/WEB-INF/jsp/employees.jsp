@@ -34,7 +34,9 @@
                 </form:form>
             </td>
             <td>
-                Delete
+                <form:form method="post" action="/employees/delete/${employee.id}">
+                    <input type="submit" value="Delete" onclick="this.disabled=true">
+                </form:form>
             </td>
         </tr>
     </c:forEach>
