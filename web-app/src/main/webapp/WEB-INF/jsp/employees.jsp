@@ -6,7 +6,12 @@
     <title>Employees</title>
 </head>
 <body>
-<h2>Employees:</h2>
+<h2>
+    <c:choose>
+        <c:when test="${department_name == null}">All Employees:</c:when>
+        <c:otherwise>Employees of the Department "${department_name}":</c:otherwise>
+    </c:choose>
+</h2>
 <table border="1">
     <tr>
         <td>ID</td>

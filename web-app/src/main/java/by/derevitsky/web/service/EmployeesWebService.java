@@ -52,6 +52,19 @@ public class EmployeesWebService {
     }
 
     /**
+     * Get the Employee with "id" via REST API
+     * @param id
+     * @return
+     */
+    public Employee getEmployeeById(Integer id){
+        RestTemplate restTemplate = new RestTemplate();
+        String url = applicationURL + "/employees/" + id;
+        ResponseEntity<Employee> responseEntity = restTemplate.getForEntity(url, Employee.class);
+        Employee employee = responseEntity.getBody();
+        return employee;
+    }
+
+    /**
      * Delete the Employee with "id" via REST API
      * @param id
      */

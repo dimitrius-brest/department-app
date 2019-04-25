@@ -14,7 +14,7 @@
             <td><form:input path="name"/></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Add department"/></td>
+            <td colspan="2"><input type="submit" value="Add department" onclick="this.disabled=true"></td>
         </tr>
     </table>
 </form:form>
