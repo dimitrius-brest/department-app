@@ -1,6 +1,7 @@
 package by.derevitsky;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -15,6 +16,8 @@ public class Employee {
     private String middleName;
     private String lastName;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
     private int salary;
 

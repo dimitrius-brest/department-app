@@ -1,6 +1,6 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>Add new Employee</title>
@@ -35,11 +35,14 @@
         </tr>
         <tr>
             <td><form:label path="birthDate">Birth Date</form:label></td>
-            <td><form:input path="birthDate"/></td>
+            <td><form:input path="birthDate" type="date"/></td>
         </tr>
         <tr>
             <td><form:label path="salary">Salary</form:label></td>
             <td><form:input path="salary"/></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Add Employee" onclick="this.disabled=true"></td>
         </tr>
     </table>
 </form:form>
