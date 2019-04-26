@@ -1,5 +1,6 @@
 package by.derevitsky.web.controller;
 
+import by.derevitsky.Department;
 import by.derevitsky.Employee;
 import by.derevitsky.web.service.DepartmentsWebService;
 import by.derevitsky.web.service.EmployeesWebService;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
@@ -45,21 +47,35 @@ public class EmployeesWebController {
     @GetMapping("/{id}")
     public String showEmployeesByDepartmentId(Model model, @PathVariable("id") Integer id){
         List<Employee> employees = employeesWebService.getEmployeesByDepartmentId(id);
+        Department department = departmentsWebService.getDepartmentById(id);
         model.addAttribute("employees", employees);
-        model.addAttribute("department_name", departmentsWebService.getDepartmentById(id).getName());
+        model.addAttribute("department", department);
         return "employees";
     }
 
     /**
-     * Form to add an Employee
+     * Show the Form to add an Employee to the Department with "id"
      * @param model
+     * @param id The "id" of the Department
      * @return
      */
-    @GetMapping("/add")
-    public String showAddEmployeeForm(Model model){
+    @GetMapping("/add/{id}")
+    public String showAddEmployeeForm(Model model, @PathVariable("id") Integer id){
         Employee employee = new Employee();
+        Department department = departmentsWebService.getDepartmentById(id);
         model.addAttribute("employee", employee);
+        model.addAttribute("department", department);
         return "employee_add";
+    }
+
+    @PostMapping("/add/{id}")
+    public String addEmployee(@ModelAttribute("employee") Employee employee, BindingResult result, ModelMap model,
+                              @PathVariable("id") Integer id) {
+        if(result.hasErrors()){
+            return "error";
+        }
+        //employeesWebService.addEmployee(employee);
+        return "redirect:/employees/" + id;
     }
 
     /**

@@ -8,8 +8,8 @@
 <body>
 <h2>
     <c:choose>
-        <c:when test="${department_name == null}">All Employees:</c:when>
-        <c:otherwise>Employees of the Department "${department_name}":</c:otherwise>
+        <c:when test="${department == null}">All Employees:</c:when>
+        <c:otherwise>Employees of the Department "${department.name}":</c:otherwise>
     </c:choose>
 </h2>
 <table border="1">
@@ -46,9 +46,11 @@
         </tr>
     </c:forEach>
 </table>
-<br>
-<a href="/employees/add">Add new Employee</a>
-<br>
+<c:if test="${department != null}">
+    <br>
+    <a href="/employees/add/${department.id}">Add new Employee to the Department</a>
+    <br>
+</c:if>
 <br>
 <a href="/departments/all">Back to Departments list</a>
 </body>
