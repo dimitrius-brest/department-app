@@ -66,36 +66,49 @@ public class EmployeesWebController {
         Employee employee = new Employee();
         employee.setIdDepartment(idDepartment);
         employee.setId(0);
-        //employee.setBirthDate(LocalDate.parse("1997-05-05"));
         Department department = departmentsWebService.getDepartmentById(idDepartment);
         model.addAttribute("employee", employee);
         model.addAttribute("department", department);
         return "employee_add";
     }
 
+    /**
+     * Handling the form that adds a new Employee
+     * @param employee
+     * @param result
+     * @param model
+     * @param idDepartment the Id of the Department
+     * @return view that shows updated Employees list of the Department
+     */
     @PostMapping("/add/{idDepartment}")
     public String addEmployee(@ModelAttribute("employee") Employee employee, BindingResult result, ModelMap model,
                               @PathVariable("idDepartment") Integer idDepartment) {
         if(result.hasErrors()){
             return "error";
         }
-        Integer iidd = idDepartment;
-        //employeesWebService.addEmployee(employee);
+        employeesWebService.addEmployee(employee);
         return "redirect:/employees/" + idDepartment;
     }
 
     /**
-     * Update the Employee
+     * Show the Form to update the Employee with "id"
      * @param model
      * @param id
      * @return
      */
     @GetMapping("/update/{id}")
     public String showUpdateEmployeeForm(Model model, @PathVariable("id") Integer id){
-        //Employee employee = employeesWebService.getEmployeeById(id);
-        Employee employee = new Employee();
+        Employee employee = employeesWebService.getEmployeeById(id);
+        Department department = departmentsWebService.getDepartmentById(employee.getIdDepartment());
         model.addAttribute("employee", employee);
+        model.addAttribute("department", department);
         return "employee_update";
+    }
+
+    @PostMapping("/update")
+    public String updateEmployee(@ModelAttribute("employee") Employee employee){
+        employeesWebService.updateEmployee(employee);
+        return "redirect:/employees/" + employee.getIdDepartment();
     }
 
     /**

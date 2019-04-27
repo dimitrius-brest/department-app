@@ -74,7 +74,6 @@ public class DepartmentsWebService {
         String url = applicationURL+"/departments/" + id;
         ResponseEntity<Department> responseEntity = restTemplate.getForEntity(url, Department.class);
         Department department = responseEntity.getBody();
-        // Department department = new Department(333, "Test Department");
         return department;
     }
 
@@ -85,11 +84,6 @@ public class DepartmentsWebService {
     public void addDepartment(Department department){
         RestTemplate restTemplate = new RestTemplate();
         String url = applicationURL+"/departments/add";
-        /*HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        String requestJson = "{\"id\":"+ department.getId() +",\"name\":\""+ department.getName() +"\"}";
-        HttpEntity<String> entity = new HttpEntity<String>(requestJson, headers);
-        String answer = restTemplate.postForObject(url, entity, String.class);*/
         restTemplate.postForObject(url, department, Department.class);
     }
 

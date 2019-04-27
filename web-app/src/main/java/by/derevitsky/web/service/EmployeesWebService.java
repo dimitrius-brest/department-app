@@ -65,6 +65,29 @@ public class EmployeesWebService {
     }
 
     /**
+     * Add the Employee via REST API
+     * @param employee
+     */
+    public void addEmployee(Employee employee){
+        RestTemplate restTemplate = new RestTemplate();
+        String url = applicationURL + "/employees/add";
+        if(employee.getBirthDate() == null) {
+            employee.setBirthDate(LocalDate.parse("2000-01-01"));
+        }
+        restTemplate.postForObject(url, employee, Employee.class);
+    }
+
+    /**
+     * Update the Employee via REST API
+     * @param employee
+     */
+    public void updateEmployee(Employee employee){
+        RestTemplate restTemplate = new RestTemplate();
+        String url = applicationURL + "/employees/update";
+        restTemplate.put(url, employee);
+    }
+
+    /**
      * Delete the Employee with "id" via REST API
      * @param id
      */

@@ -27,5 +27,6 @@
         </tr>
     </table>
 </form:form>
+<a href="/departments/all">Cancel</a>
 </body>
 </html>

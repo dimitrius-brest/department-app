@@ -56,7 +56,7 @@ public class DepartmentsWebController {
     }
 
     /**
-     * Handling the form that adds a new Department     *
+     * Handling the form that adds a new Department
      * @param department
      * @param result
      * @param model
@@ -77,7 +77,7 @@ public class DepartmentsWebController {
     }
 
     /**
-     * Show the Form to update a Department with "id"
+     * Show the Form to update the Department with "id"
      * @param model
      * @param id
      * @return

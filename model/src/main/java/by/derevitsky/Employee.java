@@ -17,7 +17,6 @@ public class Employee {
     private String lastName;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    //@DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
     private int salary;
 
