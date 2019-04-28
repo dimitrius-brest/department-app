@@ -20,8 +20,12 @@
             <td><form:input path="id" readonly="true" cssClass="colortext"/></td>
         </tr>
         <tr>
-            <td><form:label path="idDepartment">Department ID</form:label></td>
-            <td><form:input path="idDepartment" readonly="true" cssClass="colortext"/></td>
+            <td><form:label path="idDepartment">Department</form:label></td>
+            <td>
+                <form:select path="idDepartment">
+                    <form:options items="${departments}" itemValue="id" itemLabel="name"/>
+                </form:select>
+            </td>
         </tr>
         <tr>
             <td><form:label path="firstName">First Name</form:label></td>

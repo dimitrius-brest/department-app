@@ -2,6 +2,7 @@ package by.derevitsky.web.controller;
 
 import by.derevitsky.Department;
 import by.derevitsky.Employee;
+import by.derevitsky.web.model.DepartmentForView;
 import by.derevitsky.web.service.DepartmentsWebService;
 import by.derevitsky.web.service.EmployeesWebService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,8 +101,10 @@ public class EmployeesWebController {
     public String showUpdateEmployeeForm(Model model, @PathVariable("id") Integer id){
         Employee employee = employeesWebService.getEmployeeById(id);
         Department department = departmentsWebService.getDepartmentById(employee.getIdDepartment());
+        List<DepartmentForView> departments = departmentsWebService.getDepartments();
         model.addAttribute("employee", employee);
         model.addAttribute("department", department);
+        model.addAttribute("departments", departments);
         return "employee_update";
     }
 
