@@ -2,6 +2,7 @@ package by.derevitsky.web.controller;
 
 import by.derevitsky.Department;
 import by.derevitsky.Employee;
+import by.derevitsky.web.model.DateRangeForSearch;
 import by.derevitsky.web.model.DepartmentForView;
 import by.derevitsky.web.service.DepartmentsWebService;
 import by.derevitsky.web.service.EmployeesWebService;
@@ -51,8 +52,11 @@ public class EmployeesWebController {
     public String showEmployeesByDepartmentId(Model model, @PathVariable("id") Integer id){
         List<Employee> employees = employeesWebService.getEmployeesByDepartmentId(id);
         Department department = departmentsWebService.getDepartmentById(id);
+        DateRangeForSearch dateRange =
+                new DateRangeForSearch(LocalDate.parse("2000-01-01"), LocalDate.parse("2000-01-01"));
         model.addAttribute("employees", employees);
         model.addAttribute("department", department);
+        model.addAttribute("date_range", dateRange);
         return "employees";
     }
 

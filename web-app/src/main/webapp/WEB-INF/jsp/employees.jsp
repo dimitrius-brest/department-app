@@ -46,6 +46,16 @@
         </tr>
     </c:forEach>
 </table>
+
+<h3>Search employees by birth date:</h3>
+<form:form method="post" modelAttribute="date_range" action="/employees/search/${department.id}">
+    <form:label path="startDate">In the range from:</form:label>
+    <form:input path="startDate" type="date"/>
+    <form:label path="endDate">to:</form:label>
+    <form:input path="endDate" type="date"/>
+    <input type="submit" value="Search">
+</form:form>
+
 <c:if test="${department != null}">
     <br>
     <a href="/employees/add/${department.id}">Add new Employee to the Department</a>
