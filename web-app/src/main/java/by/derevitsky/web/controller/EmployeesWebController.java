@@ -129,4 +129,16 @@ public class EmployeesWebController {
         employeesWebService.deleteEmployee(id);
         return "redirect:/employees/" + departmentId;
     }
+
+    /**
+     * Search Employees by Birth Date
+     * @param idDepartment the ID of the Department where to search
+     * @param dateRange the Range of Birth Dates to search
+     * @return
+     */
+    @PostMapping("/search/{idDepartment}")
+    public String searchEmployees(@PathVariable("idDepartment") Integer idDepartment,
+                                  @ModelAttribute("date_range") DateRangeForSearch dateRange){
+        return "redirect:/employees/" + idDepartment;
+    }
 }

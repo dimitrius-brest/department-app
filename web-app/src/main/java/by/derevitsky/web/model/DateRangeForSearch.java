@@ -10,6 +10,9 @@ public class DateRangeForSearch {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate endDate;
 
+    public DateRangeForSearch(){
+    }
+
     public DateRangeForSearch(LocalDate startDate, LocalDate endDate) {
         this.startDate = startDate;
         this.endDate = endDate;
