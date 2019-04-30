@@ -53,7 +53,7 @@ public class EmployeesWebController {
         List<Employee> employees = employeesWebService.getEmployeesByDepartmentId(id);
         Department department = departmentsWebService.getDepartmentById(id);
         DateRangeForSearch dateRange =
-                new DateRangeForSearch(LocalDate.parse("2000-01-01"), LocalDate.parse("2000-01-01"));
+                new DateRangeForSearch(/*LocalDate.parse("2000-01-01"), LocalDate.parse("2000-01-01")*/);
         model.addAttribute("employees", employees);
         model.addAttribute("department", department);
         model.addAttribute("date_range", dateRange);
@@ -137,8 +137,27 @@ public class EmployeesWebController {
      * @return
      */
     @PostMapping("/search/{idDepartment}")
-    public String searchEmployees(@PathVariable("idDepartment") Integer idDepartment,
+    public String searchEmployees(Model model, @PathVariable("idDepartment") Integer idDepartment,
                                   @ModelAttribute("date_range") DateRangeForSearch dateRange){
-        return "redirect:/employees/" + idDepartment;
+        Department department = departmentsWebService.getDepartmentById(idDepartment);
+        List<Employee> employees = employeesWebService.getEmployeesByDepartmentId(idDepartment);
+        List<Employee> foundEmployees = new ArrayList<>();
+        LocalDate startDate = dateRange.getStartDate();
+        LocalDate endDate = dateRange.getEndDate();
+
+        for(Employee employee : employees){
+            LocalDate bDate = employee.getBirthDate();
+            if((bDate.isAfter(startDate) || bDate.isEqual(startDate))
+                    &&
+               (bDate.isBefore(endDate)) || bDate.isEqual(endDate)){
+                foundEmployees.add(employee);
+            }
+        }
+        model.addAttribute("department", department);
+        model.addAttribute("employees", foundEmployees);
+        model.addAttribute("date_range", dateRange);
+
+        return "employees";
+        //return "redirect:/employees/" + idDepartment;
     }
 }
