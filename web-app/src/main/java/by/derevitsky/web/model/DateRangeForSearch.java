@@ -44,4 +44,36 @@ public class DateRangeForSearch {
         }
         return true;
     }
+
+    /**
+     * Validates if Birth Date is inside the range between Start Date and End Date
+     * @param birthDate
+     * @return
+     */
+    public boolean isInsideRange(LocalDate birthDate){
+        if(this.startDate==null && this.endDate==null){   //  if both Start Date and End Date are not set
+            return true;
+        }
+
+        if(this.startDate==null){                         //  if Start Date is not set
+            if(birthDate.isBefore(this.endDate) || birthDate.isEqual(this.endDate)){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        if(this.endDate==null){                            // if End Date is not set
+            if(birthDate.isAfter(this.startDate) || birthDate.isEqual(this.startDate)){
+                return true;
+            } else {
+                return false;
+            }
+        }
+                                                            // if both Start Date and End Date are set
+        if(birthDate.isEqual(this.startDate) || birthDate.isEqual(this.endDate) || (birthDate.isAfter(this.startDate) && birthDate.isBefore(this.endDate))){
+            return true;
+        }
+        return false;
+    }
 }

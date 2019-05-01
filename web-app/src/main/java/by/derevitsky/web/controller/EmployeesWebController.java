@@ -148,10 +148,13 @@ public class EmployeesWebController {
         boolean validRange = dateRange.isValid();
 
         for(Employee employee : employees){
-            LocalDate bDate = employee.getBirthDate();
-            if((bDate.isAfter(startDate) || bDate.isEqual(startDate))
+            LocalDate birthDate = employee.getBirthDate();
+            /*if((bDate.isAfter(startDate) || bDate.isEqual(startDate))
                     &&
                (bDate.isBefore(endDate)) || bDate.isEqual(endDate)){
+                foundEmployees.add(employee);
+            }*/
+            if(dateRange.isInsideRange(birthDate)){
                 foundEmployees.add(employee);
             }
         }
