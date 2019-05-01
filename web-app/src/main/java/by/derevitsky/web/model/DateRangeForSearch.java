@@ -33,4 +33,15 @@ public class DateRangeForSearch {
     public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
+
+    /**
+     * Validates if End Date is after Start Date
+     * @return
+     */
+    public boolean isValid(){
+        if(this.startDate!=null && this.endDate!=null && this.startDate.isAfter(this.endDate)){
+            return false;
+        }
+        return true;
+    }
 }

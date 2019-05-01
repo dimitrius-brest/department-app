@@ -142,8 +142,10 @@ public class EmployeesWebController {
         Department department = departmentsWebService.getDepartmentById(idDepartment);
         List<Employee> employees = employeesWebService.getEmployeesByDepartmentId(idDepartment);
         List<Employee> foundEmployees = new ArrayList<>();
+
         LocalDate startDate = dateRange.getStartDate();
         LocalDate endDate = dateRange.getEndDate();
+        boolean validRange = dateRange.isValid();
 
         for(Employee employee : employees){
             LocalDate bDate = employee.getBirthDate();
