@@ -33,11 +33,11 @@
         </dependency>
 
         <!-- JSTL -->
-        <!--<dependency>
+        <dependency>
             <groupId>org.apache.taglibs</groupId>
             <artifactId>taglibs-standard-spec</artifactId>
             <version>1.2.5</version>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>org.apache.taglibs</groupId>
             <artifactId>taglibs-standard-impl</artifactId>
@@ -48,6 +48,7 @@
 
 
     <build>
+        <finalName>department-web</finalName>
         <plugins>
             <plugin>
                 <groupId>org.eclipse.jetty</groupId>

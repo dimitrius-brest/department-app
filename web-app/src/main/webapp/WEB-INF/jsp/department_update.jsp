@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
@@ -11,8 +12,9 @@
     </style>
 </head>
 <body>
+<c:set var="context" value="${pageContext.request.contextPath}"/>  <!-- Root directory of application -->
 <h2>Update the Department:</h2>
-<form:form method="post" modelAttribute="department" action="/departments/update">
+<form:form method="post" modelAttribute="department" action="${context}/departments/update">
     <table>
         <tr>
             <td><form:label path="id">ID</form:label></td>
@@ -27,6 +29,6 @@
         </tr>
     </table>
 </form:form>
-<a href="/departments/all">Cancel</a>
+<a href="${context}/departments/all">Cancel</a>
 </body>
 </html>

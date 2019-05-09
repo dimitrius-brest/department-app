@@ -7,6 +7,7 @@
     <title>Departments</title>
 </head>
 <body>
+<c:set var="context" value="${pageContext.request.contextPath}"/>  <!-- Root directory of application -->
 <h2>Departments:</h2>
 <table border="1">
     <tr>
@@ -20,11 +21,11 @@
     <c:forEach var="department" items="${departments}">
         <tr>
             <td>${department.id}</td>
-            <td><a href="/employees/${department.id}">${department.name}</a></td>
+            <td><a href="${context}/employees/${department.id}">${department.name}</a></td>
             <td>${department.averageSalary}</td>
             <td>${department.hasEmployees}</td>
             <td>
-                <form:form method="get" action="/departments/update/${department.id}">
+                <form:form method="get" action="${context}/departments/update/${department.id}">
                     <input type="submit" value="Edit">
                 </form:form>
             </td>
@@ -32,7 +33,7 @@
                 <c:choose>
                     <c:when test="${department.hasEmployees}">Not Empty</c:when>
                     <c:otherwise>
-                        <form:form method="post" action="/departments/delete/${department.id}">
+                        <form:form method="post" action="${context}/departments/delete/${department.id}">
                             <input type="submit" value="Delete" onclick="this.disabled=true">
                         </form:form>
                     </c:otherwise>
@@ -42,6 +43,6 @@
     </c:forEach>
 </table>
 <br>
-<a href="/departments/add">Add new Department</a>
+<a href="${context}/departments/add">Add new Department</a>
 </body>
 </html>

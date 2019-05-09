@@ -1,13 +1,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <title>Add new Department</title>
 </head>
 <body>
+<c:set var="context" value="${pageContext.request.contextPath}"/>  <!-- Root directory of application -->
 <h2>Add a new Department:</h2>
 
-<form:form method="post" modelAttribute="department" action="/departments/add">
+<form:form method="post" modelAttribute="department" action="${context}/departments/add">
     <table>
         <tr>
             <td><form:label path="name">Name</form:label></td>
@@ -18,6 +20,6 @@
         </tr>
     </table>
 </form:form>
-<a href="/departments/all">Cancel</a>
+<a href="${context}/departments/all">Cancel</a>
 </body>
 </html>

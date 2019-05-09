@@ -6,6 +6,7 @@
     <title>Employees</title>
 </head>
 <body>
+<c:set var="context" value="${pageContext.request.contextPath}"/>  <!-- Root directory of application -->
 <h2>
     <c:choose>
         <c:when test="${department == null}">All Employees:</c:when>
@@ -34,12 +35,12 @@
             <td>${employee.birthDate}</td>
             <td>${employee.salary}</td>
             <td>
-                <form:form method="get" action="/employees/update/${employee.id}">
+                <form:form method="get" action="${context}/employees/update/${employee.id}">
                     <input type="submit" value="Edit">
                 </form:form>
             </td>
             <td>
-                <form:form method="post" action="/employees/delete/${employee.id}">
+                <form:form method="post" action="${context}/employees/delete/${employee.id}">
                     <input type="submit" value="Delete" onclick="this.disabled=true">
                 </form:form>
             </td>
@@ -48,7 +49,7 @@
 </table>
 
 <h3>Search employees by birth date:</h3>
-<form:form method="post" modelAttribute="date_range" action="/employees/search/${department.id}">
+<form:form method="post" modelAttribute="date_range" action="${context}/employees/search/${department.id}">
     <form:label path="startDate">In the range from:</form:label>
     <form:input path="startDate" type="date"/>
     <form:label path="endDate">to:</form:label>
@@ -58,10 +59,10 @@
 
 <c:if test="${department != null}">
     <br>
-    <a href="/employees/add/${department.id}">Add new Employee to the Department</a>
+    <a href="${context}/employees/add/${department.id}">Add new Employee to the Department</a>
     <br>
 </c:if>
 <br>
-<a href="/departments/all">Back to Departments list</a>
+<a href="${context}/departments/all">Back to Departments list</a>
 </body>
 </html>
