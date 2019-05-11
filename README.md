@@ -1,13 +1,22 @@
-### "Department" application
+## "Department" application
 
-* Description of the project
-* How to build the project from command line 
-* The addresses of REST and web modules after installation at Tomcat:
- 
-Considering that Tomcat is installed at localhost.<br> 
-* REST api of the application is available at: http://localhost:8080/department-rest/
-* Web application is available at: http://localhost:9999
-<br> http://localhost:9999/departments/all
-<br> http://localhost:9999/employees/all
+### Description of the project
+This project allows to deal with a list of Departments and Employees inside this Departments via web-browser. 
 
- 
+### How to build and deploy the project
+1. Clone the project from repository.
+2. Go to the root directory of the project ("/department-app/").
+3. Make sure you have Maven installed. In command line write and run: `mvn clean install`
+4. If build was successful, you will get two war-files:
+   * /department-app/rest/target/**department-rest.war**
+   * /department-app/web-app/target/**department-web.war**
+5. Copy this two war-files to your Tomcat "webapps" directory. Start Tomcat if it's not yet.
+
+### Running web-application
+1. We presume you deployed the project at **localhost**. To test the REST API of the application, write in your browser:
+   * http://localhost:8080/department-rest/departments/all
+   * http://localhost:8080/department-rest/employees/all
+<br>-- If everything is OK, you will get some JSON entities in both cases.
+2. To start web-application, write in your browser:
+   * http://localhost:8080/department-web/departments/all
+3. That's it!
