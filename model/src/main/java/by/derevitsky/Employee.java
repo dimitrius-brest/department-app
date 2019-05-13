@@ -3,6 +3,8 @@ package by.derevitsky;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
 import java.time.LocalDate;
 
 /**
@@ -18,6 +20,8 @@ public class Employee {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthDate;
+    @Digits(integer = 10, fraction = 0)
+    @Min(0)
     private int salary;
 
     public Employee() {

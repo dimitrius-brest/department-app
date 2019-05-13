@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -113,7 +114,10 @@ public class EmployeesWebController {
     }
 
     @PostMapping("/update")
-    public String updateEmployee(@ModelAttribute("employee") Employee employee){
+    public String updateEmployee(@Valid @ModelAttribute("employee") Employee employee, BindingResult result){
+        if(result.hasErrors()){
+            return "employee_update";
+        }
         employeesWebService.updateEmployee(employee);
         return "redirect:/employees/" + employee.getIdDepartment();
     }
