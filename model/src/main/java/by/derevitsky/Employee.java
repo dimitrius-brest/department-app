@@ -20,8 +20,8 @@ public class Employee {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate birthDate;
-    @Digits(integer = 10, fraction = 0)
-    @Min(0)
+    @Digits(integer = 10, fraction = 0, message = "Must be integer, no more than 10 digits")
+    @Min(value = 0, message="Must be equal or greater than 0")
     private int salary;
 
     public Employee() {

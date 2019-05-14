@@ -87,7 +87,7 @@ public class EmployeesWebController {
      * @return view that shows updated Employees list of the Department
      */
     @PostMapping("/add/{idDepartment}")
-    public String addEmployee(@ModelAttribute("employee") Employee employee, BindingResult result, ModelMap model,
+    public String addEmployee(@ModelAttribute("employee") @Valid Employee employee, BindingResult result, ModelMap model,
                               @PathVariable("idDepartment") Integer idDepartment) {
         if(result.hasErrors()){
             Department department = departmentsWebService.getDepartmentById(idDepartment);
@@ -116,7 +116,7 @@ public class EmployeesWebController {
     }
 
     @PostMapping("/update")
-    public String updateEmployee(@Valid @ModelAttribute("employee") Employee employee,
+    public String updateEmployee(@ModelAttribute("employee") @Valid Employee employee,
                                  BindingResult result, Model model){
         if(result.hasErrors()){
             Department department = departmentsWebService.getDepartmentById(employee.getIdDepartment());
