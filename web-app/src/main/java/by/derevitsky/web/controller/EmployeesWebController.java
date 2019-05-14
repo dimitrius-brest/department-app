@@ -90,7 +90,9 @@ public class EmployeesWebController {
     public String addEmployee(@ModelAttribute("employee") Employee employee, BindingResult result, ModelMap model,
                               @PathVariable("idDepartment") Integer idDepartment) {
         if(result.hasErrors()){
-            return "error";
+            Department department = departmentsWebService.getDepartmentById(idDepartment);
+            model.addAttribute("department", department);
+            return "employee_add";
         }
         employeesWebService.addEmployee(employee);
         return "redirect:/employees/" + idDepartment;
@@ -114,8 +116,13 @@ public class EmployeesWebController {
     }
 
     @PostMapping("/update")
-    public String updateEmployee(@Valid @ModelAttribute("employee") Employee employee, BindingResult result){
+    public String updateEmployee(@Valid @ModelAttribute("employee") Employee employee,
+                                 BindingResult result, Model model){
         if(result.hasErrors()){
+            Department department = departmentsWebService.getDepartmentById(employee.getIdDepartment());
+            List<DepartmentForView> departments = departmentsWebService.getDepartments();
+            model.addAttribute("department", department);
+            model.addAttribute("departments", departments);
             return "employee_update";
         }
         employeesWebService.updateEmployee(employee);
