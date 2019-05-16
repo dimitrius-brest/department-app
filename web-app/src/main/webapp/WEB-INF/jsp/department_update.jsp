@@ -5,9 +5,12 @@
 <head>
     <title>Update the Department</title>
     <style>
-        .colortext {
+        .readonly {
             background-color: #eeeeee;
             color : #888888;
+        }
+        .error {
+            color: #ff0000;
         }
     </style>
 </head>
@@ -18,14 +21,16 @@
     <table>
         <tr>
             <td><form:label path="id">ID</form:label></td>
-            <td><form:input path="id" readonly="true" cssClass="colortext"></form:input></td>
+            <td><form:input path="id" readonly="true" cssClass="readonly"/></td>
+            <td></td>
         </tr>
         <tr>
             <td><form:label path="name">Name</form:label></td>
             <td><form:input path="name"/></td>
+            <td><form:errors path="name" cssClass="error"/></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Update"></td>
+            <td colspan="3"><input type="submit" value="Update"></td>
         </tr>
     </table>
 </form:form>

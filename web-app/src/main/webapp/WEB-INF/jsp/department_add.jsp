@@ -4,6 +4,11 @@
 <html>
 <head>
     <title>Add new Department</title>
+    <style>
+        .error {
+            color: #ff0000;
+        }
+    </style>
 </head>
 <body>
 <c:set var="context" value="${pageContext.request.contextPath}"/>  <!-- Root directory of application -->
@@ -14,9 +19,10 @@
         <tr>
             <td><form:label path="name">Name</form:label></td>
             <td><form:input path="name"/></td>
+            <td><form:errors path="name" cssClass="error"/></td>
         </tr>
         <tr>
-            <td colspan="2"><input type="submit" value="Add department" onclick="this.disabled=true"></td>
+            <td colspan="3"><input type="submit" value="Add department" onclick="this.disabled=true"></td>
         </tr>
     </table>
 </form:form>

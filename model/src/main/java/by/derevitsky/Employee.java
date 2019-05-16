@@ -3,8 +3,7 @@ package by.derevitsky;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Digits;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 /**
@@ -14,14 +13,19 @@ import java.time.LocalDate;
 public class Employee {
     private int id;
     private int idDepartment;
+    @Size(max = 50)
     private String firstName;
+    @Size(max = 50)
     private String middleName;
+    @NotBlank(message = "Last name may not be blank")
+    @Size(max = 100)
     private String lastName;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)   // The same as (pattern="yyyy-MM-dd")
+    @Past(message = "Birth date must be in the past")
     private LocalDate birthDate;
     @Digits(integer = 10, fraction = 0, message = "Must be integer, no more than 10 digits")
-    @Min(value = 0, message="Must be equal or greater than 0")
+    @Min(value = 0, message="Salary may not be less than 0")
     private int salary;
 
     public Employee() {

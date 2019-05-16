@@ -1,11 +1,16 @@
 package by.derevitsky;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 /**
  * Model of "Department" entity
  * @author Dmitry Derevitsky
  */
 public class Department {
     private int id;
+    @NotBlank(message = "Name may not be blank")
+    @Size(max=100)
     private String name;
 
     public Department() {

@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -66,10 +67,10 @@ public class DepartmentsWebController {
     //       https://www.mkyong.com/spring-mvc/spring-mvc-form-handling-example/
     //       http://streletzcoder.ru/rabota-s-formami-v-spring-mvc/
     @PostMapping("/add")
-    public String addDepartment(@ModelAttribute("department") Department department,
+    public String addDepartment(@ModelAttribute("department") @Valid Department department,
                                 BindingResult result, ModelMap model) {
         if (result.hasErrors()) {
-            return "error";
+            return "department_add";
         }
         //model.addAttribute(department.getName());
         webService.addDepartment(department);
@@ -95,7 +96,11 @@ public class DepartmentsWebController {
      * @return
      */
     @PostMapping("/update")
-    public String updateDepartment(@ModelAttribute("department") Department department){
+    public String updateDepartment(@ModelAttribute("department") @Valid Department department,
+                                   BindingResult result, Model model){
+        if(result.hasErrors()){
+            return "department_update";
+        }
         webService.updateDepartment(department);
         return "redirect:/departments/all";
     }
