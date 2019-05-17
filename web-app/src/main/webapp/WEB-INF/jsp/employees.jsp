@@ -4,6 +4,14 @@
 <html>
 <head>
     <title>Employees</title>
+    <style>
+        .error {
+            color: #ff0000;
+        }
+        .search {
+            color: darkgreen;
+        }
+    </style>
 </head>
 <body>
 <c:set var="context" value="${pageContext.request.contextPath}"/>  <!-- Root directory of application -->
@@ -55,6 +63,8 @@
     <form:label path="endDate">to:</form:label>
     <form:input path="endDate" type="date"/>
     <input type="submit" value="Search">
+    <span class="error">${invalid_range_message}</span>
+    <span class="search">${search_message}</span>
 </form:form>
 
 <c:if test="${department != null}">

@@ -46,14 +46,25 @@ public class DateRangeForSearch {
     }
 
     /**
+     * Validatese if both Start Date and End Date are not set
+     * @return
+     */
+    public boolean isEmpty(){
+        if(this.startDate==null && this.endDate==null){
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * Validates if Birth Date is inside the range between Start Date and End Date
      * @param birthDate
      * @return
      */
     public boolean isInsideRange(LocalDate birthDate){
-        if(this.startDate==null && this.endDate==null){   //  if both Start Date and End Date are not set
-            return true;
-        }
+        //if(this.startDate==null && this.endDate==null){   //  if both Start Date and End Date are not set
+        //    return true;
+        //}
 
         if(this.startDate==null){                         //  if Start Date is not set
             if(birthDate.isBefore(this.endDate) || birthDate.isEqual(this.endDate)){

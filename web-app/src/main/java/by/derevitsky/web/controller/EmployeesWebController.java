@@ -151,17 +151,19 @@ public class EmployeesWebController {
         List<Employee> employees = employeesWebService.getEmployeesByDepartmentId(idDepartment);
         List<Employee> foundEmployees = new ArrayList<>();
 
-        LocalDate startDate = dateRange.getStartDate();
-        LocalDate endDate = dateRange.getEndDate();
-        boolean validRange = dateRange.isValid();
+        if(!dateRange.isValid()){    //  Start date is later than End date
+            model.addAttribute("department", department);
+            model.addAttribute("employees", employees);
+            model.addAttribute("invalid_range_message", "Start date may not be later than End date");
+            return "employees";
+        }
+
+        if(dateRange.isEmpty()){
+            return "redirect:/employees/" + idDepartment;
+        }
 
         for(Employee employee : employees){
             LocalDate birthDate = employee.getBirthDate();
-            /*if((bDate.isAfter(startDate) || bDate.isEqual(startDate))
-                    &&
-               (bDate.isBefore(endDate)) || bDate.isEqual(endDate)){
-                foundEmployees.add(employee);
-            }*/
             if(dateRange.isInsideRange(birthDate)){
                 foundEmployees.add(employee);
             }
@@ -169,6 +171,7 @@ public class EmployeesWebController {
         model.addAttribute("department", department);
         model.addAttribute("employees", foundEmployees);
         model.addAttribute("date_range", dateRange);
+        model.addAttribute("search_message", "Clear both Start Date and End Date to see the whole list");
 
         return "employees";
         //return "redirect:/employees/" + idDepartment;
