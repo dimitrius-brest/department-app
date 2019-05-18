@@ -1,11 +1,9 @@
 package by.derevitsky;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -18,6 +16,9 @@ public class EmployeeRestController {
 
     @Autowired
     private EmployeeService employeeService;
+
+    // Logging
+    private static final Logger logger = Logger.getLogger(EmployeeRestController.class);
 
     @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<Employee> getEmployee(@PathVariable("id") Integer id){
@@ -37,8 +38,10 @@ public class EmployeeRestController {
     public ResponseEntity<List<Employee>> getAllEmployees() {
         List<Employee> employees = this.employeeService.getAll();
         if (employees.isEmpty()) {
+            logger.debug("The list of Employees is empty");
             return new ResponseEntity<List<Employee>>(HttpStatus.NOT_FOUND);
         }
+        logger.debug("The list of all " + employees.size() + " Employees was got");
         return new ResponseEntity<List<Employee>>(employees, HttpStatus.OK);
     }
 

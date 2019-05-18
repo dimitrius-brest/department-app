@@ -171,7 +171,7 @@ public class EmployeesWebController {
         model.addAttribute("department", department);
         model.addAttribute("employees", foundEmployees);
         model.addAttribute("date_range", dateRange);
-        model.addAttribute("search_message", "Clear both Start Date and End Date to see the whole list");
+        model.addAttribute("search_message", "Search complete. Clear both Start Date and End Date to see the whole list");
 
         return "employees";
         //return "redirect:/employees/" + idDepartment;
