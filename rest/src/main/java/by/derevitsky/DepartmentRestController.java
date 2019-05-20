@@ -1,5 +1,6 @@
 package by.derevitsky;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,11 +17,18 @@ public class DepartmentRestController {
     @Autowired
     private DepartmentService departmentService;
 
+    // Logging
+    private static final Logger logger = Logger.getLogger(DepartmentRestController.class);
+
     @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<Department> getDepartment(@PathVariable("id") Integer id){
         if(id == null) { return new ResponseEntity<Department>(HttpStatus.BAD_REQUEST); }
         Department department = this.departmentService.getById(id);
-        if (department == null) { return new ResponseEntity<Department>(HttpStatus.NOT_FOUND); }
+        if (department == null) {
+            logger.debug("The Department with id=" + id + " not found");
+            return new ResponseEntity<Department>(HttpStatus.NOT_FOUND);
+        }
+        logger.debug("The Department with id=" + id + " and name='" + department.getName() + "' was found");
         return new ResponseEntity<Department>(department, HttpStatus.OK);
     }
 
@@ -28,8 +36,10 @@ public class DepartmentRestController {
     public ResponseEntity<List<Department>> getAllDepartments() {
         List<Department> departments = this.departmentService.getAll();
         if (departments.isEmpty()) {
+            logger.debug("The list of Departments is empty");
             return new ResponseEntity<List<Department>>(HttpStatus.NOT_FOUND);
         }
+        logger.debug("The list of all " + departments.size() + " Departments was got");
         return new ResponseEntity<List<Department>>(departments, HttpStatus.OK);
     }
 
@@ -37,9 +47,11 @@ public class DepartmentRestController {
     public ResponseEntity<Department> saveDepartment(@RequestBody /*@Valid*/ Department department) {
         HttpHeaders headers = new HttpHeaders();
         if (department == null) {
+            logger.debug("Failed to add a new Department");
             return new ResponseEntity<Department>(HttpStatus.BAD_REQUEST);
         }
         this.departmentService.insert(department);
+        logger.debug("New Department with name='" + department.getName() + "' was added");
         return new ResponseEntity<Department>(department, headers, HttpStatus.CREATED);
     }
 
@@ -47,9 +59,11 @@ public class DepartmentRestController {
     public ResponseEntity<Department> updateDepartment(@RequestBody /*@Valid*/ Department department, UriComponentsBuilder builder) {
         HttpHeaders headers = new HttpHeaders();
         if (department == null) {
+            logger.debug("Failed to update the Department");
             return new ResponseEntity<Department>(HttpStatus.BAD_REQUEST);
         }
         this.departmentService.update(department);
+        logger.debug("The Department with id=" + department.getId() + " was successfully updated");
         return new ResponseEntity<Department>(department, headers, HttpStatus.OK);
     }
 
@@ -57,9 +71,11 @@ public class DepartmentRestController {
     public ResponseEntity<Department> deleteDepartment(@PathVariable("id") Integer id) {
         Department department = this.departmentService.getById(id);
         if (department == null) {
+            logger.debug("The Department with id=" + id + " was not found");
             return new ResponseEntity<Department>(HttpStatus.NOT_FOUND);
         }
         this.departmentService.delete(id);
+        logger.debug("The Department with id=" + id + " was successfully deleted");
         return new ResponseEntity<Department>(HttpStatus.NO_CONTENT);
     }
 }

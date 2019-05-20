@@ -20,3 +20,8 @@ This project allows to deal with a list of Departments and Employees inside this
 2. To start web-application, write in your browser:
    * http://localhost:8080/department-web/departments/all
 3. That's it!
+
+### Log files
+Log files can be found in Tomcat "log" directory under the names:
+* **department_rest_log_file.log** - for the REST layer
+* ...
