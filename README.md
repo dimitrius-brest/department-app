@@ -22,6 +22,5 @@ This project allows to deal with a list of Departments and Employees inside this
 3. That's it!
 
 ### Log files
-Log files can be found in Tomcat "log" directory under the names:
+Log file can be found in Tomcat "log" directory under the name:
 * **department_rest_log_file.log** - for the REST layer
-* ...
