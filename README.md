@@ -1,4 +1,5 @@
 ## "Department" application
+[![Build Status](https://travis-ci.org/dimitrius-brest/department-app.svg?branch=master)](https://travis-ci.org/dimitrius-brest/department-app)
 [![Coverage Status](https://coveralls.io/repos/github/dimitrius-brest/department-app/badge.svg)](https://coveralls.io/github/dimitrius-brest/department-app)
 
 ### Description of the project
