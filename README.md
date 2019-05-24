@@ -24,3 +24,5 @@ This project allows to deal with a list of Departments and Employees inside this
 ### Log files
 Log file can be found in Tomcat "log" directory under the name:
 * **department_rest_log_file.log** - for the REST layer
+
+[![Coverage Status](https://coveralls.io/repos/github/dimitrius-brest/department-app/badge.svg)](https://coveralls.io/github/dimitrius-brest/department-app)
