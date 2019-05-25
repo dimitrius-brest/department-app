@@ -1,6 +1,6 @@
 ## "Department" application
 [![Build Status](https://travis-ci.org/dimitrius-brest/department-app.svg?branch=master)](https://travis-ci.org/dimitrius-brest/department-app)
-[![Coverage Status](https://coveralls.io/repos/github/dimitrius-brest/department-app/badge.svg)](https://coveralls.io/github/dimitrius-brest/department-app)
+[![Coverage Status](https://coveralls.io/repos/github/dimitrius-brest/department-app/badge.svg?branch=master)](https://coveralls.io/github/dimitrius-brest/department-app?branch=master)
 
 ### Description of the project
 This project allows to deal with a list of Departments and Employees inside this Departments via web-browser. 
