@@ -4,8 +4,11 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
@@ -14,6 +17,7 @@ import javax.sql.DataSource;
  * @author Dmitry Derevitsky
  */
 @Configuration
+@EnableTransactionManagement
 public class ConfigH2DataBase {
     /**
      * Sets DataSource of H2 in-memory database
@@ -38,4 +42,14 @@ public class ConfigH2DataBase {
         JdbcTemplate template = new JdbcTemplate(setDataSourceH2inMemory());
         return template;
     }
+
+//    /**
+//     * Sets Transaction manager
+//     * @return
+//     */
+//    @Bean
+//    public PlatformTransactionManager transactionManager(){
+//        return new DataSourceTransactionManager(jdbcTemplateH2inMemory().getDataSource());
+//    }
+
 }
