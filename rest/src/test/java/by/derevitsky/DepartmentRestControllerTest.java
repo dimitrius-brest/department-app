@@ -19,7 +19,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@WebAppConfiguration
-//@ContextConfiguration(locations = "file:rest/src/main/webapp/WEB-INF/department-rest-servlet.xml")
+@ContextConfiguration(locations = "file:rest/src/main/webapp/WEB-INF/department-rest-servlet.xml")
+//@ContextConfiguration(locations = "classpath*:/department-rest-servlet.xml")
 public class DepartmentRestControllerTest {
 
 //    @Autowired
