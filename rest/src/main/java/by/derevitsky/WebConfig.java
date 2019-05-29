@@ -1,5 +1,6 @@
 package by.derevitsky;
 
+import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -20,4 +21,9 @@ public class WebConfig implements WebMvcConfigurer {
         resolver.setSuffix(".jsp");
         return resolver;
     }
+
+//    @Bean
+//    DepartmentRestController departmentRestControllerMock(){
+//        return Mockito.mock(DepartmentRestController.class);
+//    }
 }
