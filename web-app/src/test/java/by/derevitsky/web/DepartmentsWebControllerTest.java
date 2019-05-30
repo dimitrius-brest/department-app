@@ -68,12 +68,12 @@ public class DepartmentsWebControllerTest {
                 .andExpect(MockMvcResultMatchers.model().attributeExists("department"));
     }
 
-//    @Test
-//    public void testShowUpdateDepartmentForm() throws Exception {
-//        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/departments/update/{id}", 1);
-//        ResultActions result = mockMvc.perform(request);
-//        result.andExpect(status().isOk())
-//                .andExpect(MockMvcResultMatchers.view().name("department_update"))
-//                .andExpect(MockMvcResultMatchers.model().attributeExists("department"));
-//    }
+    @Test
+    public void testShowUpdateDepartmentForm() throws Exception {
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/departments/update/1");
+        ResultActions result = mockMvc.perform(request);
+        result.andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("department_update"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("department"));
+    }
 }
