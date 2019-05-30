@@ -1,6 +1,5 @@
 package by.derevitsky;
 
-import org.mockito.Mockito;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +11,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "by.derevitsky")
-public class WebConfig implements WebMvcConfigurer {
+public class RestConfig implements WebMvcConfigurer {
 
     @Bean
     ViewResolver viewResolver(){
@@ -22,8 +21,4 @@ public class WebConfig implements WebMvcConfigurer {
         return resolver;
     }
 
-//    @Bean
-//    DepartmentRestController departmentRestControllerMock(){
-//        return Mockito.mock(DepartmentRestController.class);
-//    }
 }

@@ -11,7 +11,7 @@
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
-    <!-- Changed to Java Config. See WebConfig.java and WebAppInitializer.java -->
+    <!-- Changed to Java Config. See RestConfig.java and RestAppInitializer.java -->
 
     <!-- <mvc:annotation-driven/>
     <context:component-scan base-package="by.derevitsky" />

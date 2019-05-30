@@ -1,4 +1,4 @@
-package by.derevitsky;
+package by.derevitsky.web;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -19,16 +19,12 @@ import org.springframework.web.context.WebApplicationContext;
 
 import javax.servlet.ServletContext;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-//@RunWith(MockitoJUnitRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {RestConfig.class})
-//@ContextConfiguration(locations = "file:rest/src/main/webapp/WEB-INF/old-department-rest-servlet.xml")
-//@SpringJUnitWebConfig(classes = {WebConfig.class})
-public class DepartmentRestControllerTest {
+@ContextConfiguration(classes = {WebConfig.class})
+public class DepartmentsWebControllerTest {
 
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -36,8 +32,7 @@ public class DepartmentRestControllerTest {
     private MockMvc mockMvc;
 
     @Before
-    public void setup(){
-        //mockMvc = MockMvcBuilders.standaloneSetup(new DepartmentRestController()).build();
+    public void setup() throws Exception {
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
     }
 
@@ -46,30 +41,39 @@ public class DepartmentRestControllerTest {
         ServletContext servletContext = webApplicationContext.getServletContext();
         Assert.assertNotNull(servletContext);
         Assert.assertTrue(servletContext instanceof MockServletContext);
-        Assert.assertNotNull(webApplicationContext.getBean("departmentRestController"));
+        Assert.assertNotNull(webApplicationContext.getBean("departmentsWebController"));
     }
 
     @Test
-    public void testHello() throws Exception {
-        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/hello");
+    public void testRedirectFromRoot() throws Exception {
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/departments/");
         ResultActions result = mockMvc.perform(request);
-        result.andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.view().name("hello"))
-                .andExpect(MockMvcResultMatchers.model().attributeExists("message"));
+        result.andExpect(MockMvcResultMatchers.redirectedUrl("/departments/all"));
     }
 
     @Test
-    public void testGetAll() throws Exception {
-
-        //this.mockMvc.perform(get("/departments/all"))
-        //        .andExpect(status().isOk());
-                //.andExpect((ResultMatcher) content().contentType(MediaType.APPLICATION_JSON));
-
+    public void testShowDepartments() throws Exception {
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/departments/all");
         ResultActions result = mockMvc.perform(request);
-        result.andExpect(status().isOk());
-                //.andDo(MockMvcResultHandlers.print())
-                //.andExpect((ResultMatcher) content().contentType(MediaType.APPLICATION_JSON));
-        //result.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+        result.andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("departments"));
+    }
+
+    @Test
+    public void testShowAddDepartmentForm() throws Exception {
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/departments/add");
+        ResultActions result = mockMvc.perform(request);
+        result.andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("department_add"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("department"));
+    }
+
+    @Test
+    public void testShowUpdateDepartmentForm() throws Exception {
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/departments/update/{id}", 1);
+        ResultActions result = mockMvc.perform(request);
+        result.andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("department_update"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("department"));
     }
 }

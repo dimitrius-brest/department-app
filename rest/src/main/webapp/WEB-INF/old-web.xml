@@ -5,7 +5,7 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
-    <!-- Changed to Java Config. See WebConfig.java and WebAppInitializer.java -->
+    <!-- Changed to Java Config. See RestConfig.java and RestAppInitializer.java -->
 
     <!--<servlet>
         <servlet-name>department-rest</servlet-name>
