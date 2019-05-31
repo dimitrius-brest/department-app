@@ -11,8 +11,7 @@ public class DepartmentForView extends Department {
 
     // -----------  Constructors  -----------
 
-    public DepartmentForView() {
-    }
+    //public DepartmentForView() {}
 
     public DepartmentForView(Department department, int averageSalary, boolean hasEmployees) {
         super(department.getId(), department.getName());

@@ -19,6 +19,15 @@ public class DateRangeForSearchTest {
     private LocalDate birthDateOutsideAfter = LocalDate.parse("2005-01-01");
 
     @Test
+    public void testGettersAndSetters() throws Exception {
+        DateRangeForSearch testRange = new DateRangeForSearch();
+        testRange.setStartDate(LocalDate.parse("2019-01-01"));
+        testRange.setEndDate(LocalDate.parse("2019-02-02"));
+        Assert.assertEquals("2019-01-01", testRange.getStartDate().toString());
+        Assert.assertEquals("2019-02-02", testRange.getEndDate().toString());
+    }
+
+    @Test
     public void testIsValidMethod() throws Exception {
         Assert.assertTrue(validRange.isValid());
         Assert.assertFalse(invalidRange.isValid());
@@ -27,6 +36,8 @@ public class DateRangeForSearchTest {
     @Test
     public void testIsEmptyMethod() throws Exception {
         Assert.assertTrue(emptyRange.isEmpty());
+        emptyRange.setStartDate(LocalDate.parse("2000-12-12"));
+        Assert.assertFalse(emptyRange.isEmpty());
     }
 
     @Test
