@@ -1,6 +1,7 @@
 package by.derevitsky.web.service;
 
 import by.derevitsky.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -16,6 +17,9 @@ import java.util.List;
 @Service
 public class EmployeesWebService {
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     private String applicationURL = "http://localhost:8080/department-rest";
 
     /**
@@ -23,7 +27,6 @@ public class EmployeesWebService {
      * @return
      */
     public List<Employee> getAllEmployees(){
-        RestTemplate restTemplate = new RestTemplate();
         String url = applicationURL + "/employees/all";
         try {                                   // If the list of Employees is not empty
             ResponseEntity<Employee[]> responseEntity = restTemplate.getForEntity(url, Employee[].class);
@@ -40,7 +43,6 @@ public class EmployeesWebService {
      * @return the list of Employees of the Department
      */
     public List<Employee> getEmployeesByDepartmentId(Integer depId){
-        RestTemplate restTemplate = new RestTemplate();
         String url = applicationURL + "/employees/dep/" + depId;
         try {                                   // If list of Employees is not empty
             ResponseEntity<Employee[]> responseEntity = restTemplate.getForEntity(url, Employee[].class);
@@ -57,7 +59,6 @@ public class EmployeesWebService {
      * @return
      */
     public Employee getEmployeeById(Integer id){
-        RestTemplate restTemplate = new RestTemplate();
         String url = applicationURL + "/employees/" + id;
         ResponseEntity<Employee> responseEntity = restTemplate.getForEntity(url, Employee.class);
         Employee employee = responseEntity.getBody();
@@ -69,7 +70,6 @@ public class EmployeesWebService {
      * @param employee
      */
     public void addEmployee(Employee employee){
-        RestTemplate restTemplate = new RestTemplate();
         String url = applicationURL + "/employees/add";
         if(employee.getBirthDate() == null) {
             employee.setBirthDate(LocalDate.parse("2000-01-01"));
@@ -82,7 +82,6 @@ public class EmployeesWebService {
      * @param employee
      */
     public void updateEmployee(Employee employee){
-        RestTemplate restTemplate = new RestTemplate();
         String url = applicationURL + "/employees/update";
         restTemplate.put(url, employee);
     }
@@ -92,7 +91,6 @@ public class EmployeesWebService {
      * @param id
      */
     public void deleteEmployee(Integer id){
-        RestTemplate restTemplate = new RestTemplate();
         String url = applicationURL + "/employees/" + id;
         restTemplate.delete(url);
     }

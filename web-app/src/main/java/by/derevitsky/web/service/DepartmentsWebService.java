@@ -3,6 +3,7 @@ package by.derevitsky.web.service;
 import by.derevitsky.Department;
 import by.derevitsky.web.model.DepartmentForView;
 import by.derevitsky.Employee;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -16,6 +17,9 @@ import java.util.List;
 @Service
 public class DepartmentsWebService {
 
+    @Autowired
+    private RestTemplate restTemplate;
+
     private String applicationURL = "http://localhost:8080/department-rest";
 
     /**
@@ -27,7 +31,6 @@ public class DepartmentsWebService {
         List<DepartmentForView> departmentsForView = new ArrayList<DepartmentForView>();
 
         // Getting array of Departments form REST API
-        RestTemplate restTemplate = new RestTemplate();
         String url = applicationURL+"/departments/all";
 
         try {                       // If the list of Departments is not empty
@@ -70,7 +73,6 @@ public class DepartmentsWebService {
      * @return
      */
     public Department getDepartmentById(Integer id){
-        RestTemplate restTemplate = new RestTemplate();
         String url = applicationURL+"/departments/" + id;
         ResponseEntity<Department> responseEntity = restTemplate.getForEntity(url, Department.class);
         Department department = responseEntity.getBody();
@@ -82,7 +84,6 @@ public class DepartmentsWebService {
      * @param department
      */
     public void addDepartment(Department department){
-        RestTemplate restTemplate = new RestTemplate();
         String url = applicationURL+"/departments/add";
         restTemplate.postForObject(url, department, Department.class);
     }
@@ -92,7 +93,6 @@ public class DepartmentsWebService {
      * @param department
      */
     public void updateDepartment(Department department){
-        RestTemplate restTemplate = new RestTemplate();
         String url = applicationURL+"/departments/update";
         restTemplate.put(url, department);
     }
@@ -103,7 +103,6 @@ public class DepartmentsWebService {
      * @param id
      */
     public void deleteDepartment(Integer id){
-        RestTemplate restTemplate = new RestTemplate();
         String url = applicationURL+"/departments/" + id;
         restTemplate.delete(url);
     }
