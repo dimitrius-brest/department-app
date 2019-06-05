@@ -35,4 +35,16 @@ public class DepartmentWebServiceTest {
         Department department = depWebService.getDepartmentById(1);
         Assert.assertEquals(mockDepartment, department);
     }
+
+    @Test
+    public void testAddDepartment() throws Exception {
+        Department newDepartment = new Department(2, "New Test Department");
+
+        Mockito
+                .when(restTemplate.postForObject(applicationURL+"/departments/add", newDepartment, Department.class))
+                .thenReturn(newDepartment);
+        Department department = depWebService.addDepartment(newDepartment);
+        Assert.assertEquals(2, department.getId());
+        Assert.assertEquals("New Test Department", department.getName());
+    }
 }

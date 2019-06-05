@@ -11,6 +11,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
@@ -75,16 +76,23 @@ public class EmployeeWebServiceTest {
         Employee[] employeesInDep2 = findInMockEmployeesByDepId(2).toArray(
                 new Employee[findInMockEmployeesByDepId(2).size()]);
 
+        //Employee[] employeesInDep3 = new Employee[0];
+
         Mockito
                 .when(restTemplate.getForEntity(applicationURL+"/employees/dep/1", Employee[].class))
                 .thenReturn(new ResponseEntity(employeesInDep1, HttpStatus.OK));
         Mockito
                 .when(restTemplate.getForEntity(applicationURL+"/employees/dep/2", Employee[].class))
                 .thenReturn(new ResponseEntity(employeesInDep2, HttpStatus.OK));
+        Mockito
+                .when(restTemplate.getForEntity(applicationURL+"/employees/dep/3", Employee[].class))
+                .thenThrow(HttpClientErrorException.class);
 
-        // Nuber of Employees in Department #1
+        // Number of Employees in Department #1
         Assert.assertEquals(2, empWebService.getEmployeesByDepartmentId(1).size());
-        // Nuber of Employees in Department #2
+        // Number of Employees in Department #2
         Assert.assertEquals(1, empWebService.getEmployeesByDepartmentId(2).size());
+        // Number of Employees in Department #3 should be 0
+        Assert.assertEquals(0, empWebService.getEmployeesByDepartmentId(3).size());
     }
 }

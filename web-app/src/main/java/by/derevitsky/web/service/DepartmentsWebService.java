@@ -83,9 +83,9 @@ public class DepartmentsWebService {
      * Add the Department via REST API
      * @param department
      */
-    public void addDepartment(Department department){
+    public Department addDepartment(Department department){
         String url = applicationURL+"/departments/add";
-        restTemplate.postForObject(url, department, Department.class);
+        return restTemplate.postForObject(url, department, Department.class);
     }
 
     /**
