@@ -95,4 +95,29 @@ public class EmployeeWebServiceTest {
         // Number of Employees in Department #3 should be 0
         Assert.assertEquals(0, empWebService.getEmployeesByDepartmentId(3).size());
     }
+
+    @Test
+    public void testAddEmployee() throws Exception {
+        Employee newEmployee = new Employee(1, 1, "Test",
+                "Testovich", "New-Tester", null, 1000);
+        Mockito
+                .when(restTemplate.postForObject(applicationURL+"/employees/add", newEmployee, Employee.class))
+                .thenReturn(newEmployee);
+
+        Employee employee = empWebService.addEmployee(newEmployee);
+        Assert.assertEquals(LocalDate.parse("2000-01-01"), employee.getBirthDate());
+        Assert.assertEquals("New-Tester", employee.getLastName());
+    }
+
+    @Test
+    public void testUpdateEmployee() throws Exception {
+        Employee updatedEmployee = new Employee(1, 2, "Test",
+                "Testovich", "Updated-Tester", null, 2000);
+        empWebService.updateEmployee(updatedEmployee);
+    }
+
+    @Test
+    public void testDeleteEmployee() throws Exception {
+        empWebService.deleteEmployee(1);
+    }
 }

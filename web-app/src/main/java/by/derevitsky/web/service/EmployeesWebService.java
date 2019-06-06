@@ -69,12 +69,12 @@ public class EmployeesWebService {
      * Add the Employee via REST API
      * @param employee
      */
-    public void addEmployee(Employee employee){
+    public Employee addEmployee(Employee employee){
         String url = applicationURL + "/employees/add";
         if(employee.getBirthDate() == null) {
             employee.setBirthDate(LocalDate.parse("2000-01-01"));
         }
-        restTemplate.postForObject(url, employee, Employee.class);
+        return restTemplate.postForObject(url, employee, Employee.class);
     }
 
     /**
