@@ -2,6 +2,7 @@ package by.derevitsky.web;
 
 import by.derevitsky.Department;
 import by.derevitsky.Employee;
+import by.derevitsky.web.model.DepartmentForView;
 import by.derevitsky.web.service.DepartmentsWebService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -15,8 +16,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -48,11 +47,15 @@ public class DepartmentWebServiceTest {
         //  -------  Get Employees to count average salary --------------
 
         Employee[] mockEmployeesInDep1 = {
-                new Employee(1, 1, "Name1", null, "Last1", LocalDate.parse("1991-01-01"), 1000),
-                new Employee(2, 1, "Name2", null, "Last2", LocalDate.parse("1992-02-02"), 2000)};
+                new Employee(1, 1, "Name1", null, "Last1",
+                        LocalDate.parse("1991-01-01"), 1000),
+                new Employee(2, 1, "Name2", null, "Last2",
+                        LocalDate.parse("1992-02-02"), 2000)};
         Employee[] mockEmployeesInDep2 = {
-                new Employee(3, 2, "Name3", null, "Last2", LocalDate.parse("1993-03-03"), 3000),
-                new Employee(4, 2, "Name4", null, "Last4", LocalDate.parse("1994-04-04"), 4000)};
+                new Employee(3, 2, "Name3", null, "Last2",
+                        LocalDate.parse("1993-03-03"), 3000),
+                new Employee(4, 2, "Name4", null, "Last4",
+                        LocalDate.parse("1994-04-04"), 4000)};
 
         Mockito
                 .when(restTemplate.getForEntity(applicationURL+"/employees/dep/1", Employee[].class))
@@ -62,10 +65,19 @@ public class DepartmentWebServiceTest {
                 .thenReturn(new ResponseEntity<Employee[]>(mockEmployeesInDep2, HttpStatus.OK));
 
         // ---------  Commit and assert
-        Department[] departments = depWebService.getDepartments().toArray(new Department[3]);
-        Assert.assertEquals("Test Department 1", departments[0].getName());
-        Assert.assertEquals("Test Department 2", departments[1].getName());
-        Assert.assertEquals("Test Department 3", departments[2].getName());
+        List<DepartmentForView> departmentsForView = depWebService.getDepartments();
+
+        Assert.assertEquals("Test Department 1", departmentsForView.get(0).getName());
+        Assert.assertEquals(1500, departmentsForView.get(0).getAverageSalary());        // Average salary
+        Assert.assertTrue(departmentsForView.get(0).isHasEmployees());                          // Has Employees
+
+        Assert.assertEquals("Test Department 2", departmentsForView.get(1).getName());
+        Assert.assertEquals(3500, departmentsForView.get(1).getAverageSalary());        // Average salary
+        Assert.assertTrue(departmentsForView.get(1).isHasEmployees());                          // Has Employees
+
+        Assert.assertEquals("Test Department 3", departmentsForView.get(2).getName());
+        Assert.assertEquals(0, departmentsForView.get(2).getAverageSalary());           // Average salary
+        Assert.assertFalse(departmentsForView.get(2).isHasEmployees());                         // Should not have Employees
 
     }
 
