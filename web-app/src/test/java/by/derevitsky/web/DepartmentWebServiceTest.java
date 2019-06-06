@@ -47,4 +47,15 @@ public class DepartmentWebServiceTest {
         Assert.assertEquals(2, department.getId());
         Assert.assertEquals("New Test Department", department.getName());
     }
+
+    @Test
+    public void testUpdateDepartment() throws Exception {
+        Department updatedDepartment = new Department(2, "Updated Test Department");
+        depWebService.updateDepartment(updatedDepartment);
+    }
+
+    @Test
+    public void testDeleteDepartment() throws Exception {
+        depWebService.deleteDepartment(2);
+    }
 }
