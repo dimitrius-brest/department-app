@@ -1,9 +1,17 @@
 package by.derevitsky.web;
 
+import by.derevitsky.Department;
+import by.derevitsky.web.controller.DepartmentsWebController;
+import by.derevitsky.web.model.DepartmentForView;
+import by.derevitsky.web.service.DepartmentsWebService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.ContextConfiguration;
@@ -19,6 +27,9 @@ import org.springframework.web.context.WebApplicationContext;
 
 import javax.servlet.ServletContext;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,23 +37,35 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = {WebConfig.class})
 public class DepartmentsWebControllerTest {
 
-    @Autowired
-    private WebApplicationContext webApplicationContext;
+//    @Autowired
+//    private WebApplicationContext webApplicationContext;
+
+    @Mock
+    private DepartmentsWebService webService;
+
+    @InjectMocks
+    DepartmentsWebController webController;
+
 
     private MockMvc mockMvc;
 
     @Before
     public void setup() throws Exception {
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
+        //this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
+        MockitoAnnotations.initMocks(this);
+        this.mockMvc = MockMvcBuilders.standaloneSetup(webController).build();
     }
 
-    @Test
-    public void testContextIsOk() throws Exception {
-        ServletContext servletContext = webApplicationContext.getServletContext();
-        Assert.assertNotNull(servletContext);
-        Assert.assertTrue(servletContext instanceof MockServletContext);
-        Assert.assertNotNull(webApplicationContext.getBean("departmentsWebController"));
-    }
+//    @Test
+//    public void testContextIsOk() throws Exception {
+//        ServletContext servletContext = webApplicationContext.getServletContext();
+//        Assert.assertNotNull(servletContext);
+//        Assert.assertTrue(servletContext instanceof MockServletContext);
+//        Assert.assertNotNull(webApplicationContext.getBean("departmentsWebController"));
+//    }
+
+
+    // -------- Tests -------------
 
     @Test
     public void testRedirectFromRoot() throws Exception {
@@ -70,6 +93,16 @@ public class DepartmentsWebControllerTest {
 
     @Test
     public void testShowUpdateDepartmentForm() throws Exception {
+        List<DepartmentForView> mockDepartments = Arrays.asList(
+                new DepartmentForView(new Department(1, "Department 1"), 500, true),
+                new DepartmentForView(new Department(2, "Department 2"), 1500, true)
+        );
+        Department mockDepartment = new Department(1, "Mock Department");
+
+        Mockito
+                .when(webService.getDepartmentById(1))
+                .thenReturn(mockDepartment);
+
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/departments/update/1");
         ResultActions result = mockMvc.perform(request);
         result.andExpect(status().isOk())

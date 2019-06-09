@@ -19,7 +19,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
-public class DepartmentWebServiceTest {
+public class DepartmentsWebServiceTest {
 
     // See how to mock RestTemplate: https://www.baeldung.com/spring-mock-rest-template
     @Mock
