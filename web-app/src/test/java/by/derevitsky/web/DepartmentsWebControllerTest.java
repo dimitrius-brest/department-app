@@ -26,7 +26,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import javax.servlet.ServletContext;
+import javax.ws.rs.core.MediaType;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -56,15 +58,6 @@ public class DepartmentsWebControllerTest {
         this.mockMvc = MockMvcBuilders.standaloneSetup(webController).build();
     }
 
-//    @Test
-//    public void testContextIsOk() throws Exception {
-//        ServletContext servletContext = webApplicationContext.getServletContext();
-//        Assert.assertNotNull(servletContext);
-//        Assert.assertTrue(servletContext instanceof MockServletContext);
-//        Assert.assertNotNull(webApplicationContext.getBean("departmentsWebController"));
-//    }
-
-
     // -------- Tests -------------
 
     @Test
@@ -92,11 +85,21 @@ public class DepartmentsWebControllerTest {
     }
 
     @Test
+    public void testAddDepartment() throws Exception {
+        Department department = new Department(1, "New Department");
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/departments/add")
+                .content(String.valueOf(department));
+        ResultActions result = mockMvc.perform(request);        
+        result.andExpect(MockMvcResultMatchers.redirectedUrl("/departments/all"));
+
+    }
+
+    @Test
     public void testShowUpdateDepartmentForm() throws Exception {
-        List<DepartmentForView> mockDepartments = Arrays.asList(
-                new DepartmentForView(new Department(1, "Department 1"), 500, true),
-                new DepartmentForView(new Department(2, "Department 2"), 1500, true)
-        );
+//        List<DepartmentForView> mockDepartments = Arrays.asList(
+//                new DepartmentForView(new Department(1, "Department 1"), 500, true),
+//                new DepartmentForView(new Department(2, "Department 2"), 1500, true)
+//        );
         Department mockDepartment = new Department(1, "Mock Department");
 
         Mockito
