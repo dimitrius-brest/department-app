@@ -4,7 +4,6 @@ import by.derevitsky.Department;
 import by.derevitsky.web.controller.DepartmentsWebController;
 import by.derevitsky.web.model.DepartmentForView;
 import by.derevitsky.web.service.DepartmentsWebService;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,8 +11,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -25,12 +22,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.servlet.ServletContext;
-import javax.ws.rs.core.MediaType;
-
-import java.awt.*;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -89,19 +80,13 @@ public class DepartmentsWebControllerTest {
         Department department = new Department(1, "New Department");
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/departments/add")
                 .content(String.valueOf(department));
-        ResultActions result = mockMvc.perform(request);        
+        ResultActions result = mockMvc.perform(request);
         result.andExpect(MockMvcResultMatchers.redirectedUrl("/departments/all"));
-
     }
 
     @Test
     public void testShowUpdateDepartmentForm() throws Exception {
-//        List<DepartmentForView> mockDepartments = Arrays.asList(
-//                new DepartmentForView(new Department(1, "Department 1"), 500, true),
-//                new DepartmentForView(new Department(2, "Department 2"), 1500, true)
-//        );
         Department mockDepartment = new Department(1, "Mock Department");
-
         Mockito
                 .when(webService.getDepartmentById(1))
                 .thenReturn(mockDepartment);
@@ -111,5 +96,21 @@ public class DepartmentsWebControllerTest {
         result.andExpect(status().isOk())
                 .andExpect(MockMvcResultMatchers.view().name("department_update"))
                 .andExpect(MockMvcResultMatchers.model().attributeExists("department"));
+    }
+
+    @Test
+    public void testUpdateDepartment() throws Exception {
+        Department department = new Department(1, "Updated Department");
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/departments/update")
+                .content(String.valueOf(department));
+        ResultActions result = mockMvc.perform(request);
+        result.andExpect(MockMvcResultMatchers.redirectedUrl("/departments/all"));
+    }
+
+    @Test
+    public void testDeleteDepartment() throws Exception {
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/departments/delete/1");
+        ResultActions result = mockMvc.perform(request);
+        result.andExpect(MockMvcResultMatchers.redirectedUrl("/departments/all"));
     }
 }
