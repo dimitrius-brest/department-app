@@ -106,10 +106,6 @@ public class EmployeesWebControllerTest {
 
     @Test
     public void testAddEmployee() throws Exception {
-//                List<DepartmentForView> mockDepartments = Arrays.asList(
-//                new DepartmentForView(new Department(1, "Department 1"), 500, true),
-//                new DepartmentForView(new Department(2, "Department 2"), 1500, true)
-//        );
         Department mockDepartment = new Department(1, "Mock Department");
         Employee mockEmployee = new Employee(1, 1, "Name", "Mock", "User",
                 LocalDate.parse("1991-01-01"), 500);
@@ -121,5 +117,84 @@ public class EmployeesWebControllerTest {
                 .content(String.valueOf(mockEmployee));
         ResultActions result = mockMvc.perform(request);
         result.andExpect(MockMvcResultMatchers.redirectedUrl("/employees/1"));
+
+//        request = MockMvcRequestBuilders.post("/employees/add/1")
+//                .param("lastName", "");
+//        result = mockMvc.perform(request);
+//        result.andExpect(MockMvcResultMatchers.redirectedUrl("/employees/1"));
+    }
+
+    @Test
+    public void testShowUpdateEmployeeForm() throws Exception {
+        Department mockDepartment = new Department(1, "Department 1");
+        Employee mockEmployee = new Employee(1, 1, "Name", "Mock", "User",
+                LocalDate.parse("1991-01-01"), 500);
+        List<DepartmentForView> mockDepartments = Arrays.asList(
+                new DepartmentForView(new Department(1, "Department 1"), 500, true),
+                new DepartmentForView(new Department(2, "Department 2"), 1500, true)
+        );
+
+        Mockito
+                .when(depWebService.getDepartmentById(1))
+                .thenReturn(mockDepartment);
+        Mockito
+                .when(depWebService.getDepartments())
+                .thenReturn(mockDepartments);
+        Mockito
+                .when(empWebService.getEmployeeById(1))
+                .thenReturn(mockEmployee);
+
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/employees/update/1");
+        ResultActions result = mockMvc.perform(request);
+        result.andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.view().name("employee_update"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("employee"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("department"))
+                .andExpect(MockMvcResultMatchers.model().attributeExists("departments"));
+    }
+
+    @Test
+    public void testUpdateEmployee() throws Exception {
+        Employee mockEmployee = new Employee(1, 1, "Name", "Mock", "User",
+                LocalDate.parse("1991-01-01"), 500);
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/employees/update")
+                .content(String.valueOf(mockEmployee));
+        ResultActions result = mockMvc.perform(request);
+        result.andExpect(MockMvcResultMatchers.redirectedUrl("/employees/0"));
+    }
+
+    @Test
+    public void testDeleteEmployee() throws Exception {
+        Employee mockEmployee = new Employee(1, 1, "Name", "Mock", "User",
+                LocalDate.parse("1991-01-01"), 500);
+        Mockito
+                .when(empWebService.getEmployeeById(1))
+                .thenReturn(mockEmployee);
+
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/employees/delete/1");
+        ResultActions result = mockMvc.perform(request);
+        result.andExpect(MockMvcResultMatchers.redirectedUrl("/employees/1"));
+    }
+
+    @Test
+    public void testSearchEmployees() throws Exception {
+        Department mockDepartment = new Department(1, "Department 1");
+        List<Employee> mockEmployees = Arrays.asList(
+                new Employee(1, 1, "Name1", null, "User1",
+                        LocalDate.parse("1991-01-01"), 1000),
+                new Employee(2, 1, "Name2", null, "User2",
+                        LocalDate.parse("1992-02-02"), 2000)
+        );
+        Mockito
+                .when(depWebService.getDepartmentById(1))
+                .thenReturn(mockDepartment);
+        Mockito
+                .when(empWebService.getEmployeesByDepartmentId(1))
+                .thenReturn(mockEmployees);
+
+        // add DateRange
+//        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/search/1");
+//        ResultActions result = mockMvc.perform(request);
+//        result.andExpect(MockMvcResultMatchers.view().name("employees"));
     }
 }
