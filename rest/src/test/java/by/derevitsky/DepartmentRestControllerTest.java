@@ -4,8 +4,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mock.web.MockServletContext;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -13,13 +16,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import javax.servlet.ServletContext;
+import java.util.Arrays;
+import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,46 +33,52 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //@SpringJUnitWebConfig(classes = {WebConfig.class})
 public class DepartmentRestControllerTest {
 
-    @Autowired
-    private WebApplicationContext webApplicationContext;
+    //@Autowired
+    //private WebApplicationContext webApplicationContext;
+    @Mock
+    private DepartmentService departmentService;
+
+    @InjectMocks
+    DepartmentRestController departmentRestController;
 
     private MockMvc mockMvc;
 
     @Before
     public void setup(){
-        //mockMvc = MockMvcBuilders.standaloneSetup(new DepartmentRestController()).build();
-        this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
+        //this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
+        MockitoAnnotations.initMocks(this);
+        this.mockMvc = MockMvcBuilders.standaloneSetup(departmentRestController).build();
     }
 
-    @Test
-    public void testContextIsOk() throws Exception {
-        ServletContext servletContext = webApplicationContext.getServletContext();
-        Assert.assertNotNull(servletContext);
-        Assert.assertTrue(servletContext instanceof MockServletContext);
-        Assert.assertNotNull(webApplicationContext.getBean("departmentRestController"));
-    }
+    // -------- Tests -------------
 
     @Test
-    public void testHello() throws Exception {
-        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/hello");
+    public void testGetDepartment() throws Exception {
+        Department mockDepartment = new Department(1, "Mock Department");
+        Mockito
+                .when(departmentService.getById(1))
+                .thenReturn(mockDepartment);
+
+        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/departments/1");
         ResultActions result = mockMvc.perform(request);
         result.andExpect(status().isOk())
-                .andExpect(MockMvcResultMatchers.view().name("hello"))
-                .andExpect(MockMvcResultMatchers.model().attributeExists("message"));
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
     }
 
     @Test
-    public void testGetAll() throws Exception {
-
-        //this.mockMvc.perform(get("/departments/all"))
-        //        .andExpect(status().isOk());
-                //.andExpect((ResultMatcher) content().contentType(MediaType.APPLICATION_JSON));
+    public void testGetAllDepartments() throws Exception {
+        List<Department> mockDepartments = Arrays.asList(
+                new Department(1, "Department 1"),
+                new Department(2, "Department 2"),
+                new Department(3, "Department 3")
+        );
+        Mockito
+                .when(departmentService.getAll())
+                .thenReturn(mockDepartments);
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.get("/departments/all");
         ResultActions result = mockMvc.perform(request);
-        result.andExpect(status().isOk());
-                //.andDo(MockMvcResultHandlers.print())
-                //.andExpect((ResultMatcher) content().contentType(MediaType.APPLICATION_JSON));
-        //result.andExpect(content().contentType(MediaType.APPLICATION_JSON));
+        result.andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
     }
 }
