@@ -1,5 +1,7 @@
 package by.derevitsky;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,6 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.fasterxml.jackson.databind.annotation.JsonSerialize.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -96,5 +99,50 @@ public class DepartmentRestControllerTest {
                 .thenReturn(mockDepartments);
         this.mockMvc.perform(MockMvcRequestBuilders.get("/departments/all"))
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testSaveDepartment() throws Exception {
+        Department mockDepartment = new Department(1, "Mock Department");
+        ObjectMapper mapper = new ObjectMapper();
+        //mapper.setSerializationInclusion(Inclusion.NON_NULL);
+        byte[] serializedDepartment = mapper.writeValueAsBytes(mockDepartment);
+
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/departments/add")
+                .contentType("application/json")
+                .content(serializedDepartment))
+                    .andExpect(status().isCreated());
+
+        // --- Test null Department
+//        mockDepartment = new Department();
+//        mapper = new ObjectMapper();
+//        serializedDepartment = mapper.writeValueAsBytes(mockDepartment);
+//        this.mockMvc.perform(MockMvcRequestBuilders.post("/departments/add")
+//                .contentType("application/json")
+//                .content(serializedDepartment))
+//                .andExpect(status().isBadRequest());
+
+    }
+
+    @Test
+    public void testUpdateDepartment() throws Exception {
+        Department mockDepartment = new Department(1, "Updated Mock Department");
+        ObjectMapper mapper = new ObjectMapper();
+        byte[] serializedDepartment = mapper.writeValueAsBytes(mockDepartment);
+        this.mockMvc.perform(MockMvcRequestBuilders.put("/departments/update")
+                .contentType("application/json")
+                .content(serializedDepartment))
+                    .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testDeleteDepartment() throws Exception {
+        Department mockDepartment = new Department(1, "Mock Department");
+        Mockito
+                .when(departmentService.getById(1))
+                .thenReturn(mockDepartment);
+
+        this.mockMvc.perform(MockMvcRequestBuilders.delete("/departments/1"))
+                .andExpect(status().isNoContent());
     }
 }

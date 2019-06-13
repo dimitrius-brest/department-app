@@ -1,5 +1,6 @@
 package by.derevitsky;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -117,5 +118,34 @@ public class EmployeeRestControllerTest {
                 .thenReturn(mockEmployees);
         this.mockMvc.perform(MockMvcRequestBuilders.get("/employees/dep/2"))
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void testAddEmployee() throws Exception {
+        Employee mockEmployee = new Employee(1, 1, "Name", "Mock", "User",
+                LocalDate.parse("1991-01-01"), 500);
+        ObjectMapper mapper = new ObjectMapper();
+        byte[] serializedEmployee = mapper.writeValueAsBytes(mockEmployee);
+
+//        this.mockMvc.perform(MockMvcRequestBuilders.post("/employees/add")
+//                .contentType("application/json")
+//                .content(serializedEmployee))
+//                    .andExpect(status().isCreated());
+    }
+
+    @Test
+    public void testUpdateEmployee() throws Exception {
+    }
+
+    @Test
+    public void testDeleteEmployee() throws Exception {
+        Employee mockEmployee = new Employee(1, 1, "Name", "Mock", "User",
+                LocalDate.parse("1991-01-01"), 500);
+        Mockito
+                .when(employeeService.getById(1))
+                .thenReturn(mockEmployee);
+
+        this.mockMvc.perform(MockMvcRequestBuilders.delete("/employees/1"))
+                .andExpect(status().isNoContent());
     }
 }
