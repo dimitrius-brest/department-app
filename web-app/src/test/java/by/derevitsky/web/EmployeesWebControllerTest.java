@@ -3,6 +3,7 @@ package by.derevitsky.web;
 import by.derevitsky.Department;
 import by.derevitsky.Employee;
 import by.derevitsky.web.controller.EmployeesWebController;
+import by.derevitsky.web.model.DateRangeForSearch;
 import by.derevitsky.web.model.DepartmentForView;
 import by.derevitsky.web.service.DepartmentsWebService;
 import by.derevitsky.web.service.EmployeesWebService;
@@ -192,9 +193,31 @@ public class EmployeesWebControllerTest {
                 .when(empWebService.getEmployeesByDepartmentId(1))
                 .thenReturn(mockEmployees);
 
-        // add DateRange
-//        MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/search/1");
-//        ResultActions result = mockMvc.perform(request);
-//        result.andExpect(MockMvcResultMatchers.view().name("employees"));
+        // --- Test valid Date Range ---
+        DateRangeForSearch dataRange = new DateRangeForSearch(
+                LocalDate.parse("1990-10-10"), LocalDate.parse("1992-01-01")
+        );
+
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/employees/search/1")
+                        .flashAttr("date_range", dataRange))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.model().attributeExists("search_message"))
+                .andExpect(MockMvcResultMatchers.view().name("employees"));
+
+        // --- Test invalid Date Range ---
+        dataRange.setStartDate(LocalDate.parse("1992-01-01"));
+        dataRange.setEndDate(LocalDate.parse("1990-10-10"));
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/employees/search/1")
+                        .flashAttr("date_range", dataRange))
+                .andExpect(status().isOk())
+                .andExpect(MockMvcResultMatchers.model().attributeExists("invalid_range_message"))
+                .andExpect(MockMvcResultMatchers.view().name("employees"));
+
+        // --- Test empty Date Range ---
+        dataRange.setStartDate(null);
+        dataRange.setEndDate(null);
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/employees/search/1")
+                        .flashAttr("date_range", dataRange))
+                .andExpect(MockMvcResultMatchers.redirectedUrl("/employees/1"));
     }
 }
