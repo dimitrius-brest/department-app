@@ -22,13 +22,7 @@ public class EmployeeRestController {
 
     @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<Employee> getEmployee(@PathVariable("id") Integer id){
-        if(id == null) {
-            logger.debug("The 'id' may not be null");
-            return new ResponseEntity<Employee>(HttpStatus.BAD_REQUEST);
-        }
-
         Employee employee = this.employeeService.getById(id);
-
         if (employee == null) {
             logger.debug("The Employee with id=" + id + " not found");
             return new ResponseEntity<Employee>(HttpStatus.NOT_FOUND);

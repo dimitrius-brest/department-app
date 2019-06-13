@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -57,6 +58,13 @@ public class EmployeeRestControllerTest {
         ResultActions result = mockMvc.perform(request);
         result.andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
+
+        // --- Test null Employee (NOT_FOUND) ---
+        Mockito
+                .when(employeeService.getById(2))
+                .thenReturn(null);
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/employees/2"))
+                .andExpect(status().isNotFound());
     }
 
     @Test
@@ -75,6 +83,14 @@ public class EmployeeRestControllerTest {
         ResultActions result = mockMvc.perform(request);
         result.andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
+
+        // --- Test empty list of Employees ---
+        mockEmployees = new ArrayList<>();
+        Mockito
+                .when(employeeService.getAll())
+                .thenReturn(mockEmployees);
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/employees/all"))
+                .andExpect(status().isNotFound());
     }
 
     @Test
@@ -93,5 +109,13 @@ public class EmployeeRestControllerTest {
         ResultActions result = mockMvc.perform(request);
         result.andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
+
+        // --- Test empty list of Employees ---
+        mockEmployees = new ArrayList<>();
+        Mockito
+                .when(employeeService.getByDepartmentId(2))
+                .thenReturn(mockEmployees);
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/employees/dep/2"))
+                .andExpect(status().isNotFound());
     }
 }

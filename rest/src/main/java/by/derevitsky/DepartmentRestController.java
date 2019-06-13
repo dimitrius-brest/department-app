@@ -22,9 +22,6 @@ public class DepartmentRestController {
 
     @GetMapping(value = "/{id}", produces = "application/json")
     public ResponseEntity<Department> getDepartment(@PathVariable("id") Integer id){
-        if(id == null) {
-            return new ResponseEntity<Department>(HttpStatus.BAD_REQUEST);
-        }
         Department department = this.departmentService.getById(id);
         if (department == null) {
             logger.debug("The Department with id=" + id + " not found");

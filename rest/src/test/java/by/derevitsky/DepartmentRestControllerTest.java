@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -63,6 +64,13 @@ public class DepartmentRestControllerTest {
         ResultActions result = mockMvc.perform(request);
         result.andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
+
+        // --- Test null Department ---
+        Mockito
+                .when(departmentService.getById(2))
+                .thenReturn(null);
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/departments/2"))
+                .andExpect(status().isNotFound());
     }
 
     @Test
@@ -80,5 +88,13 @@ public class DepartmentRestControllerTest {
         ResultActions result = mockMvc.perform(request);
         result.andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));
+
+        // --- Test empty list of Departments ---
+        mockDepartments = new ArrayList<>();
+        Mockito
+                .when(departmentService.getAll())
+                .thenReturn(mockDepartments);
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/departments/all"))
+                .andExpect(status().isNotFound());
     }
 }
