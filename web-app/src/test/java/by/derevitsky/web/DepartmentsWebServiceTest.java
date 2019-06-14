@@ -79,6 +79,15 @@ public class DepartmentsWebServiceTest {
         Assert.assertEquals(0, departmentsForView.get(2).getAverageSalary());           // Average salary
         Assert.assertFalse(departmentsForView.get(2).isHasEmployees());                         // Should not have Employees
 
+        // -------  Test empty list of Departments --------------
+        mockDepartments = null;
+        Mockito
+                .when(restTemplate.getForEntity(applicationURL+"/departments/all", Department[].class))
+                .thenReturn(new ResponseEntity<Department[]>(mockDepartments, HttpStatus.OK));
+
+        departmentsForView = depWebService.getDepartments();
+        Assert.assertEquals(0, departmentsForView.size());
+
     }
 
     @Test

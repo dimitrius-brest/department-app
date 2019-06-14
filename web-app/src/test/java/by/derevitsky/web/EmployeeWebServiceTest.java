@@ -65,6 +65,14 @@ public class EmployeeWebServiceTest {
                 .thenReturn(new ResponseEntity(mockEmployees, HttpStatus.OK));
         int totalNumberOfEmployees = empWebService.getAllEmployees().size();
         Assert.assertEquals(3, totalNumberOfEmployees);
+
+        // -------  Test empty list of Employees --------------
+        Employee[] mockNullEmployees = null;
+        Mockito
+                .when(restTemplate.getForEntity(applicationURL+"/employees/all", Employee[].class))
+                .thenReturn(new ResponseEntity(mockNullEmployees, HttpStatus.OK));
+        totalNumberOfEmployees = empWebService.getAllEmployees().size();
+        Assert.assertEquals(0, totalNumberOfEmployees);
     }
 
     @Test

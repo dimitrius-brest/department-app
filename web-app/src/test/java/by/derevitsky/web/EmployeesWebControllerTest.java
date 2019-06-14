@@ -115,7 +115,7 @@ public class EmployeesWebControllerTest {
                 .thenReturn(mockDepartment);
 
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/employees/add/1")
-                .content(String.valueOf(mockEmployee));
+                .flashAttr("employee", mockEmployee);
         ResultActions result = mockMvc.perform(request);
         result.andExpect(MockMvcResultMatchers.redirectedUrl("/employees/1"));
 
@@ -159,9 +159,9 @@ public class EmployeesWebControllerTest {
         Employee mockEmployee = new Employee(1, 1, "Name", "Mock", "User",
                 LocalDate.parse("1991-01-01"), 500);
         MockHttpServletRequestBuilder request = MockMvcRequestBuilders.post("/employees/update")
-                .content(String.valueOf(mockEmployee));
+                .flashAttr("employee", mockEmployee);
         ResultActions result = mockMvc.perform(request);
-        result.andExpect(MockMvcResultMatchers.redirectedUrl("/employees/0"));
+        result.andExpect(MockMvcResultMatchers.redirectedUrl("/employees/1"));
     }
 
     @Test
