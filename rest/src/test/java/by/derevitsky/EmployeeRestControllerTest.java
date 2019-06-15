@@ -1,6 +1,8 @@
 package by.derevitsky;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import java.time.LocalDate;
@@ -124,17 +127,32 @@ public class EmployeeRestControllerTest {
     public void testAddEmployee() throws Exception {
         Employee mockEmployee = new Employee(1, 1, "Name", "Mock", "User",
                 LocalDate.parse("1991-01-01"), 500);
+        // --- serializing Employee and LocalDate ---
         ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());                                    // for LocalDate
+        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);   // for LocalDate
         byte[] serializedEmployee = mapper.writeValueAsBytes(mockEmployee);
 
-//        this.mockMvc.perform(MockMvcRequestBuilders.post("/employees/add")
-//                .contentType("application/json")
-//                .content(serializedEmployee))
-//                    .andExpect(status().isCreated());
+        this.mockMvc.perform(MockMvcRequestBuilders.post("/employees/add")
+                .contentType("application/json")
+                .content(serializedEmployee))
+                    .andExpect(status().isCreated());
     }
 
     @Test
     public void testUpdateEmployee() throws Exception {
+        Employee mockEmployee = new Employee(1, 1, "Updated", "Mock", "Employee",
+                LocalDate.parse("1992-02-02"), 500);
+        // --- serializing Employee and LocalDate ---
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.registerModule(new JavaTimeModule());                                     // for LocalDate
+        mapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);    // for LocalDate
+        byte[] serializedEmployee = mapper.writeValueAsBytes(mockEmployee);
+
+        this.mockMvc.perform(MockMvcRequestBuilders.put("/employees/update")
+                .contentType("application/json")
+                .content(serializedEmployee))
+                    .andExpect(status().isOk());
     }
 
     @Test
