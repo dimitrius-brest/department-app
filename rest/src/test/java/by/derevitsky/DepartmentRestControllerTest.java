@@ -141,8 +141,13 @@ public class DepartmentRestControllerTest {
         Mockito
                 .when(departmentService.getById(1))
                 .thenReturn(mockDepartment);
+        Mockito
+                .when(departmentService.getById(2))
+                .thenReturn(null);
 
         this.mockMvc.perform(MockMvcRequestBuilders.delete("/departments/1"))
                 .andExpect(status().isNoContent());
+        this.mockMvc.perform(MockMvcRequestBuilders.delete("/departments/2"))
+                .andExpect(status().isNotFound());
     }
 }
