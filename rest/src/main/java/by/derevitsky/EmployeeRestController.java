@@ -57,10 +57,10 @@ public class EmployeeRestController {
     @PostMapping(value = "/add", produces = "application/json")
     public ResponseEntity<Employee> addEmployee(@RequestBody /*@Valid*/ Employee employee) {
         HttpHeaders headers = new HttpHeaders();
-        if (employee == null) {
-            logger.debug("Failed to add a new Employee");
-            return new ResponseEntity<Employee>(HttpStatus.BAD_REQUEST);
-        }
+//        if (employee == null) {
+//            logger.debug("Failed to add a new Employee");
+//            return new ResponseEntity<Employee>(HttpStatus.BAD_REQUEST);
+//        }
         this.employeeService.insert(employee);
         logger.debug("New Employee with last name '" + employee.getLastName()
                    + "' was added to Department #" + employee.getIdDepartment());
@@ -70,10 +70,10 @@ public class EmployeeRestController {
     @PutMapping(value = "/update", produces = "application/json")
     public ResponseEntity<Employee> updateEmployee(@RequestBody /*@Valid*/ Employee employee, UriComponentsBuilder builder) {
         HttpHeaders headers = new HttpHeaders();
-        if (employee == null) {
-            logger.debug("Failed to update the Employee");
-            return new ResponseEntity<Employee>(HttpStatus.BAD_REQUEST);
-        }
+//        if (employee == null) {
+//            logger.debug("Failed to update the Employee");
+//            return new ResponseEntity<Employee>(HttpStatus.BAD_REQUEST);
+//        }
         this.employeeService.update(employee);
         logger.debug("The Employee with id=" + employee.getId() + " was successfully updated");
         return new ResponseEntity<Employee>(employee, headers, HttpStatus.OK);

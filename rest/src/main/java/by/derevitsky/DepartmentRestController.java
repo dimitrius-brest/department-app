@@ -45,10 +45,10 @@ public class DepartmentRestController {
     @PostMapping(value = "/add", produces = "application/json")
     public ResponseEntity<Department> saveDepartment(@RequestBody /*@Valid*/ Department department) {
         HttpHeaders headers = new HttpHeaders();
-        if (department == null) {
-            logger.debug("Failed to add a new Department");
-            return new ResponseEntity<Department>(HttpStatus.BAD_REQUEST);
-        }
+//        if (department == null) {
+//            logger.debug("Failed to add a new Department");
+//            return new ResponseEntity<Department>(HttpStatus.BAD_REQUEST);
+//        }
         this.departmentService.insert(department);
         logger.debug("New Department with name='" + department.getName() + "' was added");
         return new ResponseEntity<Department>(department, headers, HttpStatus.CREATED);
@@ -57,10 +57,10 @@ public class DepartmentRestController {
     @PutMapping(value = "/update", produces = "application/json")
     public ResponseEntity<Department> updateDepartment(@RequestBody /*@Valid*/ Department department, UriComponentsBuilder builder) {
         HttpHeaders headers = new HttpHeaders();
-        if (department == null) {
-            logger.debug("Failed to update the Department");
-            return new ResponseEntity<Department>(HttpStatus.BAD_REQUEST);
-        }
+//        if (department == null) {
+//            logger.debug("Failed to update the Department");
+//            return new ResponseEntity<Department>(HttpStatus.BAD_REQUEST);
+//        }
         this.departmentService.update(department);
         logger.debug("The Department with id=" + department.getId() + " was successfully updated");
         return new ResponseEntity<Department>(department, headers, HttpStatus.OK);

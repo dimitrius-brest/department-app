@@ -112,16 +112,6 @@ public class DepartmentRestControllerTest {
                 .contentType("application/json")
                 .content(serializedDepartment))
                     .andExpect(status().isCreated());
-
-        // --- Test null Department
-//        mockDepartment = new Department();
-//        mapper = new ObjectMapper();
-//        serializedDepartment = mapper.writeValueAsBytes(mockDepartment);
-//        this.mockMvc.perform(MockMvcRequestBuilders.post("/departments/add")
-//                .contentType("application/json")
-//                .content(serializedDepartment))
-//                .andExpect(status().isBadRequest());
-
     }
 
     @Test
