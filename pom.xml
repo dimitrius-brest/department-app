@@ -16,6 +16,10 @@
         <module>web-app</module>
     </modules>
 
+    <!--<properties>
+        <spring.version>5.1.0.RELEASE</spring.version>
+    </properties>-->
+
     <dependencies>
         <dependency>
             <groupId>log4j</groupId>
