@@ -1,5 +1,6 @@
 package by.derevitsky;
 
+import by.derevitsky.model.Employee;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.Test;

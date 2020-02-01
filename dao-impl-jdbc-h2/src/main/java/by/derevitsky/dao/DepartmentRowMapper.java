@@ -1,5 +1,6 @@
-package by.derevitsky;
+package by.derevitsky.dao;
 
+import by.derevitsky.model.Department;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.lang.Nullable;
 

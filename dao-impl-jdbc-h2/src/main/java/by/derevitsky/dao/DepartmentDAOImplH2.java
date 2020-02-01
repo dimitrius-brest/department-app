@@ -1,10 +1,10 @@
-package by.derevitsky;
+package by.derevitsky.dao;
 
+import by.derevitsky.model.Department;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 /**

@@ -1,6 +1,6 @@
 package by.derevitsky.web.model;
 
-import by.derevitsky.Department;
+import by.derevitsky.model.Department;
 
 /**
  * Additional class to show {@link Department} with Average Salary

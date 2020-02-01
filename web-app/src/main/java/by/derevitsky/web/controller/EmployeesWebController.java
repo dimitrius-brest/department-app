@@ -1,7 +1,7 @@
 package by.derevitsky.web.controller;
 
-import by.derevitsky.Department;
-import by.derevitsky.Employee;
+import by.derevitsky.model.Department;
+import by.derevitsky.model.Employee;
 import by.derevitsky.web.model.DateRangeForSearch;
 import by.derevitsky.web.model.DepartmentForView;
 import by.derevitsky.web.service.DepartmentsWebService;

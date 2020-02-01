@@ -11,7 +11,7 @@
     <modules>
         <module>model</module>
         <module>dao</module>
-        <module>dao-impl-jdbc</module>
+        <module>dao-impl-jdbc-h2</module>
         <module>service</module>
         <module>rest</module>
         <module>web-app</module>

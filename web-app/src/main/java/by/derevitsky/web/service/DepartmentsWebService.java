@@ -1,8 +1,8 @@
 package by.derevitsky.web.service;
 
-import by.derevitsky.Department;
+import by.derevitsky.model.Department;
 import by.derevitsky.web.model.DepartmentForView;
-import by.derevitsky.Employee;
+import by.derevitsky.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

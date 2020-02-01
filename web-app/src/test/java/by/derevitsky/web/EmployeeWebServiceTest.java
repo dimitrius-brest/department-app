@@ -1,6 +1,6 @@
 package by.derevitsky.web;
 
-import by.derevitsky.Employee;
+import by.derevitsky.model.Employee;
 import by.derevitsky.web.service.EmployeesWebService;
 import org.junit.Assert;
 import org.junit.Test;

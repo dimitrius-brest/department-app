@@ -1,4 +1,6 @@
-package by.derevitsky;
+package by.derevitsky.dao;
+
+import by.derevitsky.model.Employee;
 
 import java.util.List;
 

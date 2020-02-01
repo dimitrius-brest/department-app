@@ -1,7 +1,7 @@
 package by.derevitsky.web;
 
-import by.derevitsky.Department;
-import by.derevitsky.Employee;
+import by.derevitsky.model.Department;
+import by.derevitsky.model.Employee;
 import by.derevitsky.web.controller.EmployeesWebController;
 import by.derevitsky.web.model.DateRangeForSearch;
 import by.derevitsky.web.model.DepartmentForView;
@@ -23,7 +23,6 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
 
 import java.time.LocalDate;
 import java.util.Arrays;

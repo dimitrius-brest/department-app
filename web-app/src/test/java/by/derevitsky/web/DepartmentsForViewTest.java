@@ -1,6 +1,6 @@
 package by.derevitsky.web;
 
-import by.derevitsky.Department;
+import by.derevitsky.model.Department;
 import by.derevitsky.web.model.DepartmentForView;
 import org.junit.Assert;
 import org.junit.Test;
