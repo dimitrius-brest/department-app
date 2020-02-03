@@ -12,7 +12,8 @@ import java.util.List;
 public class DepartmentService {
 
     @Autowired
-    @Qualifier("h2DepDAO")
+    //@Qualifier("h2DepDAO")
+    @Qualifier("JpaDepartmentDAO")
     private DepartmentDAO departmentDAO;
 
     public List<Department> getAll() {

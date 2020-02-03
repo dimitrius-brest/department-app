@@ -73,9 +73,9 @@ public class Employee {
 
     @Override
     public String toString(){
-        return "id=" + this.id + " dep=" + this.idDepartment
-                + ";   FIO: " + this.firstName + " " + this.middleName + " " + this.lastName
-                + ";   birth date: " + this.birthDate + "; salary: " + this.salary;
+        return "\nid=" + this.id + " dep=" + this.idDepartment
+                + "; FIO: " + this.firstName + " " + this.middleName + " " + this.lastName
+                + ";  birth date: " + this.birthDate + "; salary: " + this.salary;
     }
 
 }
