@@ -12,8 +12,8 @@ import java.util.List;
 public class EmployeeService {
 
     @Autowired
-    //@Qualifier("h2EmpDAO")
-    @Qualifier("JpaEmployeeDAO")
+    @Qualifier("h2EmployeeDAO")
+    //@Qualifier("JpaEmployeeDAO")
     private EmployeeDAO employeeDAO;
 
     public List<Employee> getAll() {

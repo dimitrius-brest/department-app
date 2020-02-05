@@ -2,6 +2,7 @@ package by.derevitsky.dao;
 
 import by.derevitsky.model.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +15,8 @@ import java.util.List;
  * @author Dmitry Derevitsky
  * @see EmployeeDAO
  */
-@Repository("h2EmpDAO")
+@Repository("h2EmployeeDAO")
+@Profile("jdbc")
 public class EmployeeDAOImplH2 implements EmployeeDAO {
 
     @Autowired

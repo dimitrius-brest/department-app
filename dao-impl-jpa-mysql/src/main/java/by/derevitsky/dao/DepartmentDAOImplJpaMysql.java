@@ -1,6 +1,7 @@
 package by.derevitsky.dao;
 
 import by.derevitsky.model.Department;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Repository("JpaDepartmentDAO")
+@Profile("jpa")
 public class DepartmentDAOImplJpaMysql implements DepartmentDAO {
     // Stub
     List<Department> departments = new ArrayList<Department>(

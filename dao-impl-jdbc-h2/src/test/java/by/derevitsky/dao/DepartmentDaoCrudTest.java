@@ -8,6 +8,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -15,10 +17,11 @@ import java.util.List;
 
 @ContextConfiguration("classpath:dao_context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
+@ActiveProfiles(profiles = "jdbc")
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class DepartmentDaoCrudTest {
 
-    @Autowired
+    @Autowired @Qualifier("h2DepartmentDAO")
     DepartmentDAO departmentDAO;
 
     @Test

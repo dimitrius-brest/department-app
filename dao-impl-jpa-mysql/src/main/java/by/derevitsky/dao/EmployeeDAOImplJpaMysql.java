@@ -1,6 +1,7 @@
 package by.derevitsky.dao;
 
 import by.derevitsky.model.Employee;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
@@ -9,6 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Repository("JpaEmployeeDAO")
+@Profile("jpa")
 public class EmployeeDAOImplJpaMysql implements EmployeeDAO {
     // Stub
     List<Employee> employees = new ArrayList<Employee>(
