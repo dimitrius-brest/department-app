@@ -4,7 +4,9 @@ import by.derevitsky.model.Department;
 import org.apache.log4j.Logger;
 //import org.apache.logging.log4j.LogManager;
 //import org.apache.logging.log4j.Logger;
+import org.omg.CORBA.Environment;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,10 +14,16 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
+import java.util.Properties;
 
 @RestController
 @RequestMapping("departments")
 public class DepartmentRestController {
+
+    // How to get active profile?
+    // See: https://stackoverflow.com/questions/9267799/how-do-you-get-current-active-default-environment-profile-programmatically-in-sp/13361783
+    @Value("${spring.profiles.active}")
+    private String activeProfile;
 
     @Autowired
     private DepartmentService departmentService;
@@ -32,6 +40,8 @@ public class DepartmentRestController {
             return new ResponseEntity<Department>(HttpStatus.NOT_FOUND);
         }
         logger.debug("The Department with id=" + id + " and name='" + department.getName() + "' was found");
+
+        //department.setName(department.getName() + " " + activeProfile);
         return new ResponseEntity<Department>(department, HttpStatus.OK);
     }
 

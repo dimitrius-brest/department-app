@@ -16,7 +16,7 @@ import java.util.List;
  * @see EmployeeDAO
  */
 @Repository("h2EmployeeDAO")
-@Profile("jdbc")
+@Profile("jdbc-h2")
 public class EmployeeDAOImplH2 implements EmployeeDAO {
 
     @Autowired

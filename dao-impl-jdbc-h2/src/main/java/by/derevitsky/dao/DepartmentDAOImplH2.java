@@ -16,7 +16,7 @@ import java.util.List;
  * @see DepartmentDAO
  */
 @Repository("h2DepartmentDAO")
-@Profile("jdbc")
+@Profile("jdbc-h2")
 public class DepartmentDAOImplH2 implements DepartmentDAO {
 
     @Autowired

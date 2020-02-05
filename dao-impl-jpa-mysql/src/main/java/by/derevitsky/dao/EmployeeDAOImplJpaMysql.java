@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Repository("JpaEmployeeDAO")
-@Profile("jpa")
+@Profile("jpa-mysql")
 public class EmployeeDAOImplJpaMysql implements EmployeeDAO {
     // Stub
     List<Employee> employees = new ArrayList<Employee>(

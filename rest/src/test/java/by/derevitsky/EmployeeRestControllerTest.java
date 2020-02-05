@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = {RestConfig.class})
-@ActiveProfiles(profiles = "jdbc")
+@ActiveProfiles(profiles = "jdbc-h2")
 public class EmployeeRestControllerTest {
 
     @Mock

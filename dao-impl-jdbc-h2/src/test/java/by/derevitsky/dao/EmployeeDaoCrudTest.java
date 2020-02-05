@@ -18,7 +18,7 @@ import java.util.List;
 
 @ContextConfiguration("classpath:dao_context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles(profiles = "jdbc")
+@ActiveProfiles(profiles = "jdbc-h2")
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EmployeeDaoCrudTest {
 
