@@ -1,12 +1,14 @@
 package by.derevitsky;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
+//@PropertySource("profiles.properties")
 public class RestAppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Nullable
@@ -38,6 +40,6 @@ public class RestAppInitializer extends AbstractAnnotationConfigDispatcherServle
         super.onStartup(servletContext);
         servletContext.setInitParameter("spring.profiles.active", "jdbc-h2");   // <--- Change active profile here
         //servletContext.setInitParameter("spring.profiles.active", "jpa-mysql");   // <--- Change active profile here
-        //servletContext.setInitParameter("spring.profiles.active", profileFromFile);   // <--- Change active profile here
+        //servletContext.setInitParameter("spring.profiles.active", "${my.profiles}");
     }
 }
