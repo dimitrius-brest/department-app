@@ -1,5 +1,6 @@
 package by.derevitsky;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -25,12 +26,18 @@ public class RestAppInitializer extends AbstractAnnotationConfigDispatcherServle
         return new String[]{"/"};
     }
 
+    // To get parameters from propertie file.
+    // See: http://littlebigextra.com/how-to-read-different-properties-file-based-on-spring-profile-in-a-spring-mvc-project/
+    //@Value("${my.profiles}")
+    //private String profileFromFile;
+
     //  To select a Profile.
     //  See: https://stackoverflow.com/questions/38321419/how-to-set-active-profiles-in-spring-annotation-based-java-config
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
-        //servletContext.setInitParameter("spring.profiles.active", "jdbc-h2");   // <--- Change active profile here
-        servletContext.setInitParameter("spring.profiles.active", "jpa-mysql");   // <--- Change active profile here
+        servletContext.setInitParameter("spring.profiles.active", "jdbc-h2");   // <--- Change active profile here
+        //servletContext.setInitParameter("spring.profiles.active", "jpa-mysql");   // <--- Change active profile here
+        //servletContext.setInitParameter("spring.profiles.active", profileFromFile);   // <--- Change active profile here
     }
 }
