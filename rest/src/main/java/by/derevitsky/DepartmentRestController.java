@@ -23,7 +23,6 @@ public class DepartmentRestController {
     // See: https://stackoverflow.com/questions/9267799/how-do-you-get-current-active-default-environment-profile-programmatically-in-sp/13361783
     //@Value("${spring.profiles.active}")
     //private String activeProfile;
-
     //@Value("${my.profiles}")
     //private String profileFromFile;
 
@@ -43,7 +42,7 @@ public class DepartmentRestController {
         }
         logger.debug("The Department with id=" + id + " and name='" + department.getName() + "' was found");
 
-        //department.setName(department.getName() + " " + activeProfile);
+        //department.setName(department.getName() + " " + activeProfile + " " + profileFromFile);
         return new ResponseEntity<Department>(department, HttpStatus.OK);
     }
 

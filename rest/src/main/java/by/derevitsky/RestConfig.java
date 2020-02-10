@@ -1,11 +1,10 @@
 package by.derevitsky;
 
-import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -14,6 +13,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "by.derevitsky")
+@PropertySource("classpath:profiles.properties")
 public class RestConfig implements WebMvcConfigurer {
 
     @Bean
@@ -24,20 +24,14 @@ public class RestConfig implements WebMvcConfigurer {
         return resolver;
     }
 
-    // To get parameters from propertie file.
-    // See: http://littlebigextra.com/how-to-read-different-properties-file-based-on-spring-profile-in-a-spring-mvc-project/
-
-    // Note: PropertyPlaceholderConfigurer is deprecated.
-    // See instead: PropertySourcesPlaceholderConfigurer
-    // https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/context/support/PropertySourcesPlaceholderConfigurer.html
-
-    /*@Bean
-    public static PropertyPlaceholderConfigurer properties(){
-        PropertyPlaceholderConfigurer ppc = new PropertyPlaceholderConfigurer();
-        Resource resource = new ClassPathResource("profiles.properties");
-        ppc.setLocation(resource);
-        ppc.setIgnoreUnresolvablePlaceholders(true);
-        return ppc;
-    }*/
+    // To get parameters from properties file.
+    // See: https://stackoverflow.com/questions/33714491/whats-the-best-way-to-add-a-new-property-source-in-spring
+    @Bean
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer(){
+        PropertySourcesPlaceholderConfigurer pspc = new PropertySourcesPlaceholderConfigurer();
+        pspc.setIgnoreUnresolvablePlaceholders(Boolean.TRUE);
+        pspc.setIgnoreResourceNotFound(Boolean.TRUE);
+        return pspc;
+    }
 
 }
