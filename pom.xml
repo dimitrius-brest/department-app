@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>model</module>
+        <module>database</module>
         <module>dao</module>
         <module>dao-impl-jdbc-h2</module>
         <module>dao-impl-jpa-mysql</module>
