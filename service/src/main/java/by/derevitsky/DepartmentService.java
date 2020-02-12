@@ -12,7 +12,7 @@ import java.util.List;
 public class DepartmentService {
 
     @Autowired
-    //@Qualifier("h2DepartmentDAO")
+    //@Qualifier("JdbcDepartmentDAO")
     //@Qualifier("JpaDepartmentDAO")
     private DepartmentDAO departmentDAO;
 

@@ -25,12 +25,12 @@
         </dependency>
         <dependency>
             <groupId>by.derevitsky</groupId>
-            <artifactId>dao-impl-jdbc-h2</artifactId>
+            <artifactId>dao-impl-jdbc</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>by.derevitsky</groupId>
-            <artifactId>dao-impl-jpa-mysql</artifactId>
+            <artifactId>dao-impl-jpa</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

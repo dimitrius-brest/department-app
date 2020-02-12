@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = {RestConfig.class})
 //@ContextConfiguration(locations = "file:rest/src/main/webapp/WEB-INF/old-department-rest-servlet.xml")
 //@SpringJUnitWebConfig(classes = {WebConfig.class})
-@ActiveProfiles(profiles = "jdbc-h2")
+@ActiveProfiles(profiles = "jdbc")
 public class DepartmentRestControllerTest {
 
     //@Autowired

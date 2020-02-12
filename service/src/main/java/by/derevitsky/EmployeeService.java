@@ -12,7 +12,7 @@ import java.util.List;
 public class EmployeeService {
 
     @Autowired
-    //@Qualifier("h2EmployeeDAO")
+    //@Qualifier("JdbcEmployeeDAO")
     //@Qualifier("JpaEmployeeDAO")
     private EmployeeDAO employeeDAO;
 

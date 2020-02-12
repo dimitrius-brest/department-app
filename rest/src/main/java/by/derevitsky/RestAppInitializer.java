@@ -47,8 +47,8 @@ public class RestAppInitializer extends AbstractAnnotationConfigDispatcherServle
             ex.printStackTrace();
         }
 
-        //servletContext.setInitParameter("spring.profiles.active", "jdbc-h2");   // <--- Change active profile here
-        //servletContext.setInitParameter("spring.profiles.active", "jpa-mysql");   // <--- Change active profile here
+        //servletContext.setInitParameter("spring.profiles.active", "jdbc");   // <--- Change active profile here
+        //servletContext.setInitParameter("spring.profiles.active", "jpa");   // <--- Change active profile here
         servletContext.setInitParameter("spring.profiles.active", myProfiles);   // <--- profile is selected from file
     }
 }
