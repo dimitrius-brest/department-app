@@ -5,8 +5,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
@@ -18,19 +16,10 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 public class ConfigDAOImplJdbc {
-    /**
-     * Sets DataSource of H2 in-memory database
-     * @return new in-memory database instance, populated with test data from *.sql files
-     */
-    @Bean
-    public DataSource setDataSourceH2inMemory(){
-        return new EmbeddedDatabaseBuilder()
-                .setType(EmbeddedDatabaseType.H2)
-                .setScriptEncoding("UTF-8")
-                .addScript("create_schema.sql")
-                .addScript("populate_schema.sql")
-                .build();
-    }
+
+    @Autowired
+    //@Qualifier("NewDataSource")
+    private DataSource dataSource;
 
     /**
      * Creates JdbcTemplate bean.
@@ -39,7 +28,8 @@ public class ConfigDAOImplJdbc {
     @Bean
     @Qualifier("inMemoryH2DataSource")
     public JdbcTemplate jdbcTemplateH2inMemory(){
-        JdbcTemplate template = new JdbcTemplate(setDataSourceH2inMemory());
+        //JdbcTemplate template = new JdbcTemplate(setDataSourceH2inMemory());
+        JdbcTemplate template = new JdbcTemplate(dataSource);
         return template;
     }
 

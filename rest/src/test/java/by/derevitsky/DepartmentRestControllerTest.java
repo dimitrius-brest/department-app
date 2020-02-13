@@ -3,6 +3,7 @@ package by.derevitsky;
 import by.derevitsky.model.Department;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -33,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = {RestConfig.class})
 //@ContextConfiguration(locations = "file:rest/src/main/webapp/WEB-INF/old-department-rest-servlet.xml")
 //@SpringJUnitWebConfig(classes = {WebConfig.class})
-@ActiveProfiles(profiles = "jdbc")
+@ActiveProfiles(profiles = {"jdbc", "h2mem"})
 public class DepartmentRestControllerTest {
 
     //@Autowired

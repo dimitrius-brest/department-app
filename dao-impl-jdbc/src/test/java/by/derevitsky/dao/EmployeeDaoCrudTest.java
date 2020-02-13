@@ -4,6 +4,7 @@ import by.derevitsky.dao.EmployeeDAO;
 import by.derevitsky.model.Employee;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
@@ -18,7 +19,7 @@ import java.util.List;
 
 @ContextConfiguration("classpath:dao_context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ActiveProfiles(profiles = "jdbc")
+@ActiveProfiles(profiles = {"jdbc", "h2mem"})
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class EmployeeDaoCrudTest {
 
