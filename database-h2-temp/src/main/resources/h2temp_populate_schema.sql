@@ -1,7 +1,7 @@
-insert into departments (name) values ('CEO');
-insert into departments (name) values ('Economists');
-insert into departments (name) values ('Programmers');
-insert into departments (name) values ('Dummies');
+insert into departments (name) values ('CEO-temp');
+insert into departments (name) values ('Economists-temp');
+insert into departments (name) values ('Programmers-temp');
+insert into departments (name) values ('Dummies-temp');
 
 insert into employees (id_department, first_name, middle_name, last_name, birth_date, salary)
 values ('1','Ivan','Ivanovich','Ivanov','1970-01-01',10000);
