@@ -1,5 +1,8 @@
 package by.derevitsky.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -7,8 +10,13 @@ import javax.validation.constraints.Size;
  * Model of "Department" entity
  * @author Dmitry Derevitsky
  */
+@Entity
 public class Department {
+
+    @Id
+    @GeneratedValue
     private int id;
+
     @NotBlank(message = "Name may not be blank")
     @Size(max=100)
     private String name;

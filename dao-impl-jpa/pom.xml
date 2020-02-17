@@ -23,6 +23,20 @@
             <artifactId>dao</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <!-- JPA, Hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.10.Final</version>
+        </dependency>
+
+        <!-- h2 database -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>1.4.197</version>
+        </dependency>
     </dependencies>
 
 </project>
