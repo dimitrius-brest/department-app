@@ -8,6 +8,7 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 
 import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = "by.derevitsky.database")
@@ -26,5 +27,15 @@ public class ConfigH2memDataSource {
                 .addScript("h2mem_create_schema.sql")
                 .addScript("h2mem_populate_schema.sql")
                 .build();
+    }
+
+    // ----- For JPA persistence unit -----
+    @Profile("h2mem")
+    @Bean(name="H2memProperties")
+    Properties additionalProperties() {
+        Properties properties = new Properties();
+        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+        return properties;
     }
 }

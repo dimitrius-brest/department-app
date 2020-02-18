@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository("JpaEmployeeDAO")
 @Profile("jpa")
-public class EmployeeDAOImplJpaMysql implements EmployeeDAO {
+public class EmployeeDAOImplJpa implements EmployeeDAO {
     // Stub
     List<Employee> employees = new ArrayList<Employee>(
         Arrays.asList(

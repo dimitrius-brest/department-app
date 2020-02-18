@@ -8,8 +8,8 @@ import java.util.List;
 
 public class run {
     public static void main(String[] args) {
-        DepartmentDAO departmentDAO = new DepartmentDAOImplJpaMysql();
-        EmployeeDAO employeeDAO = new EmployeeDAOImplJpaMysql();
+        DepartmentDAO departmentDAO = new DepartmentDAOImplJpa();
+        EmployeeDAO employeeDAO = new EmployeeDAOImplJpa();
 
         List<Department> departments = departmentDAO.getAll();
         System.out.println(departments.toString());

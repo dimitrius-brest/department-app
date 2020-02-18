@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository("JpaDepartmentDAO")
 @Profile("jpa")
-public class DepartmentDAOImplJpaMysql implements DepartmentDAO {
+public class DepartmentDAOImplJpa implements DepartmentDAO {
     // Stub
     List<Department> departments = new ArrayList<Department>(
         Arrays.asList(
