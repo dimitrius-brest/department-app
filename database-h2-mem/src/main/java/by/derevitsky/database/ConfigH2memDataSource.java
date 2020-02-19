@@ -22,7 +22,7 @@ public class ConfigH2memDataSource {
     public DataSource setDataSourceH2inMemory(){
         return new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2)
-                .setName("h2mem")
+                .setName("h2mem;DATABASE_TO_UPPER=false")
                 .setScriptEncoding("UTF-8")
                 .addScript("h2mem_create_schema.sql")
                 .addScript("h2mem_populate_schema.sql")

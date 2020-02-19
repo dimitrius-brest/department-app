@@ -12,6 +12,7 @@
         <module>model</module>
         <module>database-h2-mem</module>
         <module>database-h2-temp</module>
+        <module>database-h2-server</module>
         <module>dao</module>
         <module>dao-impl-jdbc</module>
         <module>dao-impl-jpa</module>
@@ -25,6 +26,7 @@
         <spring.version>5.1.0.RELEASE</spring.version>
         <jackson.version>2.10.2</jackson.version>
         <log4j.version>2.13.0</log4j.version>
+        <h2.version>1.4.197</h2.version>
         <!-- build -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>

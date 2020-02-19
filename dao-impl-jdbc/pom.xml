@@ -33,6 +33,11 @@
             <artifactId>database-h2-temp</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>by.derevitsky</groupId>
+            <artifactId>database-h2-server</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
 
         <!-- Spring -->
         <dependency>
@@ -46,12 +51,6 @@
             <version>${spring.version}</version>
         </dependency>
 
-        <!-- Database -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.197</version>
-        </dependency>
     </dependencies>
 
 </project>

@@ -37,12 +37,6 @@
             <version>5.4.10.Final</version>
         </dependency>
 
-        <!-- h2 database -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <version>1.4.197</version>
-        </dependency>
     </dependencies>
 
 </project>

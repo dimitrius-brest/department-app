@@ -23,7 +23,7 @@ public class ConfigH2tempDataSource {
     public DataSource setDataSourceH2inMemory(){
         return new EmbeddedDatabaseBuilder()
                 .setType(EmbeddedDatabaseType.H2)
-                .setName("h2temp")
+                .setName("h2temp;DATABASE_TO_UPPER=false")
                 .setScriptEncoding("UTF-8")
                 .addScript("h2temp_create_schema.sql")
                 .addScript("h2temp_populate_schema.sql")
