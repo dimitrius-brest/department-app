@@ -13,6 +13,7 @@
         <module>database-h2-mem</module>
         <module>database-h2-temp</module>
         <module>database-h2-server</module>
+        <module>database-mysql</module>
         <module>dao</module>
         <module>dao-impl-jdbc</module>
         <module>dao-impl-jpa</module>
