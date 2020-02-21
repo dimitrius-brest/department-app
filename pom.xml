@@ -15,8 +15,8 @@
         <module>database-h2-server</module>
         <module>database-mysql</module>
         <module>dao</module>
-        <module>dao-impl-jdbc</module>
-        <module>dao-impl-jpa</module>
+        <module>dao-jdbc</module>
+        <module>dao-jpa</module>
         <module>service</module>
         <module>rest</module>
         <module>web-app</module>

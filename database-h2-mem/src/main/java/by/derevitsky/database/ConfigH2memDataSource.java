@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = "by.derevitsky.database")
+@ComponentScan(basePackages = "by.derevitsky")
 public class ConfigH2memDataSource {
     /**
      * Sets DataSource of H2 in-memory database

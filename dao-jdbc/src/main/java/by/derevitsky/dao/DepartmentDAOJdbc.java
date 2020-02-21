@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Repository("JdbcDepartmentDAO")
 @Profile("jdbc")
-public class DepartmentDAOImplJdbc implements DepartmentDAO {
+public class DepartmentDAOJdbc implements DepartmentDAO {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;

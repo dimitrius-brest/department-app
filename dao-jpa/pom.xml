@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>dao-impl-jpa</artifactId>
+    <artifactId>dao-jpa</artifactId>
 
     <dependencies>
         <!-- Modules of this project -->
@@ -21,6 +21,27 @@
         <dependency>
             <groupId>by.derevitsky</groupId>
             <artifactId>dao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>by.derevitsky</groupId>
+            <artifactId>database-h2-mem</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>by.derevitsky</groupId>
+            <artifactId>database-h2-temp</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>by.derevitsky</groupId>
+            <artifactId>database-h2-server</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>by.derevitsky</groupId>
+            <artifactId>database-mysql</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

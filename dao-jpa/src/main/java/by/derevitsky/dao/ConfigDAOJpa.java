@@ -1,5 +1,6 @@
 package by.derevitsky.dao;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -17,10 +18,10 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-public class ConfigDAOImplJpa {
+public class ConfigDAOJpa {
 
     @Autowired
-    DataSource dataSource;
+    private DataSource dataSource;
 
 //    @Autowired
 //    Properties additionalProperties;

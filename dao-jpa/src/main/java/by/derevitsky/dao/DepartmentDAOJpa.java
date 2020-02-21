@@ -15,14 +15,14 @@ import java.util.List;
 
 @Repository("JpaDepartmentDAO")
 @Profile("jpa")
-public class DepartmentDAOImplJpa implements DepartmentDAO {
+public class DepartmentDAOJpa implements DepartmentDAO {
     // Stub
-    List<Department> departments = new ArrayList<Department>(
-        Arrays.asList(
-            new Department(1, "Stub Department 1"),
-            new Department(2, "Stub Department 2")
-        )
-    );
+//    List<Department> departments = new ArrayList<Department>(
+//        Arrays.asList(
+//            new Department(1, "Stub Department 1"),
+//            new Department(2, "Stub Department 2")
+//        )
+//    );
 
     //@PersistenceContext
     //private EntityManager entityManager;
@@ -82,9 +82,10 @@ public class DepartmentDAOImplJpa implements DepartmentDAO {
 
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
-        tx.begin();
             Department updatedDepartment = em.find(Department.class, department.getId());
-            // TODO make update of Department
+        tx.begin();
+            em.persist(updatedDepartment);
+            updatedDepartment.setName(department.getName());
         tx.commit();
         em.close();
 
@@ -102,8 +103,8 @@ public class DepartmentDAOImplJpa implements DepartmentDAO {
 
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
-        tx.begin();
             Department department = em.find(Department.class, id);
+        tx.begin();
             em.remove(department);
         tx.commit();
         em.close();

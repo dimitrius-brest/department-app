@@ -15,7 +15,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableTransactionManagement
-public class ConfigDAOImplJdbc {
+public class ConfigDAOJdbc {
 
     @Autowired
     //@Qualifier("NewDataSource")

@@ -1,9 +1,6 @@
 package by.derevitsky.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -18,10 +15,12 @@ public class Department {
 
     @Id
     @GeneratedValue
+    //@Column(name = "id")
     private int id;
 
     @NotBlank(message = "Name may not be blank")
     @Size(max=100)
+    //@Column(name = "name")
     private String name;
 
     public Department() {

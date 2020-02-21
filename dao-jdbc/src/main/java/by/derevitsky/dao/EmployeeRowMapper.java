@@ -8,11 +8,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Auxiliary class for usage in the {@link EmployeeDAOImplJdbc} class methods
+ * Auxiliary class for usage in the {@link EmployeeDAOJdbc} class methods
  * and other implementations of EmployeeDAO interface
  * @author Dmitry Derevitsky
- * @see EmployeeDAOImplJdbc#getAll()
- * @see EmployeeDAOImplJdbc#getById(int)
+ * @see EmployeeDAOJdbc#getAll()
+ * @see EmployeeDAOJdbc#getById(int)
  * @see EmployeeDAO
  */
 public class EmployeeRowMapper implements RowMapper  {

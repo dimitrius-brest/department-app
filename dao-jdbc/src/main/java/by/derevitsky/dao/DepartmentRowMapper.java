@@ -8,11 +8,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- * Auxiliary class for usage in the {@link DepartmentDAOImplJdbc} class methods
+ * Auxiliary class for usage in the {@link DepartmentDAOJdbc} class methods
  * and other implementations of DepartmentDAO interface
  * @author Dmitry Derevitsky
- * @see DepartmentDAOImplJdbc#getAll()
- * @see DepartmentDAOImplJdbc#getById(int)
+ * @see DepartmentDAOJdbc#getAll()
+ * @see DepartmentDAOJdbc#getById(int)
  * @see DepartmentDAO
  */
 public class DepartmentRowMapper implements RowMapper {
