@@ -2,13 +2,26 @@ package by.derevitsky.web;
 
 import by.derevitsky.model.Employee;
 import by.derevitsky.web.service.EmployeesWebService;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+// --------- Junit 4 ---------
+//import org.junit.Assert;
+//import org.junit.Test;
+//import org.junit.runner.RunWith;
+
+// --------- Junit 5 ---------
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import static org.junit.jupiter.api.Assertions.*;
+
+// --------- Mockito ---------
+import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+//import org.mockito.junit.MockitoJUnitRunner;          // junit 4
+import org.mockito.junit.jupiter.MockitoExtension;      // junit 5
+
+// ---------  ---------
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
@@ -18,7 +31,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)         // junit 5
+//@RunWith(MockitoJUnitRunner.class)        // junit 4
 public class EmployeeWebServiceTest {
 
     // See how to mock RestTemplate: https://www.baeldung.com/spring-mock-rest-template
@@ -55,7 +69,7 @@ public class EmployeeWebServiceTest {
                 .when(restTemplate.getForEntity(applicationURL+"/employees/1", Employee.class))
                 .thenReturn(new ResponseEntity(mockEmployee, HttpStatus.OK));
         Employee employee = empWebService.getEmployeeById(1);
-        Assert.assertEquals(mockEmployee, employee);
+        assertEquals(mockEmployee, employee);
     }
 
     @Test
@@ -64,7 +78,7 @@ public class EmployeeWebServiceTest {
                 .when(restTemplate.getForEntity(applicationURL+"/employees/all", Employee[].class))
                 .thenReturn(new ResponseEntity(mockEmployees, HttpStatus.OK));
         int totalNumberOfEmployees = empWebService.getAllEmployees().size();
-        Assert.assertEquals(3, totalNumberOfEmployees);
+        assertEquals(3, totalNumberOfEmployees);
 
         // -------  Test empty list of Employees --------------
         Employee[] mockNullEmployees = null;
@@ -72,7 +86,7 @@ public class EmployeeWebServiceTest {
                 .when(restTemplate.getForEntity(applicationURL+"/employees/all", Employee[].class))
                 .thenReturn(new ResponseEntity(mockNullEmployees, HttpStatus.OK));
         totalNumberOfEmployees = empWebService.getAllEmployees().size();
-        Assert.assertEquals(0, totalNumberOfEmployees);
+        assertEquals(0, totalNumberOfEmployees);
     }
 
     @Test
@@ -96,11 +110,11 @@ public class EmployeeWebServiceTest {
                 .thenThrow(HttpClientErrorException.class);
 
         // Number of Employees in Department #1
-        Assert.assertEquals(2, empWebService.getEmployeesByDepartmentId(1).size());
+        assertEquals(2, empWebService.getEmployeesByDepartmentId(1).size());
         // Number of Employees in Department #2
-        Assert.assertEquals(1, empWebService.getEmployeesByDepartmentId(2).size());
+        assertEquals(1, empWebService.getEmployeesByDepartmentId(2).size());
         // Number of Employees in Department #3 should be 0
-        Assert.assertEquals(0, empWebService.getEmployeesByDepartmentId(3).size());
+        assertEquals(0, empWebService.getEmployeesByDepartmentId(3).size());
     }
 
     @Test
@@ -112,8 +126,8 @@ public class EmployeeWebServiceTest {
                 .thenReturn(newEmployee);
 
         Employee employee = empWebService.addEmployee(newEmployee);
-        Assert.assertEquals(LocalDate.parse("2000-01-01"), employee.getBirthDate());
-        Assert.assertEquals("New-Tester", employee.getLastName());
+        assertEquals(LocalDate.parse("2000-01-01"), employee.getBirthDate());
+        assertEquals("New-Tester", employee.getLastName());
     }
 
     @Test

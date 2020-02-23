@@ -2,18 +2,29 @@ package by.derevitsky;
 
 import by.derevitsky.model.Department;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+
+// --------- Junit 4 ---------
+//import org.junit.Before;
+//import org.junit.Ignore;
+//import org.junit.Test;
+//import org.junit.runner.RunWith;
+
+// --------- Junit 5 ---------
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+// ---------  ---------
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+// ---------  ---------
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;          // for junit 5
+// import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;      // for junit 4
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -28,7 +39,8 @@ import java.util.List;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)              // junit 5
+//@RunWith(SpringJUnit4ClassRunner.class)       // junit 4
 //@RunWith(MockitoJUnitRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = {RestConfig.class})
@@ -47,7 +59,7 @@ public class DepartmentRestControllerTest {
 
     private MockMvc mockMvc;
 
-    @Before
+    @BeforeEach
     public void setup(){
         //this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
         MockitoAnnotations.initMocks(this);

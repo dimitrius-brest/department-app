@@ -2,8 +2,13 @@ package by.derevitsky.web;
 
 import by.derevitsky.model.Department;
 import by.derevitsky.web.model.DepartmentForView;
-import org.junit.Assert;
-import org.junit.Test;
+
+// --------- Junit 4 ---------
+//import org.junit.Assert;
+//import org.junit.Test;
+// --------- Junit 5 ---------
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DepartmentsForViewTest {
 
@@ -14,14 +19,14 @@ public class DepartmentsForViewTest {
 
         DepartmentForView departmentForView = new DepartmentForView(department, 500, true);
 
-        Assert.assertEquals(5, departmentForView.getId());
-        Assert.assertEquals("Test Department", departmentForView.getName());
-        Assert.assertEquals(500, departmentForView.getAverageSalary());
-        Assert.assertTrue(departmentForView.isHasEmployees());
+        assertEquals(5, departmentForView.getId());
+        assertEquals("Test Department", departmentForView.getName());
+        assertEquals(500, departmentForView.getAverageSalary());
+        assertTrue(departmentForView.isHasEmployees());
 
         departmentForView.setAverageSalary(1000);
         departmentForView.setHasEmployees(false);
-        Assert.assertEquals(1000, departmentForView.getAverageSalary());
-        Assert.assertFalse(departmentForView.isHasEmployees());
+        assertEquals(1000, departmentForView.getAverageSalary());
+        assertFalse(departmentForView.isHasEmployees());
     }
 }

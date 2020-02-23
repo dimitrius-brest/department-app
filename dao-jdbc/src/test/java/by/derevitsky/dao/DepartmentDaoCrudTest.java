@@ -12,7 +12,7 @@ import by.derevitsky.model.Department;
 // import org.junit.runners.MethodSorters;
 
 // --------- Junit 5 ---------
-import org.junit.jupiter.api.Disabled;
+//import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -29,7 +29,8 @@ import java.util.List;
 
 //@RunWith(SpringJUnit4ClassRunner.class)       // junit 4
 @ExtendWith(SpringExtension.class)              // junit 5
-@ContextConfiguration("classpath:dao_context.xml")
+//@ContextConfiguration("classpath:dao_context.xml")
+@ContextConfiguration(classes = ConfigDAOJdbc.class)
 @ActiveProfiles(profiles = {"jdbc", "h2mem"})
 //@FixMethodOrder(MethodSorters.NAME_ASCENDING)     // junit 4
 @TestMethodOrder(MethodOrderer.Alphanumeric.class)  // junit 5
@@ -41,9 +42,9 @@ public class DepartmentDaoCrudTest {
     @Test
     public void test1_GetAll() throws Exception {
         List<Department> departments = departmentDAO.getAll();
-        //Assert.assertNotNull(departments);                      // The list of Departments is not empty
+        //assertNotNull(departments);                      // The list of Departments is not empty
         assertNotNull(departments);
-        /*Assert.*/assertEquals(4, departments.size());     // The list of Departments contains 4 Departments
+        assertEquals(4, departments.size());     // The list of Departments contains 4 Departments
     }
 
     //@Ignore       // junit 4

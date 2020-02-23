@@ -1,8 +1,13 @@
 package by.derevitsky.web;
 
 import by.derevitsky.web.model.DateRangeForSearch;
-import org.junit.Assert;
-import org.junit.Test;
+
+// --------- Junit 4 ---------
+//import org.junit.Assert;
+//import org.junit.Test;
+// --------- Junit 5 ---------
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 
@@ -23,37 +28,37 @@ public class DateRangeForSearchTest {
         DateRangeForSearch testRange = new DateRangeForSearch();
         testRange.setStartDate(LocalDate.parse("2019-01-01"));
         testRange.setEndDate(LocalDate.parse("2019-02-02"));
-        Assert.assertEquals("2019-01-01", testRange.getStartDate().toString());
-        Assert.assertEquals("2019-02-02", testRange.getEndDate().toString());
+        assertEquals("2019-01-01", testRange.getStartDate().toString());
+        assertEquals("2019-02-02", testRange.getEndDate().toString());
     }
 
     @Test
     public void testIsValidMethod() throws Exception {
-        Assert.assertTrue(validRange.isValid());
-        Assert.assertFalse(invalidRange.isValid());
+        assertTrue(validRange.isValid());
+        assertFalse(invalidRange.isValid());
     }
 
     @Test
     public void testIsEmptyMethod() throws Exception {
-        Assert.assertTrue(emptyRange.isEmpty());
+        assertTrue(emptyRange.isEmpty());
         emptyRange.setStartDate(LocalDate.parse("2000-12-12"));
-        Assert.assertFalse(emptyRange.isEmpty());
+        assertFalse(emptyRange.isEmpty());
     }
 
     @Test
     public void testIsInsideRange() throws Exception {
 
         // The Range with Start and End Date
-        Assert.assertTrue(validRange.isInsideRange(birthDateInside));
-        Assert.assertFalse(validRange.isInsideRange(birthDateOutsideBefore));
-        Assert.assertFalse(validRange.isInsideRange(birthDateOutsideAfter));
+        assertTrue(validRange.isInsideRange(birthDateInside));
+        assertFalse(validRange.isInsideRange(birthDateOutsideBefore));
+        assertFalse(validRange.isInsideRange(birthDateOutsideAfter));
 
         // The Range with empty Start Date
-        Assert.assertTrue(emptyStartDateRange.isInsideRange(birthDateOutsideBefore));
-        Assert.assertFalse(emptyStartDateRange.isInsideRange(birthDateOutsideAfter));
+        assertTrue(emptyStartDateRange.isInsideRange(birthDateOutsideBefore));
+        assertFalse(emptyStartDateRange.isInsideRange(birthDateOutsideAfter));
 
         // The Range with empty End Date
-        Assert.assertTrue(emptyEndDateRange.isInsideRange(birthDateOutsideAfter));
-        Assert.assertFalse(emptyEndDateRange.isInsideRange(birthDateOutsideBefore));
+        assertTrue(emptyEndDateRange.isInsideRange(birthDateOutsideAfter));
+        assertFalse(emptyEndDateRange.isInsideRange(birthDateOutsideBefore));
     }
 }

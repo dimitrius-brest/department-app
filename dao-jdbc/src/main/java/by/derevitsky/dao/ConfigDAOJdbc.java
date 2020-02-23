@@ -3,6 +3,7 @@ package by.derevitsky.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -14,6 +15,7 @@ import javax.sql.DataSource;
  * @author Dmitry Derevitsky
  */
 @Configuration
+@ComponentScan(basePackages = "by.derevitsky")
 @EnableTransactionManagement
 public class ConfigDAOJdbc {
 
