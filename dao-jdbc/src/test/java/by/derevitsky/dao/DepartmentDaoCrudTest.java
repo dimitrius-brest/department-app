@@ -37,7 +37,7 @@ import java.util.List;
 public class DepartmentDaoCrudTest {
 
     @Autowired @Qualifier("JdbcDepartmentDAO")
-    DepartmentDAO departmentDAO;
+    private DepartmentDAO departmentDAO;
 
     @Test
     public void test1_GetAll() throws Exception {

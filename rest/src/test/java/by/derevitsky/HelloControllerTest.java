@@ -7,8 +7,7 @@ package by.derevitsky;
 //import org.junit.runner.RunWith;
 
 // --------- Junit 5 ---------
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 // ---------  ---------
@@ -31,8 +30,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)              // junit 5
 //@RunWith(SpringJUnit4ClassRunner.class)       // junit 4
 @WebAppConfiguration
+//@AutoConfigureMockMvc
+//@WebMvcTest
 @ContextConfiguration(classes = {RestConfig.class})
 @ActiveProfiles(profiles = {"jdbc", "h2mem"})
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class HelloControllerTest {
 
     @Autowired
@@ -40,7 +42,8 @@ public class HelloControllerTest {
 
     private MockMvc mockMvc;
 
-    @BeforeEach
+    //@BeforeEach
+    @BeforeAll
     public void setup(){
         this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
     }

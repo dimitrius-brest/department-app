@@ -1,8 +1,12 @@
+drop table if exists departments;
+
 create table departments (
   id INT(10) auto_increment,
   name VARCHAR(100) not null,
   PRIMARY KEY (id)
 );
+
+drop table if exists employees;
 
 create table employees (
   id INT(10) auto_increment,
