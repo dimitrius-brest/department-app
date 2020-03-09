@@ -13,7 +13,7 @@ import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = "by.derevitsky")
-public class ConfigH2memDataSource {
+public class ConfigDataSource {
 
     // --------------------------- @Profile  h2mem --------------------------
     /**
