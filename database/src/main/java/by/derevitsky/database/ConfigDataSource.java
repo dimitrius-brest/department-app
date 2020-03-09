@@ -57,4 +57,20 @@ public class ConfigDataSource {
         dataSource.setPassword("");
         return dataSource;
     }
+
+    // --------------------------- @Profile  mysql --------------------------
+    /**
+     * Sets DataSource of MySQL server database
+     * @return DataSource
+     */
+    @Profile("mysql")
+    @Bean(name="MysqlDataSource")
+    public DataSource setDataSourceMysql() {
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
+        dataSource.setUrl("jdbc:mysql://localhost:3306/test");
+        dataSource.setUsername("root");
+        dataSource.setPassword("1");
+        return dataSource;
+    }
 }

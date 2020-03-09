@@ -11,7 +11,6 @@
     <modules>
         <module>model</module>
         <module>database</module>
-        <module>database-mysql</module>
         <module>dao</module>
         <module>dao-jdbc</module>
         <module>dao-jpa</module>
