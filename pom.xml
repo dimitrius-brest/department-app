@@ -10,7 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>model</module>
-        <module>database-h2-mem</module>
+        <module>database</module>
         <module>database-h2-server</module>
         <module>database-mysql</module>
         <module>dao</module>
