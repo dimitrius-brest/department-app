@@ -37,12 +37,17 @@ public class RestAppInitializer extends AbstractAnnotationConfigDispatcherServle
         // Getting profiles from properties file "profiles.properties"
         // See: https://mkyong.com/java/java-properties-file-examples/
         //     "3. Load a properties file from classpath"
+        String dbType;
+        String accessType;
         String myProfiles = "";
 
         try (InputStream input = RestAppInitializer.class.getClassLoader().getResourceAsStream("profiles.properties")) {
             Properties prop = new Properties();
             prop.load(input);
-            myProfiles = prop.getProperty("my.profiles");
+            dbType = prop.getProperty("db.type");
+            accessType = prop.getProperty("access.type");
+            //myProfiles = prop.getProperty("my.profiles");
+            myProfiles = accessType + "," + dbType;
         } catch (IOException ex) {
             ex.printStackTrace();
         }

@@ -25,12 +25,12 @@ public class HelloController {
     @GetMapping
     public String printHello(ModelMap model){
         String activeProfile        = env.getProperty("spring.profiles.active");
-        String fromPropertieFile    = env.getProperty("my.profiles");
+        //String fromPropertieFile    = env.getProperty("my.profiles");
 
         model.addAttribute("message",
                 "Hello from department-app!!!"
                 + "<br>spring.profiles.active: " + activeProfile
-                + "<br>my.profiles: " + fromPropertieFile
+                + "<br>access.type: " + env.getProperty("access.type") + ", db.type: " + env.getProperty("db.type")
                 + "<br><br>db.driver: " + env.getProperty("db.driver")
                 + "<br>db.url: " + env.getProperty("db.url")
                 + "<br>db.username: " + env.getProperty("db.username")

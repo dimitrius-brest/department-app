@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @ComponentScan(basePackages = "by.derevitsky")
 @PropertySources({
         @PropertySource("classpath:profiles.properties"),
-        @PropertySource("classpath:database-${db.type}.properties")
+        @PropertySource("classpath:db-${db.type}.properties")
 })
 public class RestConfig implements WebMvcConfigurer {
 
