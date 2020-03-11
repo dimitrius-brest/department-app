@@ -1,10 +1,6 @@
 package by.derevitsky;
 
-//import org.springframework.boot.context.properties.ConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -14,8 +10,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "by.derevitsky")
-@PropertySource("classpath:profiles.properties")
-//@ConfigurationProperties(prefix = "temp")
+@PropertySources({
+        @PropertySource("classpath:profiles.properties"),
+        @PropertySource("classpath:database-${db.type}.properties")
+})
 public class RestConfig implements WebMvcConfigurer {
 
     @Bean

@@ -31,6 +31,10 @@ public class HelloController {
                 "Hello from department-app!!!"
                 + "<br>spring.profiles.active: " + activeProfile
                 + "<br>my.profiles: " + fromPropertieFile
+                + "<br><br>db.driver: " + env.getProperty("db.driver")
+                + "<br>db.url: " + env.getProperty("db.url")
+                + "<br>db.username: " + env.getProperty("db.username")
+                + "<br>db.password: " + env.getProperty("db.password")
         );
         return "hello";
     }
