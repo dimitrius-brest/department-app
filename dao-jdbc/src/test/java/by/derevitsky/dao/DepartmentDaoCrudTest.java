@@ -30,7 +30,7 @@ import java.util.List;
 //@RunWith(SpringJUnit4ClassRunner.class)       // junit 4
 @ExtendWith(SpringExtension.class)              // junit 5
 //@ContextConfiguration("classpath:dao_context.xml")
-@ContextConfiguration(classes = ConfigDAOJdbc.class)
+@ContextConfiguration(classes = {ConfigDAOJdbc.class})
 @ActiveProfiles(profiles = {"jdbc", "h2mem"})
 //@FixMethodOrder(MethodSorters.NAME_ASCENDING)     // junit 4
 @TestMethodOrder(MethodOrderer.Alphanumeric.class)  // junit 5

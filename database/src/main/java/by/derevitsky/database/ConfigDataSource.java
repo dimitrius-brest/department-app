@@ -1,6 +1,9 @@
 package by.derevitsky.database;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.*;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -11,6 +14,22 @@ import java.util.Properties;
 @Configuration
 @ComponentScan(basePackages = "by.derevitsky")
 public class ConfigDataSource {
+
+    // to get properties
+//    @Autowired
+//    private Environment env;
+
+//    @Autowired
+//    @Qualifier("dbProperties")
+//    private Properties dbProps;
+
+    // Getting properties, depending on database type, taken from "profiles.properties"
+    // and corresponding .properties file (db-${db.type}.properties).
+    // See RestConfig.java in "rest" module, lines @PropertySources
+//    private String dbDriver     = env.getProperty("db.driver");
+//    private String dbUrl        = env.getProperty("db.url");
+//    private String dbUsername   = env.getProperty("db.username");
+//    private String dbPassword   = env.getProperty("db.password");
 
     // --------------------------- @Profile  h2mem --------------------------
     /**
@@ -48,10 +67,14 @@ public class ConfigDataSource {
     @Bean(name="H2serverDataSource")
     public DataSource setDataSourceH2server(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");
-        dataSource.setUsername("sa");
-        dataSource.setPassword("");
+         dataSource.setDriverClassName("org.h2.Driver");
+         dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");
+         dataSource.setUsername("sa");
+         dataSource.setPassword("");
+//        dataSource.setDriverClassName(dbDriver);
+//        dataSource.setUrl(dbUrl);
+//        dataSource.setUsername(dbUsername);
+//        dataSource.setPassword(dbPassword);
         return dataSource;
     }
 

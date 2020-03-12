@@ -1,5 +1,7 @@
 package by.derevitsky;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -44,10 +46,10 @@ public class RestAppInitializer extends AbstractAnnotationConfigDispatcherServle
         try (InputStream input = RestAppInitializer.class.getClassLoader().getResourceAsStream("profiles.properties")) {
             Properties prop = new Properties();
             prop.load(input);
-            dbType = prop.getProperty("db.type");
-            accessType = prop.getProperty("access.type");
+            dbType = prop.getProperty("db.type");               // the type of database: h2mem, h2server, mysql
+            accessType = prop.getProperty("access.type");       // the access type to database: jdbc, jpa
             //myProfiles = prop.getProperty("my.profiles");
-            myProfiles = accessType + "," + dbType;
+            myProfiles = accessType + "," + dbType;             // combination of access type and db type: "jdbc,h2mem" and so on
         } catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -56,5 +58,6 @@ public class RestAppInitializer extends AbstractAnnotationConfigDispatcherServle
         //servletContext.setInitParameter("spring.profiles.active", "jpa");   // <--- Change active profile here
         //servletContext.setInitParameter("spring.profiles.active", "jdbc,h2mem");
         servletContext.setInitParameter("spring.profiles.active", myProfiles);   // <--- profile is selected from file
+
     }
 }
