@@ -43,7 +43,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //@RunWith(SpringJUnit4ClassRunner.class)       // junit 4
 //@RunWith(MockitoJUnitRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {RestConfig.class})
+@ContextConfiguration(classes = {ConfigRest.class})
 //@ContextConfiguration(locations = "file:rest/src/main/webapp/WEB-INF/old-department-rest-servlet.xml")
 //@SpringJUnitWebConfig(classes = {WebConfig.class})
 @ActiveProfiles(profiles = {"jdbc", "h2mem"})

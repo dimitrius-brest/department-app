@@ -19,7 +19,7 @@ import java.util.Properties;
         @PropertySource("classpath:profiles.properties"),
         @PropertySource("classpath:db-${db.type}.properties")
 })
-public class RestConfig implements WebMvcConfigurer {
+public class ConfigRest implements WebMvcConfigurer {
 
     @Bean
     ViewResolver viewResolver(){
@@ -39,26 +39,26 @@ public class RestConfig implements WebMvcConfigurer {
         return pspc;
     }
 
-    @Value("${db.driver}")
-    private String dbDriver;
-
-    @Value("${db.url}")
-    private String dbUrl;
-
-    @Value("${db.username}")
-    private String dbUsername;
-
-    @Value("${db.password}")
-    private String dbPassword;
-
-    @Bean(name = "dbProperties")
-    public Properties dpProperties() {
-        Properties props = new Properties();
-        props.setProperty("dbDriver", dbDriver);
-        props.setProperty("dbUrl", dbUrl);
-        props.setProperty("dbUsername", dbUsername);
-        props.setProperty("dbPassword", dbPassword);
-        return props;
-    }
+//    @Value("${db.driver}")
+//    private String dbDriver;
+//
+//    @Value("${db.url}")
+//    private String dbUrl;
+//
+//    @Value("${db.username}")
+//    private String dbUsername;
+//
+//    @Value("${db.password}")
+//    private String dbPassword;
+//
+//    @Bean(name = "dbProperties")
+//    public Properties dpProperties() {
+//        Properties props = new Properties();
+//        props.setProperty("dbDriver", dbDriver);
+//        props.setProperty("dbUrl", dbUrl);
+//        props.setProperty("dbUsername", dbUsername);
+//        props.setProperty("dbPassword", dbPassword);
+//        return props;
+//    }
 
 }

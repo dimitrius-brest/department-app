@@ -45,7 +45,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)              // junit 5
 //@RunWith(SpringJUnit4ClassRunner.class)       // junit 4
 @WebAppConfiguration
-@ContextConfiguration(classes = {RestConfig.class})
+@ContextConfiguration(classes = {ConfigRest.class})
 @ActiveProfiles(profiles = {"jdbc", "h2mem"})
 public class EmployeeRestControllerTest {
 

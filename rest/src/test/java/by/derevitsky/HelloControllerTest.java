@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 //@AutoConfigureMockMvc
 //@WebMvcTest
-@ContextConfiguration(classes = {RestConfig.class})
+@ContextConfiguration(classes = {ConfigRest.class})
 @ActiveProfiles(profiles = {"jdbc", "h2mem"})
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class HelloControllerTest {
