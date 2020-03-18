@@ -66,7 +66,7 @@ public class EmployeeDAOJpa implements EmployeeDAO {
         EntityTransaction tx = em.getTransaction();
         tx.begin();
             List<Employee> searchedEmployees = em
-                    .createQuery("select e from Employee e where e.idDepartment = 1")  //  TODO <-- change this "where = ..."
+                    .createQuery("select e from Employee e where e.idDepartment = " + departmentId)
                     .getResultList();
         tx.commit();
         em.close();

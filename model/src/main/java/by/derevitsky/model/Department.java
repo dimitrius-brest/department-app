@@ -14,7 +14,8 @@ import javax.validation.constraints.Size;
 public class Department {
 
     @Id
-    @GeneratedValue
+    //@GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
