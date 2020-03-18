@@ -3,10 +3,7 @@ package by.derevitsky.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 
@@ -15,40 +12,40 @@ import java.time.LocalDate;
  * @author Dmitry Derevitsky
  */
 @Entity
-//@Table(name = "employees")
+@Table(name = "employees")
 //@Table(name = "EMPLOYEES")
 public class Employee {
 
     @Id
     @GeneratedValue
-    //@Column(name = "id")
+    @Column(name = "id")
     private int id;
 
-    //@Column(name = "id_department")
+    @Column(name = "id_department")
     private int idDepartment;
 
     @Size(max = 50)
-    //@Column(name = "first_name")
+    @Column(name = "first_name")
     private String firstName;
 
     @Size(max = 50)
-    //@Column(name = "middle_name")
+    @Column(name = "middle_name")
     private String middleName;
 
     @NotBlank(message = "Last name may not be blank")
     @Size(max = 100)
-    //@Column(name = "last_name")
+    @Column(name = "last_name")
     private String lastName;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)   // The same as (pattern="yyyy-MM-dd")
     @Past(message = "Birth date must be in the past")
-    //@Column(name = "birth_date")
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
     @Digits(integer = 10, fraction = 0, message = "Must be integer, no more than 10 digits")
     @Min(value = 0, message="Salary may not be less than 0")
-    //@Column(name = "salary")
+    @Column(name = "salary")
     private int salary;
 
     public Employee() {

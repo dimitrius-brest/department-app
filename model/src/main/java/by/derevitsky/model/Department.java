@@ -9,18 +9,18 @@ import javax.validation.constraints.Size;
  * @author Dmitry Derevitsky
  */
 @Entity
-//@Table(name = "departments")
+@Table(name = "departments")
 //@Table(name = "DEPARTMENTS")
 public class Department {
 
     @Id
     @GeneratedValue
-    //@Column(name = "id")
+    @Column(name = "id")
     private int id;
 
     @NotBlank(message = "Name may not be blank")
     @Size(max=100)
-    //@Column(name = "name")
+    @Column(name = "name")
     private String name;
 
     public Department() {

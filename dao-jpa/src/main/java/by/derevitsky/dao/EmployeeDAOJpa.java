@@ -17,16 +17,16 @@ import java.util.List;
 @Profile("jpa")
 public class EmployeeDAOJpa implements EmployeeDAO {
     // Stub
-    List<Employee> employees = new ArrayList<Employee>(
-        Arrays.asList(
-            new Employee(1, 1, "Alexandr", "Sergeevich", "Pushkin",
-                    LocalDate.parse("2020-02-02"), 500),
-            new Employee(2, 2, "Mihail", "Yurjevich", "Lermontov",
-                    LocalDate.parse("2020-02-02"), 1000),
-            new Employee(3, 2, "Lev", "Nikolaevich", "Tolstoy",
-                    LocalDate.parse("2020-02-02"), 1500)
-        )
-    );
+//    List<Employee> employees = new ArrayList<Employee>(
+//        Arrays.asList(
+//            new Employee(1, 1, "Alexandr", "Sergeevich", "Pushkin",
+//                    LocalDate.parse("2020-02-02"), 500),
+//            new Employee(2, 2, "Mihail", "Yurjevich", "Lermontov",
+//                    LocalDate.parse("2020-02-02"), 1000),
+//            new Employee(3, 2, "Lev", "Nikolaevich", "Tolstoy",
+//                    LocalDate.parse("2020-02-02"), 1500)
+//        )
+//    );
 
     @Autowired
     private EntityManagerFactory emf;
@@ -96,12 +96,17 @@ public class EmployeeDAOJpa implements EmployeeDAO {
     public void update(Employee employee) {
         EntityManager em = emf.createEntityManager();
         EntityTransaction tx = em.getTransaction();
+            Employee updatedEmployee = em.find(Employee.class, employee.getId());
         tx.begin();
-
+            em.persist(updatedEmployee);
+            updatedEmployee.setIdDepartment(employee.getIdDepartment());
+            updatedEmployee.setFirstName(   employee.getFirstName());
+            updatedEmployee.setMiddleName(  employee.getMiddleName());
+            updatedEmployee.setLastName(    employee.getLastName());
+            updatedEmployee.setBirthDate(   employee.getBirthDate());
+            updatedEmployee.setSalary(      employee.getSalary());
         tx.commit();
         em.close();
-
-        // TODO make this method
 
 //        for (Employee updatedEmployee : employees) {
 //            if (updatedEmployee.getId() == employee.getId()) {
