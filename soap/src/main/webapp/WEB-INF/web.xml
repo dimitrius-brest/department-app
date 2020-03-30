@@ -9,6 +9,7 @@ Inc.//DTD Web Application 2.3//EN"
             com.sun.xml.ws.transport.http.servlet.WSServletContextListener
         </listener-class>
     </listener>
+
     <servlet>
         <servlet-name>hello</servlet-name>
         <servlet-class>
@@ -20,5 +21,17 @@ Inc.//DTD Web Application 2.3//EN"
         <servlet-name>hello</servlet-name>
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
+
+    <!--<servlet>
+        <servlet-name>department</servlet-name>
+        <servlet-class>
+            com.sun.xml.ws.transport.http.servlet.WSServlet
+        </servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>department</servlet-name>
+        <url-pattern>/department</url-pattern>
+    </servlet-mapping>-->
 
 </web-app>

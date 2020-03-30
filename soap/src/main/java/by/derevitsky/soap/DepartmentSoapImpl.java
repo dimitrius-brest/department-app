@@ -4,13 +4,14 @@ import by.derevitsky.DepartmentService;
 import by.derevitsky.model.Department;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+//import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import javax.jws.WebService;
 import java.util.List;
 
 //@Component
 @WebService(endpointInterface = "by.derevitsky.soap.DepartmentSoap")
-public class DepartmentSoapImpl implements DepartmentSoap {
+public class DepartmentSoapImpl /*extends SpringBeanAutowiringSupport*/ implements DepartmentSoap {
 
     @Autowired
     private DepartmentService departmentService;

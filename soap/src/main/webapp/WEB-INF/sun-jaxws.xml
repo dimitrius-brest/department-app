@@ -6,4 +6,8 @@
             name="HelloWorldWs"
             implementation="by.derevitsky.soap.HelloWorldImpl"
             url-pattern="/hello"/>
+    <!--<endpoint
+            name="DepartmentSoapWs"
+            implementation="by.derevitsky.soap.DepartmentSoapImpl"
+            url-pattern="/department"/>-->
 </endpoints>
