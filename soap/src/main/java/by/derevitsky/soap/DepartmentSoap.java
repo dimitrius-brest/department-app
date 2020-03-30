@@ -11,18 +11,18 @@ import java.util.List;
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 public interface DepartmentSoap {
 
-    @WebMethod
-    List<Department> getAllDepartments();
-
+//    @WebMethod
+//    List<Department> getAllDepartments();
+//
     @WebMethod
     Department getDepartmentById(Integer id);
-
-    @WebMethod
-    void insertDepartment(Department department);
-
-    @WebMethod
-    void updateDepartment(Department department);
-
-    @WebMethod
-    void deleteDepartment(Integer id);
+//
+//    @WebMethod
+//    void insertDepartment(Department department);
+//
+//    @WebMethod
+//    void updateDepartment(Department department);
+//
+//    @WebMethod
+//    void deleteDepartment(Integer id);
 }
