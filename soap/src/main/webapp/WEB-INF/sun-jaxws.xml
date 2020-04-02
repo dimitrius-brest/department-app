@@ -10,4 +10,8 @@
             name="DepartmentSoapWs"
             implementation="by.derevitsky.soap.DepartmentSoapImpl"
             url-pattern="/department"/>
+    <endpoint
+            name="DepartmentSoapWs"
+            implementation="by.derevitsky.soap.EmployeeSoapImpl"
+            url-pattern="/employee"/>
 </endpoints>
