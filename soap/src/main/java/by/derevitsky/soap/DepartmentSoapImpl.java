@@ -2,9 +2,10 @@ package by.derevitsky.soap;
 
 //import by.derevitsky.DepartmentService;
 import by.derevitsky.model.Department;
+import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.stereotype.Component;
-//import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import javax.jws.WebService;
 import java.util.ArrayList;
@@ -18,10 +19,13 @@ public class DepartmentSoapImpl /*extends SpringBeanAutowiringSupport*/ implemen
     //@Autowired
     //private DepartmentService departmentService;
 
+    //@Autowired
+    //private JustTemp justTemp;
+
     // Stub
     private List<Department> departments = new ArrayList<Department>(
             Arrays.asList(
-                    new Department(1, "Stub Dep. 1"),
+                    new Department(1, "Stub Dep. 1" /*+ justTemp.getTestMessage()*/),
                     new Department(2, "Stub Dep. 2")
             )
     );

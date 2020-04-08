@@ -1,8 +1,11 @@
 package by.derevitsky.soap;
 
+import by.derevitsky.model.Department;
 import by.derevitsky.model.Employee;
 
+import javax.jws.WebParam;
 import javax.jws.WebService;
+import java.time.LocalDate;
 
 @WebService(endpointInterface = "by.derevitsky.soap.EmployeeSoap")
 public class EmployeeSoapImpl implements EmployeeSoap {
