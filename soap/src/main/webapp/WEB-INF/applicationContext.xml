@@ -16,14 +16,20 @@
 
     <context:annotation-config/>
 
-    <wss:binding url="/department">
+    <!--<wss:binding url="/department">
         <wss:service>
             <ws:service bean="#departmentEndpoint"/>
+        </wss:service>
+    </wss:binding>-->
+    <wss:binding url="/hello">
+        <wss:service>
+            <ws:service bean="#helloEndpoint"/>
         </wss:service>
     </wss:binding>
 
     <bean name="justName" class="by.derevitsky.soap.JustTemp"/>
 
-    <bean name="departmentEndpoint" class="by.derevitsky.soap.DepartmentSoapImpl"/>
+    <bean name="helloEndpoint" class="by.derevitsky.soap.HelloWorldImpl"/>
+    <!--<bean name="departmentEndpoint" class="by.derevitsky.soap.DepartmentSoapImpl"/>-->
 
 </beans>

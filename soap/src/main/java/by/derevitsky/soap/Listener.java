@@ -9,9 +9,9 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
-@WebListener
+//@WebListener
 //public class Listener implements ServletContextAttributeListener, ServletContextListener {
-public class Listener extends ContextLoaderListener {
+public class Listener /*extends ContextLoaderListener*/ {
 
     /*private final WSServletContextListener listener;
 
@@ -19,11 +19,11 @@ public class Listener extends ContextLoaderListener {
         this.listener = new WSServletContextListener();
     }*/
 
-    private final ContextLoaderListener listener;
+    /*private final ContextLoaderListener listener;
 
     public Listener() {
         this.listener = new ContextLoaderListener();
-    }
+    }*/
 
     /*@Override
     public void attributeAdded(ServletContextAttributeEvent event) {
@@ -40,7 +40,7 @@ public class Listener extends ContextLoaderListener {
         listener.attributeReplaced(event);
     }*/
 
-    @Override
+    /*@Override
     public void contextInitialized(ServletContextEvent sce) {
         listener.contextInitialized(sce);
     }
@@ -48,5 +48,5 @@ public class Listener extends ContextLoaderListener {
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         listener.contextDestroyed(sce);
-    }
+    }*/
 }
