@@ -4,6 +4,7 @@ import by.derevitsky.model.Department;
 import by.derevitsky.web.model.DepartmentForView;
 import by.derevitsky.web.service.DepartmentsWebService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -20,6 +21,27 @@ public class DepartmentsWebController {
 
     @Autowired
     private DepartmentsWebService webService;
+
+    // ----------------- Just show active profile ----------------------
+
+    // How to get active profile?
+    // See: https://stackoverflow.com/questions/9267799/how-do-you-get-current-active-default-environment-profile-programmatically-in-sp/13361783
+    @Autowired
+    private Environment env;
+
+    @GetMapping("/hello")
+    public String printHello(ModelMap model){
+        String activeProfile        = env.getProperty("spring.profiles.active");
+
+        model.addAttribute("message",
+                "Hello from web-app!!!"
+                        + "<br>spring.profiles.active: " + activeProfile
+                        + "<br>view.type: " + env.getProperty("view.type")  // <--- No need to take this property. Active profile is enough.
+        );
+        return "hello";
+    }
+
+    // -----------------------------------------------------------------
 
     /**
      * Redirection from root directory to "/departments/all"
