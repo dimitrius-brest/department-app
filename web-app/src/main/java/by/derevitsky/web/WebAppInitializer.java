@@ -50,5 +50,6 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         }
 
         servletContext.setInitParameter("spring.profiles.active", myProfiles);   // <--- profile is selected from file
+
     }
 }

@@ -11,6 +11,7 @@ import by.derevitsky.web.service.DepartmentsWebService;
 
 // --------- Junit 5 ---------
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
@@ -18,9 +19,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;      // junit 5
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;     // junit 4
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
@@ -33,10 +34,12 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@Disabled
 @ExtendWith(SpringExtension.class)              // junit 5
 //@RunWith(SpringJUnit4ClassRunner.class)       // junit 4
 @WebAppConfiguration
 @ContextConfiguration(classes = {WebConfig.class})
+//@ActiveProfiles("jsp")
 public class DepartmentsWebControllerTest {
 
 //    @Autowired
