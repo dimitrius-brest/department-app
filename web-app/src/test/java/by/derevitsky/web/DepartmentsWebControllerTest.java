@@ -34,7 +34,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@Disabled
 @ExtendWith(SpringExtension.class)              // junit 5
 //@RunWith(SpringJUnit4ClassRunner.class)       // junit 4
 @WebAppConfiguration

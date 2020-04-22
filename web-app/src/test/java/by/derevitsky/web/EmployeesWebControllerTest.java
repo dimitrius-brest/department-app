@@ -41,7 +41,6 @@ import java.util.List;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@Disabled
 @ExtendWith(SpringExtension.class)              // junit 5
 //@RunWith(SpringJUnit4ClassRunner.class)       // junit 4
 @WebAppConfiguration

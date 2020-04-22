@@ -20,14 +20,15 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 public class WebConfig implements WebMvcConfigurer {
 
 // ------------------------- JSP -------------------------
-//    @Bean
-//    @Profile("jsp")
-//    ViewResolver viewResolver(){
-//        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-//        resolver.setPrefix("/WEB-INF/jsp/");
-//        resolver.setSuffix(".jsp");
-//        return resolver;
-//    }
+    @Bean
+    @Profile("jsp")
+    ViewResolver viewResolver(){
+        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
+        resolver.setPrefix("/WEB-INF/jsp/");
+        resolver.setSuffix(".jsp");
+        resolver.setOrder(1);
+        return resolver;
+    }
 
 // ------------------------- Thymeleaf -------------------------
 
@@ -53,12 +54,21 @@ public class WebConfig implements WebMvcConfigurer {
         return templateEngine;
     }
 
-    @Override
+//    @Override
+//    @Profile("thymeleaf")
+//    public void configureViewResolvers(ViewResolverRegistry registry) {
+//        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
+//        resolver.setTemplateEngine(templateEngine());
+//        registry.viewResolver(resolver);
+//    }
+
+    @Bean
     @Profile("thymeleaf")
-    public void configureViewResolvers(ViewResolverRegistry registry) {
+    ThymeleafViewResolver configureViewResolvers() {
         ThymeleafViewResolver resolver = new ThymeleafViewResolver();
         resolver.setTemplateEngine(templateEngine());
-        registry.viewResolver(resolver);
+        resolver.setOrder(2);
+        return resolver;
     }
 
 // ------------------------- ... -------------------------
