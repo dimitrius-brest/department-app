@@ -8,14 +8,30 @@
 <body>
 <h2>Departments:</h2>
 <table border="1">
-    <tr>
-        <td>id</td>
-        <td>name</td>
-        <td>Average Salary</td>
-        <td>has employees</td>
-        <td>Edit</td>
-        <td>Delete</td>
-    </tr>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>Average Salary</th>
+            <th>has employees</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="department : ${departments}">
+            <td th:text="${department.id}"></td>
+            <td>
+                <a href="#" th:href="@{/employees/{id}(id=${department.id})}">
+                    <span th:text="${department.name}"></span>
+                </a>
+            </td>
+            <td th:text="${department.averageSalary}"></td>
+            <td th:text="${department.hasEmployees}"></td>
+            <td>edit</td>
+            <td>delete</td>
+        </tr>
+    </tbody>
 </table>
 
 </body>

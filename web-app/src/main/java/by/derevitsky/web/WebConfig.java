@@ -19,7 +19,18 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 //@PropertySource("classpath:profiles.properties")
 public class WebConfig implements WebMvcConfigurer {
 
+/**
+ * You can switch between two view resolvers - JSP or Thymeleaf -
+ * by changing "view.type" parameter in "profiles.properties" file
+ * either to "jsp" or to "thymeleaf"
+ */
+
 // ------------------------- JSP -------------------------
+
+    /**
+     * To switch to JSP view resolver - set "view.type" in "profiles.properties" file to "jsp"
+     */
+
     @Bean
     @Profile("jsp")
     ViewResolver viewResolver(){
@@ -31,6 +42,10 @@ public class WebConfig implements WebMvcConfigurer {
     }
 
 // ------------------------- Thymeleaf -------------------------
+
+    /**
+     * To switch to Thymeleaf view resolver - set "view.type" in "profiles.properties" file to "thymeleaf"
+     */
 
     @Autowired
     private ApplicationContext applicationContext;

@@ -3,9 +3,46 @@
 
 <head>
     <title>Employees</title>
+    <style>
+        .error {
+            color: #ff0000;
+        }
+        .search {
+            color: darkgreen;
+        }
+    </style>
 </head>
 
 <body>
+<h2>Employees</h2>
+<table border="1">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Department ID</th>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>Birth Date</th>
+            <th>Salary</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="employee : ${employees}">
+            <td th:text="${employee.id}"></td>
+            <td th:text="${employee.idDepartment}"></td>
+            <td th:text="${employee.firstName}"></td>
+            <td th:text="${employee.middleName}"></td>
+            <td th:text="${employee.lastName}"></td>
+            <td th:text="${employee.birthDate}"></td>
+            <td th:text="${employee.salary}"></td>
+            <td>edit</td>
+            <td>delete</td>
+        </tr>
+    </tbody>
+</table>
 
 </body>
 </html>
