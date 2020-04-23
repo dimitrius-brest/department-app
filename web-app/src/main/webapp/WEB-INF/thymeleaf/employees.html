@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<h2>Employees</h2>
+<h2 th:text="${department} == null ? 'All Employees: ' : 'Employees of the Department ' + ${department.name}"></h2>
 <table border="1">
     <thead>
         <tr>
@@ -44,5 +44,11 @@
     </tbody>
 </table>
 
+<div th:if="${department}">
+    <br>
+    <a href="#" th:href="@{/employees/add/{id}(id=${department.id})}">Add new Employee to the Department</a>
+</div>
+<br>
+<div><a href="#" th:href="@{/departments/all}">Back to Departments list</a></div>
 </body>
 </html>
