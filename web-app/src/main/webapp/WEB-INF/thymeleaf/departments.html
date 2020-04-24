@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <meta charset="UTF-8">
     <title>Departments</title>
 </head>
 
@@ -28,8 +29,19 @@
             </td>
             <td th:text="${department.averageSalary}"></td>
             <td th:text="${department.hasEmployees}"></td>
-            <td>edit</td>
-            <td>delete</td>
+            <td>  <!-- "Edit" button -->
+                <form action="#" th:action="@{/departments/update/{id}(id=${department.id})}">
+                    <input type="submit" value="Edit">
+                </form>
+            </td>
+            <td align="center">  <!-- "Delete" button -->
+                <span th:if="${department.hasEmployees}">Not Empty</span>
+                <span th:unless="${department.hasEmployees}">
+                    <form action="#" th:action="@{/departments/delete/{id}(id=${department.id})}" method="post">
+                        <input type="submit" value="Delete" onclick="this.disabled=true">
+                    </form>
+                </span>
+            </td>
         </tr>
     </tbody>
 </table>

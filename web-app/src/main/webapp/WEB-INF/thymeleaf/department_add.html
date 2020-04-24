@@ -2,6 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
+    <meta charset="UTF-8">
     <title>Add new Department</title>
     <style>
         .error {
@@ -12,6 +13,15 @@
 
 <body>
 <h2>Add a new Department:</h2>
+
+<form action="#" th:action="@{/departments/add}" th:object="${department}" method="post">
+    <p>
+        Name:
+        <input type="text" th:field="*{name}" />
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Name error</span>
+    </p>
+    <p><input type="submit" value="Add Department" onclick="this.disabled=true" /></p>
+</form>
 
 <a href="#" th:href="@{/departments/all}">Cancel</a>
 </body>

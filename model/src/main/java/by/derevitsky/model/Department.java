@@ -20,7 +20,7 @@ public class Department {
     private int id;
 
     @NotBlank(message = "Name may not be blank")
-    @Size(max=100)
+    @Size(max=100, message = "Name must be at most 100 characters")
     @Column(name = "name")
     private String name;
 
