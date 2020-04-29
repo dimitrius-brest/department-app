@@ -39,8 +39,16 @@
             <td th:text="${employee.lastName}"></td>
             <td th:text="${employee.birthDate}"></td>
             <td th:text="${employee.salary}"></td>
-            <td>edit</td>
-            <td>delete</td>
+            <td>
+                <form action="#" th:action="@{/employees/update/{id}(id=${employee.id})}">
+                    <input type="submit" value="Edit" onclick="this.disabled=true">
+                </form>
+            </td>
+            <td>
+                <form action="#" th:action="@{/employees/delete/{id}(id=${employee.id})}" method="post">
+                    <input type="submit" value="Delete" onclick="this.disabled=true">
+                </form>
+            </td>
         </tr>
     </tbody>
 </table>
