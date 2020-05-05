@@ -25,16 +25,16 @@ public class Employee {
     @Column(name = "id_department")
     private int idDepartment;
 
-    @Size(max = 50)
+    @Size(max = 50, message = "First name must be at most 50 characters")
     @Column(name = "first_name")
     private String firstName;
 
-    @Size(max = 50)
+    @Size(max = 50, message = "Middle name must be at most 50 characters")
     @Column(name = "middle_name")
     private String middleName;
 
     @NotBlank(message = "Last name may not be blank")
-    @Size(max = 100)
+    @Size(max = 100, message = "Last name must be at most 100 characters")
     @Column(name = "last_name")
     private String lastName;
 
