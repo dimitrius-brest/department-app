@@ -1,6 +1,8 @@
 package by.derevitsky.database;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -12,13 +14,13 @@ import java.util.Properties;
 @ComponentScan(basePackages = "by.derevitsky")
 public class ConfigDataSource {
 
-    // to get properties
-//    @Autowired
-//    private Environment env;
+    // to get properties of DataSources from Environment, which are set in RestAppInitializer class, in 'rest' module
+    private Environment env;
 
-//    @Autowired
-//    @Qualifier("dbProperties")
-//    private Properties dbProps;
+    @Autowired
+    public void setEnv(Environment env) {
+        this.env = env;
+    }
 
     // Getting properties, depending on database type, taken from "profiles.properties"
     // and corresponding .properties file (db-${db.type}.properties).
@@ -64,14 +66,18 @@ public class ConfigDataSource {
     @Bean(name="H2serverDataSource")
     public DataSource setDataSourceH2server(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-         dataSource.setDriverClassName("org.h2.Driver");
-         dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");
-         dataSource.setUsername("sa");
-         dataSource.setPassword("");
+//         dataSource.setDriverClassName("org.h2.Driver");
+//         dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");
+//         dataSource.setUsername("sa");
+//         dataSource.setPassword("");
 //        dataSource.setDriverClassName(dbDriver);
 //        dataSource.setUrl(dbUrl);
 //        dataSource.setUsername(dbUsername);
 //        dataSource.setPassword(dbPassword);
+        dataSource.setDriverClassName(env.getProperty("db.driver"));
+        dataSource.setUrl(env.getProperty("db.url"));
+        dataSource.setUsername(env.getProperty("db.username"));
+        dataSource.setPassword(env.getProperty("db.password"));
         return dataSource;
     }
 
@@ -84,10 +90,18 @@ public class ConfigDataSource {
     @Bean(name="MysqlDataSource")
     public DataSource setDataSourceMysql() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
-        dataSource.setUrl("jdbc:mysql://localhost:3306/test");
-        dataSource.setUsername("root");
-        dataSource.setPassword("1");
+//        dataSource.setDriverClassName(com.mysql.jdbc.Driver.class.getName());
+//        dataSource.setUrl("jdbc:mysql://localhost:3306/test");
+//        dataSource.setUsername("root");
+//        dataSource.setPassword("1");
+//        dataSource.setDriverClassName(dbDriver);
+//        dataSource.setUrl(dbUrl);
+//        dataSource.setUsername(dbUsername);
+//        dataSource.setPassword(dbPassword);
+        dataSource.setDriverClassName(env.getProperty("db.driver"));
+        dataSource.setUrl(env.getProperty("db.url"));
+        dataSource.setUsername(env.getProperty("db.username"));
+        dataSource.setPassword(env.getProperty("db.password"));
         return dataSource;
     }
 }
