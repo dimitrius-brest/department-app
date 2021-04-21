@@ -11,6 +11,6 @@
 
     <jaxws:endpoint id="op" implementor="by.derevitsky.soap.OperationsImpl" address="/op" />
 
-<!--    <jaxws:endpoint id="dep" implementor="by.my.DepartmentsImpl" address="/dep"/>-->
+    <jaxws:endpoint id="dep" implementor="by.derevitsky.soap.DepartmentSoapImpl" address="/dep"/>
 
 </beans>
