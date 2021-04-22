@@ -6,6 +6,7 @@ package by.derevitsky.soap;
 import org.apache.cxf.Bus;
 import org.apache.cxf.bus.spring.SpringBus;
 import org.apache.cxf.jaxws.EndpointImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -26,9 +27,14 @@ public class SoapConfiguration {
         return new SpringBus();
     }
 
+    // See: https://stackoverflow.com/questions/46157534/spring-apache-cxf-autowire-in-the-service-always-null
+    @Autowired
+    DepartmentSoapImpl departmentSoap;
+
     @Bean
     public Endpoint endpoint() {
-        EndpointImpl endpoint = new EndpointImpl(springBus(), new DepartmentSoapImpl());
+        //EndpointImpl endpoint = new EndpointImpl(springBus(), new DepartmentSoapImpl());
+        EndpointImpl endpoint = new EndpointImpl(springBus(), departmentSoap);
         endpoint.publish("/dep");
         return endpoint;
     }
