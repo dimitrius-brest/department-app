@@ -2,10 +2,12 @@ package by.derevitsky.soap;
 
 import by.derevitsky.model.Department;
 
+import javax.jws.WebService;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@WebService(endpointInterface = "by.derevitsky.soap.DepartmentSoap")
 public class DepartmentSoapImpl implements DepartmentSoap {
 
     // Stub
@@ -17,12 +19,12 @@ public class DepartmentSoapImpl implements DepartmentSoap {
     );
 
     @Override
-    public Department[] getAllDepartments() {
+    public Department[] findAllDepartments() {
         return this.departments.toArray(new Department[this.departments.size()]);
     }
 
     @Override
-    public Department getDepartmentById(Integer id) {
+    public Department findDepartmentById(Integer id) {
         Department searchedDepartment = new Department(0, "Department not found");
         for (Department department : this.departments){
             if (id == department.getId()) {

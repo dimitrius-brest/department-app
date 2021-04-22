@@ -9,10 +9,10 @@ import javax.jws.WebService;
 public interface DepartmentSoap {
 
     @WebMethod
-    Department[] getAllDepartments();
+    Department[] findAllDepartments();
 
     @WebMethod
-    Department getDepartmentById(Integer id);
+    Department findDepartmentById(Integer id);
 
     @WebMethod
     void insertDepartment(Department department);
