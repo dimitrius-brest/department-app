@@ -1,6 +1,6 @@
 package by.derevitsky.soap;
 
-import by.derevitsky.model.Employee;
+import by.derevitsky.soap.model.EmployeeForSoap;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -9,19 +9,19 @@ import javax.jws.WebService;
 public interface EmployeeSoap {
 
     @WebMethod
-    Employee findEmployeeById(Integer id);
+    EmployeeForSoap findEmployeeById(Integer id);
 
     @WebMethod
-    Employee[] findAllEmployees();
+    EmployeeForSoap[] findAllEmployees();
 
     @WebMethod
-    Employee[] findEmployeesByDepartmentId(Integer depId);
+    EmployeeForSoap[] findEmployeesByDepartmentId(Integer depId);
 
     @WebMethod
-    void insertEmployee(Employee employee);
+    void insertEmployee(EmployeeForSoap employee);
 
     @WebMethod
-    void updateEmployee(Employee employee);
+    void updateEmployee(EmployeeForSoap employee);
 
     @WebMethod
     void deleteEmployee(Integer id);

@@ -9,8 +9,6 @@
                 http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd
                 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <jaxws:endpoint id="op" implementor="by.derevitsky.soap.OperationsImpl" address="/op" />
-
     <jaxws:endpoint id="dep" implementor="by.derevitsky.soap.DepartmentSoapImpl" address="/dep"/>
 
 </beans>

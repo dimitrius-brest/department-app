@@ -47,13 +47,6 @@ public class SoapConfiguration {
         return endpointEmpl;
     }
 
-    @Bean
-    public Endpoint endpointOp() {
-        EndpointImpl endpointOp = new EndpointImpl(springBus(), new OperationsImpl());
-        endpointOp.publish("/op");
-        return endpointOp;
-    }
-
     // To get parameters from properties file.
     // See: https://stackoverflow.com/questions/33714491/whats-the-best-way-to-add-a-new-property-source-in-spring
     @Bean

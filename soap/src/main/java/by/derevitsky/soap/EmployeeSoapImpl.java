@@ -2,11 +2,12 @@ package by.derevitsky.soap;
 
 import by.derevitsky.EmployeeService;
 import by.derevitsky.model.Employee;
+import by.derevitsky.soap.model.EmployeeForSoap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.jws.WebService;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebService(endpointInterface = "by.derevitsky.soap.EmployeeSoap")
@@ -14,39 +15,47 @@ import java.util.List;
 public class EmployeeSoapImpl implements EmployeeSoap {
 
     // Stub
-    private Employee stubEmployee = new Employee(1, 2,
-            "Ivan", "Ivanych", "Ivanov",
-            LocalDate.parse("2020-01-01"), 5000);
+//    private Employee stubEmployee = new Employee(1, 2,
+//            "Ivan", "Ivanych", "Ivanov",
+//            LocalDate.parse("2020-01-01"), 5000);
 
     @Autowired
     private EmployeeService employeeService;
 
     @Override
-    public Employee findEmployeeById(Integer id) {
+    public EmployeeForSoap findEmployeeById(Integer id) {
         Employee foundEmployee = employeeService.getById(id);
-        return foundEmployee;
+        return new EmployeeForSoap(foundEmployee);
     }
 
     @Override
-    public Employee[] findAllEmployees() {
+    public EmployeeForSoap[] findAllEmployees() {
         List<Employee> foundEmployees = employeeService.getAll();
-        return foundEmployees.toArray(new Employee[foundEmployees.size()]);
+        List<EmployeeForSoap> employeeForSoaps = new ArrayList<>();
+        for(Employee emp : foundEmployees) {
+            employeeForSoaps.add(new EmployeeForSoap(emp));
+        }
+        return employeeForSoaps.toArray(new EmployeeForSoap[employeeForSoaps.size()]);
     }
 
     @Override
-    public Employee[] findEmployeesByDepartmentId(Integer depId) {
+    public EmployeeForSoap[] findEmployeesByDepartmentId(Integer depId) {
         List<Employee> foundEmployees = employeeService.getByDepartmentId(depId);
-        return foundEmployees.toArray(new Employee[foundEmployees.size()]);
+        List<EmployeeForSoap> employeeForSoaps = new ArrayList<>();
+        for(Employee emp : foundEmployees) {
+            employeeForSoaps.add(new EmployeeForSoap(emp));
+        }
+        return employeeForSoaps.toArray(new EmployeeForSoap[employeeForSoaps.size()]);
     }
 
     @Override
-    public void insertEmployee(Employee employee) {
-        this.employeeService.insert(employee);
+    public void insertEmployee(EmployeeForSoap emp) {
+        this.employeeService.insert(emp.convertToEmployee());
     }
 
     @Override
-    public void updateEmployee(Employee employee) {
-        this.employeeService.update(employee);
+    public void updateEmployee(EmployeeForSoap emp) {
+        this.employeeService.update(emp.convertToEmployee());
     }
 
     @Override
