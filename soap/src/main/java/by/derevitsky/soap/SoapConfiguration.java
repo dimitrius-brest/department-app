@@ -9,8 +9,6 @@ import org.apache.cxf.jaxws.EndpointImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.*;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.xml.ws.Endpoint;
 
@@ -31,12 +29,22 @@ public class SoapConfiguration {
     @Autowired
     DepartmentSoapImpl departmentSoap;
 
+    @Autowired
+    EmployeeSoapImpl employeeSoap;
+
     @Bean
-    public Endpoint endpoint() {
+    public Endpoint endpointDep() {
         //EndpointImpl endpoint = new EndpointImpl(springBus(), new DepartmentSoapImpl());
-        EndpointImpl endpoint = new EndpointImpl(springBus(), departmentSoap);
-        endpoint.publish("/dep");
-        return endpoint;
+        EndpointImpl endpointDep = new EndpointImpl(springBus(), departmentSoap);
+        endpointDep.publish("/dep");
+        return endpointDep;
+    }
+
+    @Bean
+    public Endpoint endpointEmpl() {
+        EndpointImpl endpointEmpl = new EndpointImpl(springBus(), employeeSoap);
+        endpointEmpl.publish("/empl");
+        return endpointEmpl;
     }
 
     @Bean
